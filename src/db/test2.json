@@ -1,0 +1,533 @@
+[
+    {
+        "epa_name": "대표이사",
+        "epa_step": "0",
+        "epa_code": "001",
+        "epa_upcode": "000",
+        "full_code": "000"
+    },
+    {
+        "epa_name": "사업총괄",
+        "epa_step": "1",
+        "epa_code": "101",
+        "epa_upcode": "001",
+        "full_code": "101",
+        "child": [
+            {
+                "epa_name": "사업부문",
+                "epa_step": "2",
+                "epa_code": "202",
+                "epa_upcode": "101",
+                "full_code": "101202",
+                "child": [
+                    {
+                        "epa_name": "마케팅그룹",
+                        "epa_step": "3",
+                        "epa_code": "301",
+                        "epa_upcode": "202",
+                        "full_code": "101202301",
+                        "child": [
+                            {
+                                "epa_name": "채널마케팅팀",
+                                "epa_step": "4",
+                                "epa_code": "414",
+                                "epa_upcode": "301",
+                                "full_code": "101202301414"
+                            },
+                            {
+                                "epa_name": "C&C팀",
+                                "epa_step": "4",
+                                "epa_code": "420",
+                                "epa_upcode": "301",
+                                "full_code": "101202301420"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "CM그룹",
+                        "epa_step": "3",
+                        "epa_code": "304",
+                        "epa_upcode": "202",
+                        "full_code": "101202304",
+                        "child": [
+                            {
+                                "epa_name": "제휴사업팀",
+                                "epa_step": "4",
+                                "epa_code": "450",
+                                "epa_upcode": "304",
+                                "full_code": "101202304450"
+                            },
+                            {
+                                "epa_name": "조립PC파트(가상)",
+                                "epa_step": "4",
+                                "epa_code": "470",
+                                "epa_upcode": "304",
+                                "full_code": "101202304470"
+                            },
+                            {
+                                "epa_name": "CM1팀",
+                                "epa_step": "4",
+                                "epa_code": "454",
+                                "epa_upcode": "304",
+                                "full_code": "101202304454"
+                            },
+                            {
+                                "epa_name": "CM2팀",
+                                "epa_step": "4",
+                                "epa_code": "455",
+                                "epa_upcode": "304",
+                                "full_code": "101202304455"
+                            },
+                            {
+                                "epa_name": "CM3팀",
+                                "epa_step": "4",
+                                "epa_code": "453",
+                                "epa_upcode": "304",
+                                "full_code": "101202304453"
+                            },
+                            {
+                                "epa_name": "CM4팀",
+                                "epa_step": "4",
+                                "epa_code": "456",
+                                "epa_upcode": "304",
+                                "full_code": "101202304456"
+                            },
+                            {
+                                "epa_name": "CM5팀",
+                                "epa_step": "4",
+                                "epa_code": "457",
+                                "epa_upcode": "304",
+                                "full_code": "101202304457"
+                            },
+                            {
+                                "epa_name": "CM6팀",
+                                "epa_step": "4",
+                                "epa_code": "408",
+                                "epa_upcode": "304",
+                                "full_code": "101202304408"
+                            },
+                            {
+                                "epa_name": "CM7팀",
+                                "epa_step": "4",
+                                "epa_code": "409",
+                                "epa_upcode": "304",
+                                "full_code": "101202304409"
+                            },
+                            {
+                                "epa_name": "CM8팀",
+                                "epa_step": "4",
+                                "epa_code": "459",
+                                "epa_upcode": "304",
+                                "full_code": "101202304459"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "사업그룹",
+                        "epa_step": "3",
+                        "epa_code": "308",
+                        "epa_upcode": "202",
+                        "full_code": "101202308",
+                        "child": [
+                            {
+                                "epa_name": "광고영업1팀",
+                                "epa_step": "4",
+                                "epa_code": "490",
+                                "epa_upcode": "308",
+                                "full_code": "101202308490"
+                            },
+                            {
+                                "epa_name": "광고운영팀",
+                                "epa_step": "4",
+                                "epa_code": "480",
+                                "epa_upcode": "308",
+                                "full_code": "101202308480"
+                            },
+                            {
+                                "epa_name": "데이터사업팀",
+                                "epa_step": "4",
+                                "epa_code": "460",
+                                "epa_upcode": "308",
+                                "full_code": "101202308460"
+                            },
+                            {
+                                "epa_name": "신사업팀",
+                                "epa_step": "4",
+                                "epa_code": "458",
+                                "epa_upcode": "308",
+                                "full_code": "101202308458"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "서비스기획그룹",
+                        "epa_step": "3",
+                        "epa_code": "310",
+                        "epa_upcode": "202",
+                        "full_code": "101202310",
+                        "child": [
+                            {
+                                "epa_name": "서비스기획팀",
+                                "epa_step": "4",
+                                "epa_code": "416",
+                                "epa_upcode": "310",
+                                "full_code": "101202310416"
+                            },
+                            {
+                                "epa_name": "플랫폼기획팀",
+                                "epa_step": "4",
+                                "epa_code": "448",
+                                "epa_upcode": "310",
+                                "full_code": "101202310448"
+                            },
+                            {
+                                "epa_name": "CD팀",
+                                "epa_step": "4",
+                                "epa_code": "423",
+                                "epa_upcode": "310",
+                                "full_code": "101202310423"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "epa_name": "경영총괄",
+        "epa_step": "1",
+        "epa_code": "102",
+        "epa_upcode": "001",
+        "full_code": "102",
+        "child": [
+            {
+                "epa_name": "경영지원부문",
+                "epa_step": "2",
+                "epa_code": "204",
+                "epa_upcode": "102",
+                "full_code": "102204",
+                "child": [
+                    {
+                        "epa_name": "경영지원그룹(가상)",
+                        "epa_step": "3",
+                        "epa_code": "307",
+                        "epa_upcode": "204",
+                        "full_code": "102204307",
+                        "child": [
+                            {
+                                "epa_name": "관리지원팀",
+                                "epa_step": "4",
+                                "epa_code": "496",
+                                "epa_upcode": "307",
+                                "full_code": "102204307496"
+                            },
+                            {
+                                "epa_name": "인사팀",
+                                "epa_step": "4",
+                                "epa_code": "495",
+                                "epa_upcode": "307",
+                                "full_code": "102204307495"
+                            },
+                            {
+                                "epa_name": "장애우 스포츠단",
+                                "epa_step": "4",
+                                "epa_code": "498",
+                                "epa_upcode": "307",
+                                "full_code": "102204307498"
+                            },
+                            {
+                                "epa_name": "재무팀",
+                                "epa_step": "4",
+                                "epa_code": "494",
+                                "epa_upcode": "307",
+                                "full_code": "102204307494"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "epa_name": "개발부문",
+                "epa_step": "2",
+                "epa_code": "205",
+                "epa_upcode": "102",
+                "full_code": "102205",
+                "child": [
+                    {
+                        "epa_name": "DM그룹",
+                        "epa_step": "3",
+                        "epa_code": "309",
+                        "epa_upcode": "205",
+                        "full_code": "102205309",
+                        "child": [
+                            {
+                                "epa_name": "DATA1팀",
+                                "epa_step": "4",
+                                "epa_code": "447",
+                                "epa_upcode": "309",
+                                "full_code": "102205309447"
+                            },
+                            {
+                                "epa_name": "DATA2팀",
+                                "epa_step": "4",
+                                "epa_code": "432",
+                                "epa_upcode": "309",
+                                "full_code": "102205309432"
+                            },
+                            {
+                                "epa_name": "DB팀",
+                                "epa_step": "4",
+                                "epa_code": "435",
+                                "epa_upcode": "309",
+                                "full_code": "102205309435"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "DS그룹",
+                        "epa_step": "3",
+                        "epa_code": "311",
+                        "epa_upcode": "205",
+                        "full_code": "102205311",
+                        "child": [
+                            {
+                                "epa_name": "검색팀",
+                                "epa_step": "4",
+                                "epa_code": "473",
+                                "epa_upcode": "311",
+                                "full_code": "102205311473"
+                            },
+                            {
+                                "epa_name": "빅데이터팀",
+                                "epa_step": "4",
+                                "epa_code": "474",
+                                "epa_upcode": "311",
+                                "full_code": "102205311474"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "SD그룹",
+                        "epa_step": "3",
+                        "epa_code": "312",
+                        "epa_upcode": "205",
+                        "full_code": "102205312",
+                        "child": [
+                            {
+                                "epa_name": "앱개발팀",
+                                "epa_step": "4",
+                                "epa_code": "418",
+                                "epa_upcode": "312",
+                                "full_code": "102205312418"
+                            },
+                            {
+                                "epa_name": "웹개발1팀",
+                                "epa_step": "4",
+                                "epa_code": "419",
+                                "epa_upcode": "312",
+                                "full_code": "102205312419"
+                            },
+                            {
+                                "epa_name": "웹개발2팀",
+                                "epa_step": "4",
+                                "epa_code": "469",
+                                "epa_upcode": "312",
+                                "full_code": "102205312469"
+                            },
+                            {
+                                "epa_name": "웹UI개발팀",
+                                "epa_step": "4",
+                                "epa_code": "422",
+                                "epa_upcode": "312",
+                                "full_code": "102205312422"
+                            }
+                        ]
+                    },
+                    {
+                        "epa_name": "정보보안그룹(가상)",
+                        "epa_step": "3",
+                        "epa_code": "324",
+                        "epa_upcode": "205",
+                        "full_code": "102205324",
+                        "child": [
+                            {
+                                "epa_name": "정보보안팀",
+                                "epa_step": "4",
+                                "epa_code": "425",
+                                "epa_upcode": "324",
+                                "full_code": "102205324425"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "epa_name": "나인큐브TF",
+        "epa_step": "1",
+        "epa_code": "104",
+        "epa_upcode": "001",
+        "full_code": "104",
+        "child": [
+            {
+                "epa_name": "나인큐브TF(가상부문)",
+                "epa_step": "2",
+                "epa_code": "203",
+                "epa_upcode": "104",
+                "full_code": "104203",
+                "child": [
+                    {
+                        "epa_name": "나인큐브TF(가상그룹)",
+                        "epa_step": "3",
+                        "epa_code": "319",
+                        "epa_upcode": "203",
+                        "full_code": "104203319",
+                        "child": [
+                            {
+                                "epa_name": "데이터팀",
+                                "epa_step": "4",
+                                "epa_code": "449",
+                                "epa_upcode": "319",
+                                "full_code": "104203319449"
+                            },
+                            {
+                                "epa_name": "솔루션팀",
+                                "epa_step": "4",
+                                "epa_code": "452",
+                                "epa_upcode": "319",
+                                "full_code": "104203319452"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "epa_name": "COO",
+        "epa_step": "1",
+        "epa_code": "105",
+        "epa_upcode": "001",
+        "full_code": "105",
+        "child": [
+            {
+                "epa_name": "전략기획TF(가상부문)",
+                "epa_step": "2",
+                "epa_code": "206",
+                "epa_upcode": "105",
+                "full_code": "105206"
+            }
+        ]
+    },
+    {
+        "epa_name": "코리아센터",
+        "epa_step": "1",
+        "epa_code": "109",
+        "epa_upcode": "001",
+        "full_code": "109",
+        "child": [
+            {
+                "epa_name": "코리아센터.에누리사업팀",
+                "epa_step": "2",
+                "epa_code": "209",
+                "epa_upcode": "109",
+                "full_code": "109209"
+            }
+        ]
+    },
+    {
+        "epa_name": "스윗트래커CIC",
+        "epa_step": "1",
+        "epa_code": "110",
+        "epa_upcode": "001",
+        "full_code": "110",
+        "child": [
+            {
+                "epa_name": "개발담당",
+                "epa_step": "2",
+                "epa_code": "210",
+                "epa_upcode": "110",
+                "full_code": "110210",
+                "child": [
+                    {
+                        "epa_name": "개발담당(가상)",
+                        "epa_step": "3",
+                        "epa_code": "320",
+                        "epa_upcode": "210",
+                        "full_code": "110210320",
+                        "child": [
+                            {
+                                "epa_name": "메시징플랫폼팀",
+                                "epa_step": "4",
+                                "epa_code": "483",
+                                "epa_upcode": "320",
+                                "full_code": "110210320483"
+                            },
+                            {
+                                "epa_name": "서비스플랫폼팀",
+                                "epa_step": "4",
+                                "epa_code": "484",
+                                "epa_upcode": "320",
+                                "full_code": "110210320484"
+                            },
+                            {
+                                "epa_name": "RnD",
+                                "epa_step": "4",
+                                "epa_code": "486",
+                                "epa_upcode": "320",
+                                "full_code": "110210320486"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "epa_name": "운영담당",
+                "epa_step": "2",
+                "epa_code": "211",
+                "epa_upcode": "110",
+                "full_code": "110211",
+                "child": [
+                    {
+                        "epa_name": "운영담당(가상)",
+                        "epa_step": "3",
+                        "epa_code": "321",
+                        "epa_upcode": "211",
+                        "full_code": "110211321",
+                        "child": [
+                            {
+                                "epa_name": "모바일팀",
+                                "epa_step": "4",
+                                "epa_code": "487",
+                                "epa_upcode": "321",
+                                "full_code": "110211321487"
+                            },
+                            {
+                                "epa_name": "서비스기획팀",
+                                "epa_step": "4",
+                                "epa_code": "488",
+                                "epa_upcode": "321",
+                                "full_code": "110211321488"
+                            },
+                            {
+                                "epa_name": "영업팀",
+                                "epa_step": "4",
+                                "epa_code": "489",
+                                "epa_upcode": "321",
+                                "full_code": "110211321489"
+                            },
+                            {
+                                "epa_name": "UXD팀",
+                                "epa_step": "4",
+                                "epa_code": "491",
+                                "epa_upcode": "321",
+                                "full_code": "110211321491"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

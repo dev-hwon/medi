@@ -1,0 +1,48 @@
+.setting_header {}
+.setting_header ul { display: flex; flex-wrap: wrap; border-bottom:1px solid #EEEFF3;}
+.setting_header ul li { position:relative; flex : 0 0 auto; }
+.setting_header ul li button { min-width: 110px; height:54px; font-size:14px; font-weight: 500; color:#ABAFB1; border:none; background-color: #fff; }
+
+.setting_header ul li:after { content:""; display: block; width:100%; height:1px; background-color: #5570F1; position:absolute; bottom:-1px; left:0; transform: scale(0); transition: all .4s;}
+.setting_header ul li.active:after { transform: scale(1); }
+.setting_header ul li.active button { color:#222; }
+
+.tabContent { padding:32px;}
+
+.tab_author .form_add_author_label { font-size: 14px; color:#222; font-weight: 500; margin-bottom:10px;}
+.tab_author form.form_add_author {width:340px; }
+.tab_author form.form_add_author input[name=author] {width:230px; height: 44px; border:1px solid #DFE3EA; border-radius: 4px; margin-right: 8px; vertical-align: middle;}
+.tab_author form.form_add_author button[type=submit] {width:98px; height: 44px; color:#fff; font-size: 16px; font-weight: bold; background-color: #25AAE1; border:none; border-radius: 4px; vertical-align: middle;}
+
+.tab_author .authorlist .author { text-align: center; border:1px solid #ddd; border-radius: 4px; padding: 10px 0}
+.tab_author .authorlist .author .author_name { display: inline-block; vertical-align: middle; font-size: 14px; color:#000; font-weight: 500; text-align: center; transform: translateX(12px); transition: transform .4s;}
+.tab_author .authorlist .author button { width:24px; height:24px; margin-left:4px; vertical-align: top; border:none; background: none; transform: translateX(20px); opacity: 0; transition: transform .4s, opacity .4s; }
+
+.tab_author .authorlist .author:hover { border-color:#25AAE1; background-color: #F3FAFD; }
+.tab_author .authorlist .author:hover .author_name { transform: translateX(0); }
+.tab_author .authorlist .author:hover button { transform: translateX(0); opacity: 1; }
+
+/* 알람설정 */
+.tab_alarm .input_checkbox {position: absolute; top: 50%; right:16px; transform: translateY(-50%);}
+.tab_alarm .input_checkbox input {appearance: none; display: none;}
+.tab_alarm .input_checkbox input + .input_switch_shape {display: block; width: 42px; height:24px; background-color: #DFE3E9; border: 2px solid #DFE3E9; border-radius: 24px; transition: all .4s;}
+.tab_alarm .input_checkbox input + .input_switch_shape:after {content :""; display: block; width:20px; height:20px; background-color: #fff; border-radius: 100%; transition: all .4s;}
+.tab_alarm .input_checkbox input:checked + .input_switch_shape {background-color: #25AAE1; border-color:#25AAE1;}
+.tab_alarm .input_checkbox input:checked + .input_switch_shape:after { margin-left:18px; }
+
+
+/* 자주하는 질문 */
+.tab_guide .faq_tabmenu {}
+.tab_guide .faq_tabmenu button { width: 100%; height:36px; font-size: 14px; color:#666; border: 1px solid #DFE3E9; border-radius: 4px; text-align: center; background-color: #fff;}
+.tab_guide .faq_tabmenu button.active {color:#fff; border-color: #FFA901; background-color: #FFA901;}
+
+.tab_guide .faqlists {}
+.tab_guide .faqlists li { border-bottom:1px solid #EEEFF3; }
+.tab_guide .faqlists li:last-child { border-bottom:none }
+.tab_guide .faqlists li .faqlist_top { position:relative; display: flex; align-items: center; height:54px; }
+.tab_guide .faqlists li .faqlist_top .faq_no { flex: 0 0 auto; width: 54px; text-align: center;}
+.tab_guide .faqlists li .faqlist_top .faq_subject { flex: 0 0 auto; padding: 0 24px; }
+.tab_guide .faqlists li .faqlist_top button { position:absolute; top:50%; right:0; width:32px; height:32px; transform: translateY(-50%); }
+
+.tab_guide .faqlists li .faq_contents { display: none; border-top:1px solid #D3D8E0; border-bottom:1px solid #D3D8E0; background-color: #FCFCFC; padding:24px 24px 24px 72px;}
+.tab_guide .faqlists li.active .faq_contents { display: block; margin-top:-1px; margin-bottom:-1px; }

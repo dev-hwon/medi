@@ -1,0 +1,15 @@
+.page_login { display: flex; align-items: center; justify-content: center; width: 100vw; height:100vh; }
+.page_login .inner_wrap { 
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 3px 3px 6px rgba(0,0,0,.2), -3px -3px 6px rgba(0,0,0,.2);
+    border-radius: 8px;
+    padding:24px 30px;
+}
+.page_login .inner_wrap .form_tit {
+    margin-bottom:15px;
+} 
+.page_login .inner_wrap .btn_submit { 
+}
