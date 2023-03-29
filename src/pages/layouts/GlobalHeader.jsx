@@ -1,5 +1,5 @@
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { GridCol, GridWrap } from "../../components/Style";
 export default function GlobalHeader({ postItActive, setPostItActive }) {
@@ -19,13 +19,17 @@ export default function GlobalHeader({ postItActive, setPostItActive }) {
             colNomargin
           >
             <GridCol>
-              <Link to="">MV재료</Link>
+              <Link href="https://www.medivalue.co.kr/" target="_blank">
+                MV재료
+              </Link>
             </GridCol>
             <GridCol>
-              <Link to="">MV기사</Link>
+              <Link href="https://dt.medivalue.co.kr/" target="_blank">
+                MV기공
+              </Link>
             </GridCol>
             <GridCol>
-              <Link to="" className="color-mv">
+              <Link href="" className="color-mv">
                 클리닉관리
               </Link>
             </GridCol>
@@ -48,13 +52,13 @@ export default function GlobalHeader({ postItActive, setPostItActive }) {
             colNomargin
           >
             <GridCol>
-              <Link to="">이엘치과</Link>
+              <Link href="">이엘치과</Link>
             </GridCol>
             <GridCol>
-              <Link to="">로그아웃</Link>
+              <Link href="">로그아웃</Link>
             </GridCol>
             <GridCol>
-              <Link to="">고객센터</Link>
+              <Link href="">고객센터</Link>
             </GridCol>
           </GridWrap>
         </GridCol>

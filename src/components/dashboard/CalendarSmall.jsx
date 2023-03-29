@@ -1,11 +1,9 @@
 import React, { useCallback, useState, useEffect, useContext } from "react";
-import "../../circle_percentage.css";
 import styled from "styled-components";
 // import Moment from "react-moment";
 import moment from "moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./CalendarSmall.css";
 import { GridCol, GridWrap } from "../Style";
 import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
 

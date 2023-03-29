@@ -1,3 +1,4 @@
+import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import React, { useState, useEffect, useReducer } from "react";
 import { useContext } from "react";
 import AddAuthor from "../../components/setting/AddAuthor";
@@ -11,32 +12,33 @@ import {
   Box,
   Line,
 } from "../../components/Style";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
 
 export default function Author() {
   const authorsList = useContext(DatasContext);
   const authorsDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, authors } = authorsList;
 
-  const reverseData = [...authors].reverse();
+  console.log(authorsList);
 
-  const handleAdd = (addTarget) => {
-    authorsDispatch({
-      type: "AUTHORS_UPDATE",
-      addTarget,
-    });
-  };
+  // const { loading, errorMessage, authors } = authorsList;
+  // const reverseData = [...authors].reverse();
 
-  const handleDelete = (deleteTarget) => {
-    authorsDispatch({
-      type: "AUTHORS_DELETE",
-      authors,
-      deleteTarget,
-    });
-  };
+  // const handleAdd = (addTarget) => {
+  //   authorsDispatch({
+  //     type: "AUTHORS_UPDATE",
+  //     addTarget,
+  //   });
+  // };
+
+  // const handleDelete = (deleteTarget) => {
+  //   authorsDispatch({
+  //     type: "AUTHORS_DELETE",
+  //     authors,
+  //     deleteTarget,
+  //   });
+  // };
   return (
     <>
-      <GridWrap colWidth="100%">
+      {/* <GridWrap colWidth="100%">
         <GridCol>
           <CommontitleH4 className="">글쓴이 목록</CommontitleH4>
           <CommonSummary>최대 20개의 목록을 만들 수 있어요.</CommonSummary>
@@ -70,7 +72,7 @@ export default function Author() {
             </GridWrap>
           )}
         </GridCol>
-      </GridWrap>
+      </GridWrap> */}
     </>
   );
 }

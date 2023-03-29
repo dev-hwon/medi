@@ -10,7 +10,7 @@ import {
 import TodosAchievementChart from "../../components/todos/TodosAchievementChart";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import "swiper/less/navigation";
+// import "swiper/less/navigation";
 import "swiper/css";
 import styled from "styled-components";
 
@@ -19,7 +19,7 @@ function SlideNextButton() {
   return (
     <ButtonNext
       onClick={() => swiper.slideNext()}
-      icon={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/common/icon_arrow_default.svg`}
+      icon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_arrow_default.svg`}
     ></ButtonNext>
   );
 }
@@ -28,7 +28,7 @@ function SlidePrevButton() {
   return (
     <ButtonPrev
       onClick={() => swiper.slidePrev()}
-      icon={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/common/icon_arrow_default.svg`}
+      icon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_arrow_default.svg`}
     ></ButtonPrev>
   );
 }
@@ -36,7 +36,6 @@ export default function TodosAchieve() {
   return (
     <div>
       <Swiper
-        modules={[Navigation]}
         navigation={true}
         spaceBetween={0}
         slidesPerView={1}

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, createContext, useReducer } from "react";
-const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
-const todosUrl = `${process.env.REACT_APP_TEST_JSONSERVER_TODOS}`;
-const categorysUrl = `${process.env.REACT_APP_TEST_JSONSERVER_CATEGORYS}`;
-const authorsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_AUTHORS}`;
-const boardlistsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_BOARDLISTS}`;
+const sampleJSON = `${process.env.NEXT_PUBLIC_JSONSERVER_SAMPLE}`;
+const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
+const categorysUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_CATEGORYS}`;
+const authorsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_AUTHORS}`;
+const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const initialTheme = "dark";
 const initialUser = { name: "Guest" };
 const initialData = {
@@ -14,7 +14,6 @@ const initialData = {
   authors: [],
   boardlists: [],
 };
-
 export const ThemeContext = createContext();
 export const ThemeDispatchContext = createContext();
 export const UserContext = createContext();

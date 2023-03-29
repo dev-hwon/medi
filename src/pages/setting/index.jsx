@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { CommontitleH3, CommonSummary, Box } from "../../components/Style";
-import "./setting.css";
 import Alarm from "./Alarm";
 import Author from "./Author";
 import Guide from "./Guide";

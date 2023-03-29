@@ -1,12 +1,10 @@
 //eslint-disable
-import styled, { css } from "styled-components";
 import { useState } from "react";
-import logo from "../../logo_medi.svg";
+import styled, { css } from "styled-components";
 import { Line } from "../../components/Style";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const url = `${process.env.REACT_APP_HOST}`;
 const menulist = [
   {
     id: "1",
@@ -22,7 +20,7 @@ const menulist = [
     icon: "icon_folder.svg",
   },
   { id: "4", link: "/file", name: "파일함", icon: "icon_cloud.svg" },
-  { id: "5", link: "/setting", name: "설정관리", icon: "icon_setting.svg" },
+  { id: "5", link: "/setting/", name: "설정관리", icon: "icon_setting.svg" },
   {
     id: "6",
     link: "/board/manual",
@@ -59,7 +57,6 @@ const NaviMenu = (props) => {
   return (
     <nav onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <ul>
-        <li>dddd</li>
         {lnbData.map((d, idx) => (
           <li key={idx}>
             <Link
@@ -93,7 +90,7 @@ export default function GlobalLnb({ lnbFold, setLnbFold, setLnbHover }) {
         </LnbControllBtn>
         <div className="main_logo">
           <Link href={"/"}>
-            <img src={`/images/icon_menu.svg`} />
+            <img src={`/images/logo_medi.svg`} />
           </Link>
         </div>
         <NaviMenu

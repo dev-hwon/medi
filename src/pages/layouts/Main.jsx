@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, useState, useContext } from "react";
-import "../../circle_percentage.css";
 import moment, {
   current,
   currentDate,
