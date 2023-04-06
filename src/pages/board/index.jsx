@@ -1,7 +1,7 @@
 import React from "react";
 import BoardLists from "@/src/components/board/BoardLists";
 import BoardWrite from "@/src/components/board/BoardWrite";
-import Modal from "@/src/components/modal/Modal";
+import Modal, { ModalOpenBtn } from "@/src/components/modal/Modal";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useCallback, useEffect, useContext, useState } from "react";
 import {
@@ -71,7 +71,7 @@ export default function BoardIndex() {
             <ModalOpenBtn
               modalWidth="800px"
               className=""
-              children={<BoardWrite modalProps={setModalProps} />}
+              childData={<BoardWrite modalProps={setModalProps} />}
               buttonName="글쓰기"
               modalProps={setModalProps}
             />
@@ -90,7 +90,7 @@ export default function BoardIndex() {
           modalWidth={modalProps.modalWidth}
           maskClosable={modalProps.maskClosable}
           closable={modalProps.closable}
-          children={modalProps.children}
+          childData={modalProps.childData}
           onClose={closeModal}
         ></Modal>
       )}

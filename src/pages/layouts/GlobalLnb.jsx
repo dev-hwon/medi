@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { Line } from "../../components/Style";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const menulist = [
   {
@@ -64,7 +65,12 @@ const NaviMenu = (props) => {
               className={pathname === d.link ? "active" : ""}
               target={d.target ? d.target : "_self"}
             >
-              <img src={`/images/lnb/${d.icon}`} alt={d.name} />
+              <Image
+                src={`/images/lnb/${d.icon}`}
+                alt={d.name}
+                width={24}
+                height={24}
+              />
               <div className="menu_name">{d.name}</div>
             </Link>
           </li>
@@ -86,11 +92,21 @@ export default function GlobalLnb({ lnbFold, setLnbFold, setLnbHover }) {
           className={"btn_lnb_controll" + (lnbFold ? " fold" : "")}
           onClick={handleClick}
         >
-          <img src={`/images/lnb/icon_menu.svg`} alt="" />
+          <Image
+            src={`/images/lnb/icon_menu.svg`}
+            alt=""
+            width={24}
+            height={24}
+          />
         </LnbControllBtn>
         <div className="main_logo">
           <Link href={"/"}>
-            <img src={`/images/lnb/logo_medi.svg`} />
+            <Image
+              src={`/images/lnb/logo_medi.svg`}
+              alt="medivalue"
+              width={208}
+              height={60}
+            />
           </Link>
         </div>
         <NaviMenu

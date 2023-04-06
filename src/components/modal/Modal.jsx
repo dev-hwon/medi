@@ -14,7 +14,7 @@ export function ModalOpenBtn({
   className,
   buttonName,
   // title,
-  children,
+  childData,
   modalProps,
 }) {
   const openModal = () => {
@@ -25,7 +25,7 @@ export function ModalOpenBtn({
       closable: true,
       className: className,
       // title: title,
-      children: children,
+      childData: childData,
     });
   };
   return (
@@ -43,7 +43,7 @@ export default function Modal({
   maskClosable,
   closable,
   // title,
-  children,
+  childData,
 }) {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -81,7 +81,7 @@ export default function Modal({
         >
           {closable && <CloseButton className="modal-close" onClick={close} />}
           {/* <ModalHeader className="modal_haed">{title}</ModalHeader> */}
-          <ModalContent>{children}</ModalContent>
+          <ModalContent>{childData}</ModalContent>
         </ModalInner>
       </ModalWrapper>
     </Portal>

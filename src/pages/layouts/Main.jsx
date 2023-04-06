@@ -53,7 +53,7 @@ export default function Main() {
                   <ModalOpenBtn
                     modalWidth="400px"
                     className="btn_modal reportAllView"
-                    children={<Addtodo modalProps={setModalProps} />}
+                    childData={<Addtodo modalProps={setModalProps}></Addtodo>}
                     buttonName="리모트 모아보기"
                     modalProps={setModalProps}
                   />
@@ -114,14 +114,18 @@ export default function Main() {
                 <ModalOpenBtn
                   modalWidth="400px"
                   className=""
-                  children={<Addtodo modalProps={setModalProps} />}
+                  childData={<Addtodo modalProps={setModalProps}></Addtodo>}
                   buttonName="일감추가"
                   modalProps={setModalProps}
                 />
                 <ModalOpenBtn
                   modalWidth="500px"
                   className=""
-                  children={<TodosCategorySet modalProps={setModalProps} />}
+                  childData={
+                    <TodosCategorySet
+                      modalProps={setModalProps}
+                    ></TodosCategorySet>
+                  }
                   buttonName="카테고리 설정"
                   modalProps={setModalProps}
                 />
@@ -141,7 +145,7 @@ export default function Main() {
           modalWidth={modalProps.modalWidth}
           maskClosable={modalProps.maskClosable}
           closable={modalProps.closable}
-          children={modalProps.children}
+          childData={modalProps.childData}
           onClose={closeModal}
         ></Modal>
       )}

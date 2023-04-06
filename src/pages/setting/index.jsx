@@ -1,102 +1,61 @@
-import React from "react";
-import BoardLists from "@/src/components/board/BoardLists";
-import BoardWrite from "@/src/components/board/BoardWrite";
-import Modal from "@/src/components/modal/Modal";
-import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
-import { useCallback, useEffect, useContext, useState } from "react";
-import {
-  CommonSummary,
-  CommontitleH4,
-  GridCol,
-  GridWrap,
-  Box,
-} from "@/src/components/Style";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { CommontitleH3, CommonSummary, Box } from "../../components/Style";
 import Layout from "../layouts/Layout";
-import { useRouter } from "next/router";
 
-const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
-const boardNameKR = [
-  {
-    id: "manual",
-    name: "우리병원 매뉴얼",
-    summary: "운영하는 클리닉의 업무 매뉴얼을 직접 작성해 보세요",
-  },
-  { id: "notice", name: "공지사항", summary: "" },
-  { id: "free", name: "자유게시판", summary: "" },
+import Alarm from "./Alarm";
+import Author from "./Author";
+import Guide from "./Guide";
+
+const tabinfo = [
+  { tabclass: "tab_author", tabname: "글쓴이", tabcontent: <Author /> },
+  { tabclass: "tab_alarm", tabname: "알람", tabcontent: <Alarm /> },
+  { tabclass: "tab_guide", tabname: "서비스 가이드", tabcontent: <Guide /> },
 ];
-export default function BoardIndex() {
-  const [modalProps, setModalProps] = useState([]);
-  const router = useRouter();
-  const { params = [] } = router.query;
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, boardlists } = dataList;
-  const getBoardLists = useCallback(() =>
-    fetch(boardlistsUrl).then((res) => res.json())
+
+function Tabcontent({ tabStatus }) {
+  return (
+    <div className={"tabContent " + tabinfo[tabStatus].tabclass}>
+      {tabinfo[tabStatus].tabcontent}
+    </div>
   );
-
-  useEffect(() => {
-    getBoardLists()
-      .then((res) => {
-        const boardlistsData = res;
-        dataDispatch({ type: "SUCCESS", boardlistsData });
-      })
-      .catch(() => {
-        dataDispatch({ type: "ERROR" });
-      });
-  }, []);
-
-  const closeModal = () => {
-    setModalProps({ visible: false });
+}
+function TabMenu({ tabStatus, setTabStatus }) {
+  const handleClick = (status) => {
+    setTabStatus(status);
   };
-
-  const handleClick = (id) => {
-    router.push(`/board/${params.boardName}/write`, { replace: false });
-  };
-
+  return (
+    <div className="setting_header">
+      <ul>
+        {tabinfo.map((d, idx) => (
+          <li key={idx} className={idx === tabStatus ? "active" : ""}>
+            <button onClick={() => handleClick(idx)}>{d.tabname}</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+export default function SettingIndex() {
+  const [tabStatus, setTabStatus] = useState(0);
+  // useEffect(() => {
+  //   setTabStatus(0);
+  //   return () => {
+  //     setTabStatus(0);
+  //   };
+  // }, []);
   return (
     <>
-      <GridWrap colGap={16} colWidth="50%">
-        <GridCol>
-          <CommontitleH4 className="">
-            {boardNameKR.map((d) => d.id === params.boardName && d.name)}
-          </CommontitleH4>
-          <CommonSummary>
-            {boardNameKR.map((d) => d.id === params.boardName && d.summary)}
-          </CommonSummary>
-        </GridCol>
-        <GridCol>
-          <Box align="right" style={{ borderRadius: "0" }}>
-            <button onClick={handleClick}>글쓰기</button>
-            <ModalOpenBtn
-              modalWidth="800px"
-              className=""
-              children={<BoardWrite modalProps={setModalProps} />}
-              buttonName="글쓰기"
-              modalProps={setModalProps}
-            />
-          </Box>
-        </GridCol>
-      </GridWrap>
-      {loading ? (
-        "loading.."
-      ) : (
-        <BoardLists boardlists={boardlists} param={params} />
-      )}
-      {errorMessage ? errorMessage : null}
-      {modalProps.visible && (
-        <Modal
-          visible={modalProps.visible}
-          modalWidth={modalProps.modalWidth}
-          maskClosable={modalProps.maskClosable}
-          closable={modalProps.closable}
-          children={modalProps.children}
-          onClose={closeModal}
-        ></Modal>
-      )}
+      <CommontitleH3>설정관리</CommontitleH3>
+      <CommonSummary>다양한 설정을 직접 관리해요</CommonSummary>
+      <Box style={{ borderRadius: "0", marginTop: "24px" }}>
+        <TabMenu tabStatus={tabStatus} setTabStatus={setTabStatus} />
+        <Tabcontent tabStatus={tabStatus} />
+      </Box>
     </>
   );
 }
-BoardIndex.getLayout = function getLayout(page) {
+
+SettingIndex.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
