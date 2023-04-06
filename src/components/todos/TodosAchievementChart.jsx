@@ -14,7 +14,7 @@ const AchievementChart = (props) => {
   const { percent, trackLength } = props;
   let perValue = percent * trackLength * 0.01;
   let emptyPerValue = 1 - perValue;
-  let chartDirection = 0.55;
+  let chartDirection = 0.5;
 
   return (
     <div
@@ -25,7 +25,7 @@ const AchievementChart = (props) => {
         margin: "0 auto",
       }}
     >
-      <svg viewBox="0 0 200 100">
+      <svg viewBox="0 0 200 200">
         <defs>
           <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#25AAE1" />
@@ -40,8 +40,8 @@ const AchievementChart = (props) => {
           stroke="#F5F8FE"
           strokeWidth="15"
           // strokeLinecap="round"
-          strokeDasharray={`${2 * Math.PI * 90 * 0.6} ${
-            2 * Math.PI * 90 * 0.4
+          strokeDasharray={`${2 * Math.PI * 90 * 0.5} ${
+            2 * Math.PI * 90 * 0.5
           }`}
           strokeDashoffset={2 * Math.PI * 90 * chartDirection}
         />
@@ -92,7 +92,7 @@ const AchievementDescriptTxt = styled.div`
   letter-spacing: -0.5px;
   > em {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     color: #5570f1;
   }
 `;

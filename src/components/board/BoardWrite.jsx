@@ -1,17 +1,15 @@
+import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import React, { useState, useContext, useMemo, useRef } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
 import EditorComponent from "../EditorComponent";
 import {
   ButtonWrapper,
   CancelButton,
   ConfirmButton,
   ModalTitle,
+  Table,
+  TableBody,
+  TableHeader,
 } from "../Style";
-import { Table, TableBody, TableHeader } from "../Style";
-
-const boardlistsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_BOARDLISTS}`;
 
 const FileUpload = () => {
   return (
@@ -37,7 +35,7 @@ export default function BoardWrite({ modalProps }) {
 
   return (
     <>
-      <ModalTitle style={{ marginBottom: "10px" }}>글 작성</ModalTitle>
+      {/* <ModalTitle style={{ marginBottom: "10px" }}>글 작성</ModalTitle>
       <form onSubmit={handleSubmit}>
         <Table>
           <TableBody>
@@ -87,7 +85,7 @@ export default function BoardWrite({ modalProps }) {
             추가
           </ConfirmButton>
         </ButtonWrapper>
-      </form>
+      </form> */}
     </>
   );
 }

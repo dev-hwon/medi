@@ -1,4 +1,3 @@
-import React from "react";
 import BoardLists from "@/src/components/board/BoardLists";
 import BoardWrite from "@/src/components/board/BoardWrite";
 import Modal from "@/src/components/modal/Modal";
@@ -59,10 +58,10 @@ export default function BoardIndex() {
       <GridWrap colGap={16} colWidth="50%">
         <GridCol>
           <CommontitleH4 className="">
-            {boardNameKR.map((d) => d.id === params.boardName && d.name)}
+            {boardNameKR.map((d) => d.id === param.boardName && d.name)}
           </CommontitleH4>
           <CommonSummary>
-            {boardNameKR.map((d) => d.id === params.boardName && d.summary)}
+            {boardNameKR.map((d) => d.id === param.boardName && d.summary)}
           </CommonSummary>
         </GridCol>
         <GridCol>
@@ -81,7 +80,7 @@ export default function BoardIndex() {
       {loading ? (
         "loading.."
       ) : (
-        <BoardLists boardlists={boardlists} param={params} />
+        <BoardLists boardlists={boardlists} param={param} />
       )}
       {errorMessage ? errorMessage : null}
       {modalProps.visible && (
@@ -97,6 +96,7 @@ export default function BoardIndex() {
     </>
   );
 }
+
 BoardIndex.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };

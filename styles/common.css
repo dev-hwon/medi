@@ -200,7 +200,7 @@ textarea:focus:-ms-input-placeholder {color:transparent;}
 /* ----------------------------------------------------------------
     @공통_container
 -----------------------------------------------------------------*/
-.container { position:relative; min-width: 1200px; min-height: calc(100vh - 120px); padding:40px 32px;}
+.container { position:relative; width: 1140px; min-height: calc(100vh - 120px); padding:40px 32px; margin:0 auto;}
 
 /* 반응형 제거
 @media (max-width:767px){.container {width:100%}}
@@ -497,7 +497,7 @@ select { outline: none; }
 /* ----------------------------------------------------------------
     @공통_글로벌레이아웃
 -----------------------------------------------------------------*/
-.global_wrap { --global-lnb-width: 250px; --postIt-width: 250px; background-color: var(--theme-bg2); color: var(--theme-fontcolor); overflow: hidden; }
+.global_wrap { --global-lnb-width: 250px; --postIt-width: 250px; /* background-color: var(--theme-bg2); */ color: var(--theme-fontcolor); overflow: hidden; }
 .global_wrap.lnbFold { --global-lnb-width: 80px }
 
 .global_wrap > div { flex:0 0 auto; } 
@@ -584,3 +584,23 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
 .global_wrap.lnbFold .global_lnb .main_logo { display: none; }
 
 .global_wrap.lnbFold .global_lnb nav ul li a { padding: 12px; }
+
+
+/* ----------------------------------------------------------------
+    @버튼모음...
+-----------------------------------------------------------------*/
+.btn_modal {
+    font-size: 14px;
+    font-weight:500;
+    color:#444;
+    height:36px;
+    background-color: #fff;
+    border:1px solid #E3E8EC;
+    border-radius: 4px;;
+}
+.reportAllView {
+    position:absolute;
+    top:50%;
+    right:24px;
+    transform: translateY(-50%);
+}

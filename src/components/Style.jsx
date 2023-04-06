@@ -75,9 +75,7 @@ export const GridWrap = styled.div`
       margin: 0 ${props.colGap * -0.5}px;
       > div {
         padding: 0 ${props.colGap * 0.5}px;
-        margin-bottom: ${props.colNomargin
-          ? props.colNomargin
-          : props.colGap}px;
+        margin-bottom: ${props.colNomargin ? "0" : props.colGap}px;
       }
     `}
   ${(props) =>
@@ -95,19 +93,29 @@ export const GridWrap = styled.div`
 export const GridCol = styled.div`
   flex: 0 0 auto;
   width: ${(props) => (props.customWidth ? props.customWidth : "auto")};
+  margin: ${(props) => (props.margin ? props.margin + "!important" : "0")};
 `;
 export const Box = styled.div`
   background-color: #fff;
   height: 100%;
   min-height: 1px;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: ${(props) => (props.padding ? props.padding : "0")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
   text-align: ${(props) => (props.align ? props.align : "left")};
+  ${(props) =>
+    props.border &&
+    css`
+      border: 1px solid #eaebee;
+    `}
 `;
 export const BoxHead = styled.div`
+  position: relative;
   font-size: 16px;
   font-weight: bold;
   color: #222;
+  padding: 16px 24px;
+  border-bottom: 1px solid #eaebee;
 `;
 export const BoxFoot = styled.div`
   font-size: 12px;

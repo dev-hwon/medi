@@ -1,66 +1,68 @@
 import Link from "next/link";
 import React from "react";
 import styled, { css } from "styled-components";
-import { GridCol, GridWrap } from "../../components/Style";
-export default function GlobalHeader({ postItActive, setPostItActive }) {
-  const handleClick = () => {
-    setPostItActive((prev) => (prev = !prev));
-  };
+import { GridCol, GridWrap } from "@/src/components/Style";
+import TopNotice from "@/src/components/main/TopNotice";
+export default function GlobalHeader() {
   return (
     <Header>
-      <GridWrap colWidth={50} colWidthUnit="%">
+      <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
         <GridCol className="text_left">
-          <GridWrap
-            colWidth="auto"
-            colHeight={60}
-            colHeightUnit="px"
-            colVerticalAlign="center"
-            colGap={48}
-            colNomargin
-          >
-            <GridCol>
-              <Link href="https://www.medivalue.co.kr/" target="_blank">
-                MV재료
-              </Link>
-            </GridCol>
-            <GridCol>
-              <Link href="https://dt.medivalue.co.kr/" target="_blank">
-                MV기공
-              </Link>
-            </GridCol>
-            <GridCol>
-              <Link href="" className="color-mv">
-                클리닉관리
-              </Link>
-            </GridCol>
-            <GridCol>
-              <PostItButton
-                onClick={handleClick}
-                className={postItActive ? "active" : ""}
-              ></PostItButton>
-            </GridCol>
-          </GridWrap>
+          <TopNotice />
+        </GridCol>
+        <GridCol className="text_left">
+          <FamilySiteTab>
+            <GridWrap
+              colWidth="98px"
+              colHeightUnit="px"
+              colVerticalAlign="center"
+              colAlign="center"
+            >
+              <GridCol>
+                <Link href="" className="active">
+                  클리닉관리
+                </Link>
+              </GridCol>
+              <GridCol>
+                <Link href="https://www.medivalue.co.kr/" target="_blank">
+                  MV재료
+                </Link>
+              </GridCol>
+              <GridCol>
+                <Link href="https://dt.medivalue.co.kr/" target="_blank">
+                  MV기공
+                </Link>
+              </GridCol>
+            </GridWrap>
+          </FamilySiteTab>
         </GridCol>
         <GridCol className="text_right">
-          <GridWrap
-            colWidth="auto"
-            colHeight={60}
-            colHeightUnit="px"
-            colVerticalAlign="center"
-            colAlign="flex-end"
-            colGap={28}
-            colNomargin
-          >
-            <GridCol>
-              <Link href="">이엘치과</Link>
-            </GridCol>
-            <GridCol>
-              <Link href="">로그아웃</Link>
-            </GridCol>
-            <GridCol>
-              <Link href="">고객센터</Link>
-            </GridCol>
-          </GridWrap>
+          <Topmenu>
+            <GridWrap
+              colWidth="auto"
+              colHeightUnit="px"
+              colVerticalAlign="center"
+              colAlign="flex-end"
+              colGap={12}
+              colNomargin
+            >
+              <GridCol>
+                <MemberLevel>
+                  <span>
+                    이엘치과 담당자(<em>일반</em>)
+                  </span>
+                  님
+                </MemberLevel>
+                <MemberName>이엘치과</MemberName>
+              </GridCol>
+              <GridCol>
+                <Link href="">로그아웃</Link>
+              </GridCol>
+              <GridCol>
+                <Link href="">고객센터</Link>
+              </GridCol>
+            </GridWrap>
+          </Topmenu>
         </GridCol>
       </GridWrap>
     </Header>
@@ -72,7 +74,8 @@ const Header = styled.header`
   top: 0;
   left: 0;
   background-color: #fff;
-  transition: all 0.4s;
+  border-bottom: 1px solid #eee;
+  // transition: all 0.4s;
   display: flex;
   > div {
     padding: 0 40px;
@@ -91,9 +94,50 @@ const Header = styled.header`
       }
     `};
 `;
-const PostItButton = styled.button`
-  display: block;
-  width: 30px;
-  height: 30px;
-  background-color: #444;
+const FamilySiteTab = styled.div`
+  a {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding: 19px 0;
+    font-size: 13px;
+  }
+  a.active {
+    color: #25aae1;
+    font-weight: bold;
+  }
+  a.active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #25aae1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+`;
+
+const Topmenu = styled.div`
+  a {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+  }
+`;
+const MemberLevel = styled.span`
+  font-size: 12px;
+  color: #444;
+  > span {
+    font-weight: bold;
+    > em {
+    }
+  }
+`;
+const MemberName = styled.span`
+  font-size: 13px;
+  font-weight: bold;
+  color: #25aae1;
+  margin-left: 8px;
 `;

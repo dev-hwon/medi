@@ -19,14 +19,18 @@ import {
   GridWrap,
   ButtonWrapper,
 } from "../../components/Style";
-import Reviews from "../reviews/Reviews";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
 import TodosIndex from "../todos/TodosIndex";
 import Addtodo from "../../components/todos/Addtodo";
 import TodosCategorySet from "../../components/todos/TodosCategorySet";
+import LocalReview from "../../components/main/LocalReview";
 import TodosAchieve from "../../components/main/TodosAchieve";
-import ToolTip from "../../components/tooltip/ToolTip";
-import ReviewLocalChart from "../../components/review/ReviewLocalChart";
+import ClinicPositivity from "@/src/components/main/ClinicPositivity";
+import Link from "next/link";
+import ClinicPositivityDesc from "@/src/components/main/ClinicPositivityDesc";
+import ReviewsGoods from "@/src/components/main/ReviewsGoods";
+import ReviewsBads from "@/src/components/main/ReviewsBads";
+import AiRecomlist from "@/src/components/main/AiRecomlist";
 
 // const filters = ["all", "active", "completed"];
 export default function Main() {
@@ -39,118 +43,98 @@ export default function Main() {
   return (
     <>
       {/* {dayWork[0].title.repeat(4)} */}
-      <CommontitleH3>클리닉 리포트</CommontitleH3>
-      <GridWrap colGap={16} colWidth={274} colWidthUnit="px">
-        <GridCol>
-          <Box padding="16px 20px">
-            <TodosAchieve />
-          </Box>
+      <GridWrap colGap={16}>
+        <GridCol customWidth="66.666666%">
+          <GridWrap colGap={16}>
+            <GridCol customWidth="100%">
+              <Box border>
+                <BoxHead>
+                  클리닉 긍정도 평가
+                  <ModalOpenBtn
+                    modalWidth="400px"
+                    className="btn_modal reportAllView"
+                    children={<Addtodo modalProps={setModalProps} />}
+                    buttonName="리모트 모아보기"
+                    modalProps={setModalProps}
+                  />
+                </BoxHead>
+                <GridWrap colGap={16} colWidth={50} colWidthUnit="%">
+                  {/* 클리닉 긍정도 평가 */}
+                  <GridCol>
+                    <Box padding="27px 0">
+                      <ClinicPositivity
+                        percent={0}
+                        trackLength={0.5}
+                        chartDirection={0.5}
+                      />
+                    </Box>
+                  </GridCol>
+                  <GridCol>
+                    <Box padding="27px 0">
+                      <ClinicPositivityDesc />
+                    </Box>
+                  </GridCol>
+                </GridWrap>
+              </Box>
+            </GridCol>
+          </GridWrap>
+          <GridWrap colGap={16} colWidth={50} colWidthUnit="%">
+            {/* 클리닉평가 */}
+            <GridCol>
+              <GridWrap colGap={16} colWidth="100%">
+                <GridCol>
+                  <Box border>
+                    <BoxHead>클리닉 긍정 평가</BoxHead>
+                    <ReviewsGoods />
+                  </Box>
+                </GridCol>
+                <GridCol margin="0">
+                  <Box border>
+                    <BoxHead>클리닉 부정 평가</BoxHead>
+                    <ReviewsBads />
+                  </Box>
+                </GridCol>
+              </GridWrap>
+            </GridCol>
+            {/* AI추천업무리스트 */}
+            <GridCol>
+              <Box border>
+                <BoxHead>AI추천업무리스트</BoxHead>
+                <AiRecomlist />
+              </Box>
+            </GridCol>
+          </GridWrap>
         </GridCol>
-        <GridCol>
-          <Box padding="16px 20px">
-            <BoxHead>
-              지역 리뷰 보기&nbsp;
-              <ToolTip
-                position="top"
-                contentWidth="246px"
-                buttonSize="18px"
-                buttonIcon={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/common/icon_tooltip.svg`}
-                buttonIconAlpha={0.6}
-                buttonIconVerticalPosition="-2px"
-                content="주요 클리닉 리뷰 사이트에 작성된 리뷰를 AI가 분석 후 보여드려요"
-              />
-            </BoxHead>
-            <ReviewLocalChart
-              percent={75}
-              trackLength={0.6}
-              chartDirection={0.625}
-            />
-          </Box>
-        </GridCol>
-        <GridCol>
-          <Box padding="16px 20px">
-            <BoxHead>
-              클리닉 리뷰 한분에 보기
-              <ToolTip
-                position="top"
-                contentWidth="246px"
-                buttonSize="18px"
-                buttonIcon={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/common/icon_tooltip.svg`}
-                buttonIconAlpha={0.6}
-                buttonIconVerticalPosition="-2px"
-                content="주요 클리닉 리뷰 사이트에 작성된 리뷰를 AI가 분석 후 보여드려요"
-              />
-            </BoxHead>
-            <Reviews></Reviews>
-          </Box>
-        </GridCol>
-        <GridCol>
-          <Box>
-            <CalendarSmall />
-            {/* <div className="text_center bold">Selected Date: {sDate}</div> */}
-          </Box>
-        </GridCol>
-      </GridWrap>
 
-      <CommontitleH3 className="mt20">
-        오늘의 해야 할 일<span>(124124건)</span>
-        <ButtonWrapper position="">
-          <ModalOpenBtn
-            modalWidth="400px"
-            className=""
-            children={<Addtodo modalProps={setModalProps} />}
-            buttonName="일감추가"
-            modalProps={setModalProps}
-          />
-          <ModalOpenBtn
-            modalWidth="500px"
-            className=""
-            children={<TodosCategorySet modalProps={setModalProps} />}
-            buttonName="카테고리 설정"
-            modalProps={setModalProps}
-          />
-        </ButtonWrapper>
-      </CommontitleH3>
-      <GridWrap colGap={16} colWidth={274} colWidthUnit="px">
-        <GridCol>
-          <Box>
+        <GridCol customWidth="33.333333%">
+          <Box border>
+            <CommontitleH3 className="mt20">
+              오늘의 업무
+              <ButtonWrapper position="">
+                <ModalOpenBtn
+                  modalWidth="400px"
+                  className=""
+                  children={<Addtodo modalProps={setModalProps} />}
+                  buttonName="일감추가"
+                  modalProps={setModalProps}
+                />
+                <ModalOpenBtn
+                  modalWidth="500px"
+                  className=""
+                  children={<TodosCategorySet modalProps={setModalProps} />}
+                  buttonName="카테고리 설정"
+                  modalProps={setModalProps}
+                />
+              </ButtonWrapper>
+            </CommontitleH3>
+
             <TodosIndex filter={"category1"} />
-          </Box>
-        </GridCol>
-        <GridCol>
-          <Box>
-            <TodosIndex filter={"category2"} />
-          </Box>
-        </GridCol>
-        <GridCol>
-          <Box>{/* <TodosIndex filter={"category3"} /> */}</Box>
-        </GridCol>
-        <GridCol>
-          <Box>
-            {/* <TodosIndex filter={"category4"} /> */}
-            {/* <TodosIndex filter={filter} />  */}
+
+            <CalendarSmall />
           </Box>
         </GridCol>
       </GridWrap>
 
-      <CommontitleH3 className="mt20">투두리스트2</CommontitleH3>
-      <GridWrap colGap={16} colWidth={274} colWidthUnit="px">
-        <GridCol>
-          <Box>
-            {currentDate}
-            <br />
-          </Box>
-        </GridCol>
-        <GridCol>
-          <Box>2</Box>
-        </GridCol>
-        <GridCol>
-          <Box>3</Box>
-        </GridCol>
-        <GridCol>
-          <Box>4</Box>
-        </GridCol>
-      </GridWrap>
       {modalProps.visible && (
         <Modal
           visible={modalProps.visible}

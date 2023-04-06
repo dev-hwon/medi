@@ -1,12 +1,12 @@
 import React from "react";
-import moment, { Currenttime } from "../../components/Current";
+import moment, { Currenttime } from "../Current";
 import { Box, BoxHead, BoxCont, CommontitleH3, CommonSummary } from "../Style";
-import TodosAchievementChart from "../../components/todos/TodosAchievementChart";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-// import "swiper/less/navigation";
 import "swiper/css";
 import styled from "styled-components";
+import ReviewLocalChart from "../review/ReviewLocalChart";
+import ToolTip from "../tooltip/ToolTip";
 
 function SlideNextButton() {
   const swiper = useSwiper();
@@ -26,10 +26,11 @@ function SlidePrevButton() {
     ></ButtonPrev>
   );
 }
-export default function TodosAchieve() {
+export default function LocalReview() {
   return (
     <div>
       <Swiper
+        initialSlide={1}
         navigation={true}
         spaceBetween={0}
         slidesPerView={1}
@@ -38,18 +39,28 @@ export default function TodosAchieve() {
       >
         <SwiperSlide>
           <SlideNextButton />
-          <BoxHead>오늘의 업무 완료</BoxHead>
-          <Currenttime />
-          <TodosAchievementChart
-            percent={75}
-            trackLength={0.5}
-            chartDirection={0.5}
-            // chartDirection={0.625}
-          />
+          Slide 2
         </SwiperSlide>
         <SwiperSlide>
           <SlidePrevButton />
-          Slide 2
+          <BoxHead>
+            지역 리뷰 보기&nbsp;
+            <ToolTip
+              position="top"
+              contentWidth="246px"
+              buttonSize="18px"
+              buttonIcon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_tooltip.svg`}
+              buttonIconAlpha={0.6}
+              buttonIconVerticalPosition="-2px"
+              content="주요 클리닉 리뷰 사이트에 작성된 리뷰를 AI가 분석 후 보여드려요"
+            />
+          </BoxHead>
+          <div style={{ height: "18px", margin: "4px 0px 28px" }}></div>
+          <ReviewLocalChart
+            percent={75}
+            trackLength={0.5}
+            chartDirection={0.5}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

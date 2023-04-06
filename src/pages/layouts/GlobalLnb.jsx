@@ -64,7 +64,7 @@ const NaviMenu = (props) => {
               className={pathname === d.link ? "active" : ""}
               target={d.target ? d.target : "_self"}
             >
-              <img src={`/images/${d.icon}`} alt={d.name} />
+              <img src={`/images/lnb/${d.icon}`} alt={d.name} />
               <div className="menu_name">{d.name}</div>
             </Link>
           </li>
@@ -86,11 +86,11 @@ export default function GlobalLnb({ lnbFold, setLnbFold, setLnbHover }) {
           className={"btn_lnb_controll" + (lnbFold ? " fold" : "")}
           onClick={handleClick}
         >
-          <img src={`/images/icon_menu.svg`} alt="" />
+          <img src={`/images/lnb/icon_menu.svg`} alt="" />
         </LnbControllBtn>
         <div className="main_logo">
           <Link href={"/"}>
-            <img src={`/images/logo_medi.svg`} />
+            <img src={`/images/lnb/logo_medi.svg`} />
           </Link>
         </div>
         <NaviMenu

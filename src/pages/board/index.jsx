@@ -1,18 +1,20 @@
+import React from "react";
+import BoardLists from "@/src/components/board/BoardLists";
+import BoardWrite from "@/src/components/board/BoardWrite";
+import Modal from "@/src/components/modal/Modal";
+import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useCallback, useEffect, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
 import {
   CommonSummary,
   CommontitleH4,
   GridCol,
   GridWrap,
   Box,
-} from "../../components/Style";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
-import BoardLists from "../../components/board/BoardLists";
-import BoardWrite from "../../components/board/BoardWrite";
-const boardlistsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_BOARDLISTS}`;
+} from "@/src/components/Style";
+import Layout from "../layouts/Layout";
+import { useRouter } from "next/router";
 
+const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const boardNameKR = [
   {
     id: "manual",
@@ -23,15 +25,16 @@ const boardNameKR = [
   { id: "free", name: "자유게시판", summary: "" },
 ];
 export default function BoardIndex() {
-  const param = useParams();
   const [modalProps, setModalProps] = useState([]);
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { params = [] } = router.query;
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const { loading, errorMessage, boardlists } = dataList;
   const getBoardLists = useCallback(() =>
     fetch(boardlistsUrl).then((res) => res.json())
   );
+
   useEffect(() => {
     getBoardLists()
       .then((res) => {
@@ -48,7 +51,7 @@ export default function BoardIndex() {
   };
 
   const handleClick = (id) => {
-    navigate(`/board/${param.boardName}/write`, { replace: false });
+    router.push(`/board/${params.boardName}/write`, { replace: false });
   };
 
   return (
@@ -65,13 +68,13 @@ export default function BoardIndex() {
         <GridCol>
           <Box align="right" style={{ borderRadius: "0" }}>
             <button onClick={handleClick}>글쓰기</button>
-            {/* <ModalOpenBtn
+            <ModalOpenBtn
               modalWidth="800px"
               className=""
               children={<BoardWrite modalProps={setModalProps} />}
               buttonName="글쓰기"
               modalProps={setModalProps}
-            /> */}
+            />
           </Box>
         </GridCol>
       </GridWrap>
@@ -94,3 +97,6 @@ export default function BoardIndex() {
     </>
   );
 }
+BoardIndex.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

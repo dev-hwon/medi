@@ -1,7 +1,6 @@
 import React from "react";
 import BoardLists from "@/src/components/board/BoardLists";
-import BoardWrite from "@/src/components/board/BoardWrite";
-import Modal from "@/src/components/modal/Modal";
+import Modal, { ModalOpenBtn } from "@/src/components/modal/Modal";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useCallback, useEffect, useContext, useState } from "react";
 import {
@@ -13,6 +12,7 @@ import {
 } from "@/src/components/Style";
 import Layout from "../layouts/Layout";
 import { useRouter } from "next/router";
+// import BoardWrite from "@/src/components/board/BoardWrite";
 
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const boardNameKR = [
@@ -31,10 +31,11 @@ export default function BoardIndex() {
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const { loading, errorMessage, boardlists } = dataList;
+
+  console.log(params);
   const getBoardLists = useCallback(() =>
     fetch(boardlistsUrl).then((res) => res.json())
   );
-
   useEffect(() => {
     getBoardLists()
       .then((res) => {
@@ -50,10 +51,6 @@ export default function BoardIndex() {
     setModalProps({ visible: false });
   };
 
-  const handleClick = (id) => {
-    router.push(`/board/${params.boardName}/write`, { replace: false });
-  };
-
   return (
     <>
       <GridWrap colGap={16} colWidth="50%">
@@ -67,11 +64,10 @@ export default function BoardIndex() {
         </GridCol>
         <GridCol>
           <Box align="right" style={{ borderRadius: "0" }}>
-            <button onClick={handleClick}>글쓰기</button>
             <ModalOpenBtn
               modalWidth="800px"
               className=""
-              children={<BoardWrite modalProps={setModalProps} />}
+              // children={<BoardWrite modalProps={setModalProps} />}
               buttonName="글쓰기"
               modalProps={setModalProps}
             />
@@ -81,7 +77,7 @@ export default function BoardIndex() {
       {loading ? (
         "loading.."
       ) : (
-        <BoardLists boardlists={boardlists} param={params} />
+        <BoardLists boardlists={boardlists} params={params} />
       )}
       {errorMessage ? errorMessage : null}
       {modalProps.visible && (

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   useCallback,
   useEffect,
@@ -5,19 +6,19 @@ import {
   useReducer,
   useContext,
 } from "react";
-import { useNavigate } from "react-router-dom";
 import { Table, TableBody, TableHeader } from "../Style";
 
-function List({ boardlists, param }) {
-  const navigate = useNavigate();
+function List({ boardlists, boardName }) {
+  const router = useRouter();
   const handleClick = (id) => {
-    navigate(`/board/${param.boardName}/id/${id}`, { replace: true });
+    // router.push(`/board/${boardName}/id/${id}`, { replace: true });
   };
+  console.log(boardlists);
   return (
     <TableBody>
       {boardlists.map(
         (list, idx) =>
-          list.type === param.boardName && (
+          list.type === boardName && (
             <tr key={list.id} onClick={() => handleClick(list.id)}>
               <td>{idx}</td>
               <td>{list.subject}</td>
@@ -31,7 +32,7 @@ function List({ boardlists, param }) {
   );
 }
 
-export default function BoardLists({ boardlists, param }) {
+export default function BoardLists({ boardlists, boardName }) {
   return (
     <>
       <Table>
@@ -45,7 +46,7 @@ export default function BoardLists({ boardlists, param }) {
           </tr>
         </TableHeader>
 
-        <List boardlists={boardlists} param={param} />
+        <List boardlists={boardlists} boardName={boardName} />
       </Table>
     </>
   );

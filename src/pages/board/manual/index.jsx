@@ -1,7 +1,7 @@
 import React from "react";
 import BoardLists from "@/src/components/board/BoardLists";
 import BoardWrite from "@/src/components/board/BoardWrite";
-import Modal from "@/src/components/modal/Modal";
+import Modal, { ModalOpenBtn } from "@/src/components/modal/Modal";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useCallback, useEffect, useContext, useState } from "react";
 import {
@@ -11,19 +11,12 @@ import {
   GridWrap,
   Box,
 } from "@/src/components/Style";
-import Layout from "../layouts/Layout";
 import { useRouter } from "next/router";
+import Layout from "../../layouts/Layout";
 
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
-const boardNameKR = [
-  {
-    id: "manual",
-    name: "우리병원 매뉴얼",
-    summary: "운영하는 클리닉의 업무 매뉴얼을 직접 작성해 보세요",
-  },
-  { id: "notice", name: "공지사항", summary: "" },
-  { id: "free", name: "자유게시판", summary: "" },
-];
+const boardName = "manual";
+
 export default function BoardIndex() {
   const [modalProps, setModalProps] = useState([]);
   const router = useRouter();
@@ -51,18 +44,16 @@ export default function BoardIndex() {
   };
 
   const handleClick = (id) => {
-    router.push(`/board/${params.boardName}/write`, { replace: false });
+    // router.push(`/board/${params.boardName}/write`, { replace: false });
   };
 
   return (
     <>
       <GridWrap colGap={16} colWidth="50%">
         <GridCol>
-          <CommontitleH4 className="">
-            {boardNameKR.map((d) => d.id === params.boardName && d.name)}
-          </CommontitleH4>
+          <CommontitleH4 className="">우리병원 매뉴얼</CommontitleH4>
           <CommonSummary>
-            {boardNameKR.map((d) => d.id === params.boardName && d.summary)}
+            운영하는 클리닉의 업무 매뉴얼을 직접 작성해 보세요
           </CommonSummary>
         </GridCol>
         <GridCol>
@@ -71,7 +62,7 @@ export default function BoardIndex() {
             <ModalOpenBtn
               modalWidth="800px"
               className=""
-              children={<BoardWrite modalProps={setModalProps} />}
+              // children={<BoardWrite modalProps={setModalProps} />}
               buttonName="글쓰기"
               modalProps={setModalProps}
             />
@@ -81,7 +72,7 @@ export default function BoardIndex() {
       {loading ? (
         "loading.."
       ) : (
-        <BoardLists boardlists={boardlists} param={params} />
+        <BoardLists boardlists={boardlists} boardName={boardName} />
       )}
       {errorMessage ? errorMessage : null}
       {modalProps.visible && (

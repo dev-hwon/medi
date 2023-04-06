@@ -29,10 +29,7 @@ export function ModalOpenBtn({
     });
   };
   return (
-    <button
-      onClick={openModal}
-      className="common_btn btn_sm btn_default bt__detail_view"
-    >
+    <button onClick={openModal} className={className}>
       {buttonName}
     </button>
   );
