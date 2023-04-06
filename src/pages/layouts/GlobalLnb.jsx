@@ -16,7 +16,7 @@ const menulist = [
   { id: "2", link: "/todos", name: "할일관리", icon: "icon_todos.svg" },
   {
     id: "3",
-    link: "/todos",
+    link: "/works",
     name: "업무폴더",
     icon: "icon_folder.svg",
   },

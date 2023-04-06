@@ -31,6 +31,7 @@ export default function TopNotice() {
   );
 }
 const VereticalSwiperWrap = styled.div`
+  overflow: hidden;
   .swiper {
     height: 24px;
   }

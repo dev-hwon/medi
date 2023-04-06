@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
+import Layout from "../layouts/Layout";
 // console.log(moment(new Date()).format("YYYY년 MM월 DD일  HH시mm분ss초"));
 
 export default function FileIndex() {
@@ -35,3 +36,7 @@ const CategoryList = styled.div`
   justify-contents : flex-start;
   align-items: center;
 `;
+
+FileIndex.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
