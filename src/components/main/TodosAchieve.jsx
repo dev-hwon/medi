@@ -1,5 +1,4 @@
 import React from "react";
-import moment, { Currenttime } from "../../components/Current";
 import { Box, BoxHead, BoxCont, CommontitleH3, CommonSummary } from "../Style";
 import TodosAchievementChart from "../../components/todos/TodosAchievementChart";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -39,7 +38,6 @@ export default function TodosAchieve() {
         <SwiperSlide>
           <SlideNextButton />
           <BoxHead>오늘의 업무 완료</BoxHead>
-          <Currenttime />
           <TodosAchievementChart
             percent={75}
             trackLength={0.5}

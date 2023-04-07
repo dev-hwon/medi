@@ -17,8 +17,8 @@ export default function TopNotice() {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
           <NoticeList>공지사항 내용이 표시되는 영역입니다.1</NoticeList>

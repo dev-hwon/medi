@@ -20,7 +20,7 @@ function ListItem({ list }) {
         <div className="AiList_tit">{title}</div>
         <div className="AiList_summary">
           {category && (
-            <span className="categoryName" hexCode="FFA901">
+            <span className="categoryName" hexcode="FFA901">
               {category}
             </span>
           )}
@@ -84,9 +84,9 @@ const List = styled.li`
         border-radius: 18px;
         padding: 0 6px;
         margin-right: 6px;
-        color: ${(props) => (props.hexCode ? "#" + props.hexCode : "#222")};
+        color: ${(props) => (props.hexcode ? "#" + props.hexcode : "#222")};
         border: ${(props) =>
-          props.hexCode ? "1px solid #" + props.hexCode : "1px solid #222"};
+          props.hexcode ? "1px solid #" + props.hexcode : "1px solid #222"};
       }
     }
   }

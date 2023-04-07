@@ -149,7 +149,7 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-  }, [data]);
+  }, []);
 
   // 로딩중.. 추후 부분적으로 적용예정 일단 전체에 걸어버림
   const { loading, errorMessage, datas } = data;

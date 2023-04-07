@@ -1,21 +1,17 @@
 import React, { useCallback, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 // import Moment from "react-moment";
-import moment from "moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { GridCol, GridWrap } from "../Style";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
+import moment, { Current, CurrentDate, CurrentDataMonth } from "../Current";
+import { GridWrap, GridCol } from "../Style";
+import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 
 const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
-const current = new Date();
-const currentDate = moment(current).format("YYYY-DD-MM");
-const currentDataMonth = moment(current).format("MM");
-const currenttime = moment(current).format("hh:mm:ss");
 
 export default function CalendarSmall({}) {
   const dataList = useContext(DatasContext);
-  const [sDate, setSDate] = useState(moment(current).format("YYYY-MM-DD"));
+  const [sDate, setSDate] = useState(moment(Current).format("YYYY-MM-DD"));
 
   // 데이터 가져오기
   const { todos } = dataList;

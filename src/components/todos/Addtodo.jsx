@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
-import { current, currentDate } from "../Current";
+import { Current, CurrentDate } from "../Current";
 import {
   ModalTitle,
   ModalSummary,
@@ -56,7 +56,7 @@ export default function Addtodo({ modalProps }) {
       todosStatus: "active",
       todosName: updateData.todosName,
       isRepeat: updateData.isRepeat,
-      todosDate: currentDate,
+      todosDate: CurrentDate,
       ...updateData,
     };
 

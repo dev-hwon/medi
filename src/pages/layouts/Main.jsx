@@ -1,14 +1,5 @@
 import React, { useEffect, useCallback, useState, useContext } from "react";
-import moment, {
-  current,
-  currentDate,
-  Currenttime,
-  dayWork,
-  getData,
-} from "../../components/Current";
-import CalendarSmall from "../../components/dashboard/CalendarSmall";
-// import CalendarTimeline from "../../components/dashboard/CalendarTimeline";
-import TodosAchievementChart from "../../components/todos/TodosAchievementChart";
+import styled from "styled-components";
 import {
   Box,
   BoxHead,
@@ -18,9 +9,8 @@ import {
   GridCol,
   GridWrap,
   ButtonWrapper,
-} from "../../components/Style";
+} from "@/src/components/Style";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
-import TodosIndex from "../todos/TodosIndex";
 import Addtodo from "../../components/todos/Addtodo";
 import TodosCategorySet from "../../components/todos/TodosCategorySet";
 import LocalReview from "../../components/main/LocalReview";
@@ -31,11 +21,27 @@ import ClinicPositivityDesc from "@/src/components/main/ClinicPositivityDesc";
 import ReviewsGoods from "@/src/components/main/ReviewsGoods";
 import ReviewsBads from "@/src/components/main/ReviewsBads";
 import AiRecomlist from "@/src/components/main/AiRecomlist";
+import moment, {
+  Current,
+  CurrentDate,
+  CurrentDataMonth,
+} from "@/src/components/Current";
 
 // const filters = ["all", "active", "completed"];
 export default function Main() {
   const [modalProps, setModalProps] = useState([]);
   // const [filter, setFilter] = useState(filters[0]);
+
+  let timer = null;
+  const [time, setTime] = useState(moment());
+  useEffect(() => {
+    timer = setInterval(() => {
+      setTime(moment());
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timer]);
 
   const closeModal = () => {
     setModalProps({ visible: false });
@@ -63,7 +69,7 @@ export default function Main() {
                   <GridCol>
                     <Box padding="27px 0">
                       <ClinicPositivity
-                        percent={0}
+                        percent={75}
                         trackLength={0.5}
                         chartDirection={0.5}
                       />
@@ -108,33 +114,15 @@ export default function Main() {
 
         <GridCol customWidth="33.333333%">
           <Box border>
-            <CommontitleH3 className="mt20">
-              오늘의 업무
-              <ButtonWrapper position="">
-                <ModalOpenBtn
-                  modalWidth="400px"
-                  className=""
-                  childData={<Addtodo modalProps={setModalProps}></Addtodo>}
-                  buttonName="일감추가"
-                  modalProps={setModalProps}
-                />
-                <ModalOpenBtn
-                  modalWidth="500px"
-                  className=""
-                  childData={
-                    <TodosCategorySet
-                      modalProps={setModalProps}
-                    ></TodosCategorySet>
-                  }
-                  buttonName="카테고리 설정"
-                  modalProps={setModalProps}
-                />
-              </ButtonWrapper>
-            </CommontitleH3>
-
-            <TodosIndex filter={"category1"} />
-
-            <CalendarSmall />
+            오른쪽영역
+            <div style={{ margin: "4px 0 28px" }}>
+              <CurrentDays>
+                {moment(time).locale("ko").format(`YYYY년 M월 D일 (dd)`)}
+              </CurrentDays>
+              <CurrentTimes>
+                {moment(time).locale("ko").format(`HH:mm:ss`)}
+              </CurrentTimes>
+            </div>
           </Box>
         </GridCol>
       </GridWrap>
@@ -152,3 +140,13 @@ export default function Main() {
     </>
   );
 }
+const CurrentDays = styled.span`
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+`;
+const CurrentTimes = styled.span`
+  font-size: 12px;
+  color: #888;
+  margin-left: 4px;
+`;

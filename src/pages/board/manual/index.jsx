@@ -35,7 +35,7 @@ export default function BoardIndex() {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-  }, []);
+  }, [dataDispatch]);
 
   const closeModal = () => {
     setModalProps({ visible: false });
