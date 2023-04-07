@@ -28,6 +28,12 @@ export default function ClinicPositivity({
         trackLength={trackLength}
         chartDirection={chartDirection}
       />
+      <PositivityChartTxt>
+        우리 병원 긍정도{" "}
+        <span>
+          상위 <em>20%</em>
+        </span>
+      </PositivityChartTxt>
     </>
   );
 }
@@ -41,7 +47,6 @@ const NeedleChartBg = styled.div`
   background-size: 100%;
   background-position: center 0;
   background-repeat: no-repeat;
-  background-color: #555;
 `;
 const LocalChartDescriptTxt = styled.div`
   font-size: 15px;
@@ -54,16 +59,14 @@ const LocalChartDescriptTxt = styled.div`
     font-weight: bold;
   }
 `;
-
 const InnerNeedle = styled.div`
   position: absolute;
-  bottom: -10px;
+  bottom: -14px;
   left: 50%;
   width: 40px;
   height: 40px;
   transform: translateX(-50%);
   animation: rotateNeedle 1.5s forwards;
-  background-color: #ddd;
   transition: all 0.4s;
 
   &:after {
@@ -89,7 +92,7 @@ const InnerNeedle = styled.div`
     border-radius: 100%;
     position: absolute;
     top: calc(50% - 13px);
-    right: calc(96px + 20px);
+    right: calc(96px + 24px);
   }
 
   @keyframes rotateNeedle {
@@ -102,6 +105,22 @@ const InnerNeedle = styled.div`
           ${(props) =>
             props.needleRotate ? props.needleRotate + "deg" : "0deg"}
         );
+    }
+  }
+`;
+const PositivityChartTxt = styled.div`
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+
+  > span {
+    display: inline-block;
+    background-color: #defded;
+    font-weight: bold;
+    color: #26d074;
+    > em {
+      font-size: 18px;
     }
   }
 `;

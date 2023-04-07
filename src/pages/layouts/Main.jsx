@@ -69,7 +69,7 @@ export default function Main() {
                   <GridCol>
                     <Box padding="27px 0">
                       <ClinicPositivity
-                        percent={75}
+                        percent={80}
                         trackLength={0.5}
                         chartDirection={0.5}
                       />
