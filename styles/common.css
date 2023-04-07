@@ -603,4 +603,5 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
     top:50%;
     right:24px;
     transform: translateY(-50%);
+    padding:0 8px;
 }

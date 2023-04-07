@@ -26,6 +26,7 @@ import moment, {
   CurrentDate,
   CurrentDataMonth,
 } from "@/src/components/Current";
+import Image from "next/image";
 
 // const filters = ["all", "active", "completed"];
 export default function Main() {
@@ -60,7 +61,18 @@ export default function Main() {
                     modalWidth="400px"
                     className="btn_modal reportAllView"
                     childData={<Addtodo modalProps={setModalProps}></Addtodo>}
-                    buttonName="리모트 모아보기"
+                    buttonName={
+                      <span>
+                        <Image
+                          src="/images/main/icon_report_btn.svg"
+                          alt=""
+                          width={16}
+                          height={16}
+                          style={{ marginRight: "4px" }}
+                        ></Image>
+                        리모트 모아보기
+                      </span>
+                    }
                     modalProps={setModalProps}
                   />
                 </BoxHead>
