@@ -12,6 +12,7 @@ import {
 export function ModalOpenBtn({
   modalWidth,
   className,
+  buttonIcon,
   buttonName,
   // title,
   childData,
@@ -30,6 +31,7 @@ export function ModalOpenBtn({
   };
   return (
     <button onClick={openModal} className={className}>
+      {buttonIcon}
       {buttonName}
     </button>
   );

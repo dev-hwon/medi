@@ -94,11 +94,17 @@ export const GridCol = styled.div`
   flex: 0 0 auto;
   width: ${(props) => (props.customWidth ? props.customWidth : "auto")};
   margin: ${(props) => (props.margin ? props.margin + "!important" : "0")};
+  padding: ${(props) => (props.padding ? props.padding + "!important" : "0")};
+  ${(props) =>
+    props.border &&
+    css`
+      border: ${props.border};
+    `}
 `;
 export const Box = styled.div`
   background-color: #fff;
-  height: 100%;
-  min-height: 1px;
+  height: auto;
+  min-height: 100%;
   border-radius: 6px;
   padding: ${(props) => (props.padding ? props.padding : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
@@ -114,7 +120,8 @@ export const BoxHead = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #222;
-  padding: 16px 24px;
+  padding: 16px 20px;
+  line-height: 24px;
   border-bottom: 1px solid #eaebee;
 `;
 export const BoxFoot = styled.div`

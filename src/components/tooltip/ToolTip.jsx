@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
+//setTimeout로 임시처리 아무래도 연속클릭시오류있을듯..
 export default function ToolTip({
   position,
   buttonSize,
@@ -9,13 +10,24 @@ export default function ToolTip({
   buttonIconVerticalPosition,
   contentWidth,
   content,
+  margin,
 }) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
-    setOpen(!open);
+    if (open) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+      setTimeout(function () {
+        setOpen(false);
+      }, 2000);
+    }
   };
   return (
-    <TooltipWarp buttonIconVerticalPosition={buttonIconVerticalPosition}>
+    <TooltipWarp
+      margin={margin}
+      buttonIconVerticalPosition={buttonIconVerticalPosition}
+    >
       <TooltipButton
         onClick={handleClick}
         buttonSize={buttonSize}
@@ -37,6 +49,12 @@ const TooltipWarp = styled.div`
   position: relative;
   display: inline-block;
   line-height: inherit;
+  vertical-align: top;
+  ${(props) =>
+    props.margin &&
+    css`
+      margin: ${props.margin};
+    `};
   ${(props) =>
     props.buttonIconVerticalPosition &&
     css`
@@ -49,7 +67,9 @@ const TooltipButton = styled.button`
   height: ${(props) => (props.buttonSize ? props.buttonSize : "18px")};
   background-image: url(${(props) =>
     props.buttonIcon ? props.buttonIcon : "auto"});
-
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
   ${(props) =>
     props.buttonIconAlpha &&
     css`
@@ -62,6 +82,7 @@ const TooltipButton = styled.button`
 const TooltipContent = styled.div`
   display: ${(props) => (props.open ? "block" : "none")};
   position: absolute;
+  letter-spacing: -0.5px;
   ${(props) =>
     props.position === "top" &&
     css`

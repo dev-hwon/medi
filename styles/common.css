@@ -597,6 +597,7 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
     background-color: #fff;
     border:1px solid #E3E8EC;
     border-radius: 4px;;
+    letter-spacing: -.5px;
 }
 .reportAllView {
     position:absolute;

@@ -91,30 +91,30 @@
     {
       "id": "category1",
       "name": "ㅁㄴㅀㅁㄴㅀ",
-      "color": "#F65555",
+      "color": "F65555",
       "startTime": "09:00",
-      "endtTime": "10:30"
+      "endTime": "10:30"
     },
     {
       "id": "category2",
       "name": "진료중",
-      "color": "#FE8947",
+      "color": "FE8947",
       "startTime": "10:30",
-      "endtTime": "16:00"
+      "endTime": "16:00"
     },
     {
       "id": "category3",
       "name": "진료마감",
-      "color": "#00AF5B",
+      "color": "00AF5B",
       "startTime": "16:00",
-      "endtTime": "17:30"
+      "endTime": "17:30"
     },
     {
       "id": "category4",
       "name": "기타요2",
-      "color": "#7C18FB",
+      "color": "7C18FB",
       "startTime": "17:30",
-      "endtTime": "18:30"
+      "endTime": "22:30"
     }
   ],
   "boardlists": [

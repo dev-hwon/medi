@@ -43,7 +43,7 @@ export default function Login({ isLogin }) {
   return (
     <></>
     // <div className="page_login">
-    //   <div class="inner_wrap">
+    //   <div className="inner_wrap">
     //     <h2 className="form_tit">Login</h2>
     //     <form name="form_login" onSubmit={onSubmitLogin}>
     //       <div className="form_row">

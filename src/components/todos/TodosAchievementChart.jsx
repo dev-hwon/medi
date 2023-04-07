@@ -14,7 +14,7 @@ const AchievementChart = (props) => {
   const { percent, trackLength } = props;
   let perValue = percent * trackLength * 0.01;
   let emptyPerValue = 1 - perValue;
-  let chartDirection = 0.5;
+  let chartDirection = 0.25;
 
   return (
     <div
@@ -37,13 +37,11 @@ const AchievementChart = (props) => {
           cy="100"
           r="90"
           fill="none"
-          stroke="#F5F8FE"
+          stroke="#ddd"
           strokeWidth="15"
           // strokeLinecap="round"
-          strokeDasharray={`${2 * Math.PI * 90 * 0.5} ${
-            2 * Math.PI * 90 * 0.5
-          }`}
-          strokeDashoffset={2 * Math.PI * 90 * chartDirection}
+          strokeDasharray={`${2 * Math.PI * 180 * 1}`}
+          strokeDashoffset={2 * Math.PI * 180 * chartDirection}
         />
         <AnimatedCircle
           cx="100"
