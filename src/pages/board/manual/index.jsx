@@ -24,12 +24,10 @@ export default function BoardIndex() {
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const { loading, errorMessage, boardlists } = dataList;
-  const getBoardLists = useCallback(() =>
-    fetch(boardlistsUrl).then((res) => res.json())
-  );
 
   useEffect(() => {
-    getBoardLists()
+    fetch(boardlistsUrl)
+      .then((res) => res.json())
       .then((res) => {
         const boardlistsData = res;
         dataDispatch({ type: "SUCCESS", boardlistsData });

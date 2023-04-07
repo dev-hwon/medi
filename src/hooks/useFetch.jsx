@@ -1,31 +1,31 @@
-import React, { useEffect, useReducer, useState, useCallback } from "react";
-import TodosReducer from "./TodosReducer";
+// import React, { useEffect, useReducer, useState, useCallback } from "react";
+// import TodosReducer from "./TodosReducer";
 
-function useFetch(url, objName) {
-  const [datas, dispatch] = useReducer(TodosReducer, {
-    loading: true,
-    errorMessage: "",
-    todos: [],
-    categorys: [],
-    authors: [],
-  });
-  const getData = useCallback(
-    async () => await fetch(url).then((res) => res.json())
-  );
-  useEffect(() => {
-    getData()
-      .then((res) => {
-        const data = res;
-        dispatch({ type: "TODOS_SUCCESS", data, objName });
-      })
-      .catch(() => {
-        dispatch({ type: "TODOS_ERROR" });
-      });
-  }, []);
-  return datas;
-}
+// function useFetch(url, objName) {
+//   const [datas, dispatch] = useReducer(TodosReducer, {
+//     loading: true,
+//     errorMessage: "",
+//     todos: [],
+//     categorys: [],
+//     authors: [],
+//   });
+//   const getData = useCallback(
+//     async () => await fetch(url).then((res) => res.json())
+//   );
+//   useEffect(() => {
+//     getData()
+//       .then((res) => {
+//         const data = res;
+//         dispatch({ type: "TODOS_SUCCESS", data, objName });
+//       })
+//       .catch(() => {
+//         dispatch({ type: "TODOS_ERROR" });
+//       });
+//   }, []);
+//   return datas;
+// }
 
-export default useFetch;
+// export default useFetch;
 
 // import { useEffect, useState } from "react";
 

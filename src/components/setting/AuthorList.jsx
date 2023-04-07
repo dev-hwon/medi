@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 const authorsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_AUTHORS}`;
 export default function AuthorList({ author, onDelete }) {
@@ -20,8 +21,11 @@ export default function AuthorList({ author, onDelete }) {
     <div className="author">
       <div className="author_name">{name}</div>
       <button type="button" onClick={handleDelete}>
-        <img
+        <Image
+          width={24}
+          height={24}
           src={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/setting/icon_delete_author.svg`}
+          alt=""
         />
       </button>
     </div>

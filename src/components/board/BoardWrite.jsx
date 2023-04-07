@@ -1,6 +1,6 @@
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import React, { useState, useContext, useMemo, useRef } from "react";
-import EditorComponent from "../EditorComponent";
+// import EditorComponent from "../EditorComponent";
 import {
   ButtonWrapper,
   CancelButton,
@@ -18,7 +18,6 @@ const FileUpload = () => {
     </div>
   );
 };
-
 export default function BoardWrite({ modalProps }) {
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);

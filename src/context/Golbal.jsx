@@ -121,16 +121,9 @@ export function GlobalContextProvider({ children }) {
   const [user, userDispatch] = useReducer(userReducer, initialUser);
   const [data, dataDispatch] = useReducer(dataReducer, initialData);
 
-  const getTodos = useCallback(() => fetch(todosUrl).then((res) => res.json()));
-  const getCategorys = useCallback(() =>
-    fetch(categorysUrl).then((res) => res.json())
-  );
-  const getAuthors = useCallback(() =>
-    fetch(authorsUrl).then((res) => res.json())
-  );
-
   useEffect(() => {
-    getTodos()
+    fetch(todosUrl)
+      .then((res) => res.json())
       .then((res) => {
         const todosData = res;
         dataDispatch({ type: "SUCCESS", todosData });
@@ -138,7 +131,8 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-    getCategorys()
+    fetch(categorysUrl)
+      .then((res) => res.json())
       .then((res) => {
         const categorysData = res;
         dataDispatch({ type: "SUCCESS", categorysData });
@@ -146,7 +140,8 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-    getAuthors()
+    fetch(authorsUrl)
+      .then((res) => res.json())
       .then((res) => {
         const authorsData = res;
         dataDispatch({ type: "SUCCESS", authorsData });
@@ -154,7 +149,7 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-  }, []);
+  }, [data]);
 
   // 로딩중.. 추후 부분적으로 적용예정 일단 전체에 걸어버림
   const { loading, errorMessage, datas } = data;
