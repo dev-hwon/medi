@@ -20,15 +20,17 @@ export default function GlobalFooter() {
       <FooterExpandBtn onClick={handleClick}></FooterExpandBtn>
       <Fnb>
         <li>
-          <Link href="">메디밸류 소개</Link>
+          <Link href="https://medivalue.co.kr/company/info">메디밸류 소개</Link>
         </li>
         <li>
-          <Link href="">이용약관</Link>
+          <Link href="https://medivalue.co.kr/terms/info?tab=1">이용약관</Link>
         </li>
         <li>
-          <Link href="">개인정보처리방침</Link>
+          <Link href="https://medivalue.co.kr/terms/info?tab=2">
+            개인정보처리방침
+          </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="">공지사항</Link>
         </li>
         <li>
@@ -36,7 +38,7 @@ export default function GlobalFooter() {
         </li>
         <li>
           <Link href="">파트너센터</Link>
-        </li>
+        </li> */}
       </Fnb>
       <CSInfo show={show}>
         <div>

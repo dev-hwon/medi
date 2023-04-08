@@ -67,7 +67,7 @@ export default function Main() {
                   />
                 </BoxHead>
                 {/* 클리닉 긍정도 평가 */}
-                <Box padding="0 24px">
+                <Box padding="15px 24px">
                   {clinicReportTab === 0 ? (
                     <ClinicReportTab1
                       clinicReportTab={clinicReportTab}

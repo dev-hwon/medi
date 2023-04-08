@@ -62,7 +62,7 @@ export default function TodayWorks() {
     return () => {
       clearInterval(timer);
     };
-  }, [timer]);
+  }, [time]);
 
   const currentCategoryData = categorys.filter(
     (data) =>
