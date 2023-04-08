@@ -1,5 +1,4 @@
 import React from "react";
-import "swiper/css";
 import styled from "styled-components";
 
 const PositivityChart = (props) => {
@@ -16,7 +15,7 @@ const PositivityChart = (props) => {
   );
 };
 
-export default function ClinicPositivity({
+export default function ClinicNeedleChart({
   percent,
   trackLength,
   chartDirection,

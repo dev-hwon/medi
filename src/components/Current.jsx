@@ -6,7 +6,8 @@ import "moment/locale/ko";
 import styled from "styled-components";
 export const todosUrl = `${process.env.REACT_APP_TEST_JSONSERVER_TODOS}`;
 export const Current = new Date();
-export const CurrentDate = moment(Current).format("YYYY-MM-DD");
+export const CurrentDate = moment(Current).format("MM월 DD일(dd)");
+// export const CurrentDate = moment(Current).format("YYYY-MM-DD");
 export const CurrentDataMonth = moment(Current).format("MM");
 
 const dayKr = [

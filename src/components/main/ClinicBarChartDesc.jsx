@@ -2,25 +2,14 @@ import React from "react";
 import { GridCol, GridWrap, Line } from "../Style";
 import styled from "styled-components";
 import Image from "next/image";
-
-export default function ClinicPositivityDesc() {
+export default function ClinicBarChartDesc({
+  percent,
+  trackLength,
+  chartDirection,
+}) {
   return (
     <>
-      <GridWrap colWidth="50%">
-        <GridCol padding="24px">
-          <EvalItem>
-            <Image
-              src="/images/main/icon_building.svg"
-              alt=""
-              width={24}
-              height={24}
-            />
-            <ItemTitle className="">우리 병원 긍정도</ItemTitle>
-            <ItemValue className="">
-              <em>78%</em>긍정적 평가
-            </ItemValue>
-          </EvalItem>
-        </GridCol>
+      <GridWrap>
         <GridCol padding="24px">
           <EvalItem>
             <Image
@@ -29,34 +18,26 @@ export default function ClinicPositivityDesc() {
               width={24}
               height={24}
             />
-            <ItemTitle className="">우리 병원 긍정 상승률</ItemTitle>
+            <ItemTitle className="">평균 완료도</ItemTitle>
             <ItemValue className="">
-              <em>10%</em>상승중
+              <em>95%</em>완료
             </ItemValue>
           </EvalItem>
         </GridCol>
       </GridWrap>
       <Line lineColor="#F5F5F5"></Line>
-      <GridWrap colWidth="50%">
-        <GridCol padding="24px" border="">
+      <GridWrap>
+        <GridCol padding="24px">
           <EvalItem>
             <Image
-              src="/images/main/icon_location.svg"
+              src="/images/main/icon_chart_bar.svg"
               alt=""
               width={24}
               height={24}
             />
-            <ItemTitle className="">지역 평균 긍정도</ItemTitle>
+            <ItemTitle className="">평균 미완료도</ItemTitle>
             <ItemValue className="">
-              <em>68%</em>평균 긍정도
-            </ItemValue>
-          </EvalItem>
-        </GridCol>
-        <GridCol padding="24px">
-          <EvalItem>
-            <ItemTitle className="">지역 평균 상승률</ItemTitle>
-            <ItemValue className="">
-              <em>2%</em>평균상승
+              <em>5%</em>미완료
             </ItemValue>
           </EvalItem>
         </GridCol>
@@ -64,7 +45,6 @@ export default function ClinicPositivityDesc() {
     </>
   );
 }
-
 const EvalItem = styled.div`
   position: relative;
   padding-left: 32px;

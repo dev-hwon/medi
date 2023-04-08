@@ -9,7 +9,7 @@ import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 
 const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
 
-export default function CalendarSmall({}) {
+export default function CalendarSmall({ visibleCalendar }) {
   const dataList = useContext(DatasContext);
   const [sDate, setSDate] = useState(moment(Current).format("YYYY-MM-DD"));
 
@@ -35,58 +35,64 @@ export default function CalendarSmall({}) {
 
   return (
     <>
-      <Calendar
-        onChange={(date, event) => setSDate(moment(date).format("YYYY-MM-DD"))}
-        calendarType="US"
-        className="calendar_small"
-        formatDay={(locale, date) => moment(date).format("D")} // 일표시 ex : "D일"
-        navigationAriaLabel="go up"
-        minDetail="decade"
-        maxDetail="month"
-        prev2Label={null}
-        next2Label={null}
-        showNavigation={true} // 상단날짜네비게이션
-        showNeighboringMonth={true} // 이전,이후달의 날짜 노출여부
-        // 나중에...일자에 표시..할수도있을듯하여...일단남겨둠
-        // onClickDay={(date) =>
-        //   console.log(moment(date).format("YYYY-MM-DD"))
-        // }
-        // formatLongDate={(locale, date) =>
-        //   console.log(moment(date).format("YYYY-MM-DD"))
-        // }
-        // selectRange={true} 범위설정 (width allowPartialRange)
+      {visibleCalendar && (
+        <div className="calendar_small">
+          <Calendar
+            style={{ position: "absolute" }}
+            onChange={(date, event) =>
+              setSDate(moment(date).format("YYYY-MM-DD"))
+            }
+            calendarType="US"
+            formatDay={(locale, date) => moment(date).format("D")} // 일표시 ex : "D일"
+            navigationAriaLabel="go up"
+            minDetail="decade"
+            maxDetail="month"
+            prev2Label={null}
+            next2Label={null}
+            showNavigation={true} // 상단날짜네비게이션
+            showNeighboringMonth={true} // 이전,이후달의 날짜 노출여부
+            // 나중에...일자에 표시..할수도있을듯하여...일단남겨둠
+            // onClickDay={(date) =>
+            //   console.log(moment(date).format("YYYY-MM-DD"))
+            // }
+            // formatLongDate={(locale, date) =>
+            //   console.log(moment(date).format("YYYY-MM-DD"))
+            // }
+            // selectRange={true} 범위설정 (width allowPartialRange)
 
-        // tileClassName={({ date, view }) => {
-        //   if (
-        //     dayWork.find((x) => x.date === moment(date).format("YYYY-MM-DD"))
-        //   ) {
-        //     return "highlight";
-        //   }
-        // }}
-        // tileContent={({ date, view }) => {
-        //   if (dayWork.find((x) => x.date === moment(date).format("YYYY-MM-DD")))
-        //     return (
-        //       <>
-        //         <div className="flex justify-center items-center absoluteDiv">
-        //           <Dotted className="dot"></Dotted>
-        //         </div>
-        //       </>
-        //     );
-        // }}
-      ></Calendar>
+            // tileClassName={({ date, view }) => {
+            //   if (
+            //     dayWork.find((x) => x.date === moment(date).format("YYYY-MM-DD"))
+            //   ) {
+            //     return "highlight";
+            //   }
+            // }}
+            // tileContent={({ date, view }) => {
+            //   if (dayWork.find((x) => x.date === moment(date).format("YYYY-MM-DD")))
+            //     return (
+            //       <>
+            //         <div className="flex justify-center items-center absoluteDiv">
+            //           <Dotted className="dot"></Dotted>
+            //         </div>
+            //       </>
+            //     );
+            // }}
+          ></Calendar>
 
-      <GridWrap className="" colWidth={50} colWidthUnit="%">
-        <GridCol>
-          <Status className="">
-            완료<em>{thisMonthCompleteCount}</em>
-          </Status>
-        </GridCol>
-        <GridCol>
-          <Status className="">
-            미처리<em>{thisMonthActiveCount}</em>
-          </Status>
-        </GridCol>
-      </GridWrap>
+          <GridWrap className="" colWidth={50} colWidthUnit="%">
+            <GridCol>
+              <Status className="">
+                완료<em>{thisMonthCompleteCount}</em>
+              </Status>
+            </GridCol>
+            <GridCol>
+              <Status className="">
+                미처리<em>{thisMonthActiveCount}</em>
+              </Status>
+            </GridCol>
+          </GridWrap>
+        </div>
+      )}
     </>
   );
 }

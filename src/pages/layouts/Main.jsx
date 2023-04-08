@@ -11,25 +11,31 @@ import {
   ButtonWrapper,
 } from "@/src/components/Style";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
-import Addtodo from "../../components/todos/Addtodo";
-import TodosCategorySet from "../../components/todos/TodosCategorySet";
-import ClinicPositivity from "@/src/components/main/ClinicPositivity";
+import ClinicPositivity from "@/src/components/main/ClinicNeedleChart";
 import Link from "next/link";
-import ClinicPositivityDesc from "@/src/components/main/ClinicPositivityDesc";
+import ClinicPositivityDesc from "@/src/components/main/ClinicNeedleChartDesc";
 import ReviewsGoods from "@/src/components/main/ReviewsGoods";
 import ReviewsBads from "@/src/components/main/ReviewsBads";
 import AiRecomlist from "@/src/components/main/AiRecomlist";
-
 import Image from "next/image";
-import TodosAchievementChart from "@/src/components/todos/TodosAchievementChart";
 import ToolTip from "@/src/components/tooltip/ToolTip";
 import TodayWorks from "@/src/components/main/TodayWorks";
+import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
+import { CurrentDate } from "@/src/components/Current";
+import styled from "styled-components";
+import ClinicReportTab1 from "@/src/components/main/ClinicReportTab1";
+import ClinicReportTab2 from "@/src/components/main/ClinicReportTab2";
 
 // const filters = ["all", "active", "completed"];
 export default function Main() {
   const [modalProps, setModalProps] = useState([]);
+  const [clinicReportTab, setClinicReportTab] = useState(0);
+  const [visibleCalendar, setVisibleCalendar] = useState(false);
   // const [filter, setFilter] = useState(filters[0]);
 
+  const handleClickCalendar = () => {
+    setVisibleCalendar(!visibleCalendar);
+  };
   const closeModal = () => {
     setModalProps({ visible: false });
   };
@@ -42,7 +48,7 @@ export default function Main() {
             <GridCol customWidth="100%">
               <Box border>
                 <BoxHead>
-                  클리닉 긍정도 평가
+                  {clinicReportTab === 0 ? "클리닉 리포트" : "클리닉 업무 추이"}
                   <ModalOpenBtn
                     modalWidth="400px"
                     className="btn_modal reportAllView"
@@ -60,24 +66,19 @@ export default function Main() {
                     modalProps={setModalProps}
                   />
                 </BoxHead>
+                {/* 클리닉 긍정도 평가 */}
                 <Box padding="0 24px">
-                  <GridWrap colAlign="space-between">
-                    {/* 클리닉 긍정도 평가 */}
-                    <GridCol customWidth="280px">
-                      <Box padding="27px 0">
-                        <ClinicPositivity
-                          percent={80}
-                          trackLength={0.5}
-                          chartDirection={0.5}
-                        />
-                      </Box>
-                    </GridCol>
-                    <GridCol customWidth="calc(100% - 304px)">
-                      <Box padding="27px 0">
-                        <ClinicPositivityDesc />
-                      </Box>
-                    </GridCol>
-                  </GridWrap>
+                  {clinicReportTab === 0 ? (
+                    <ClinicReportTab1
+                      clinicReportTab={clinicReportTab}
+                      setClinicReportTab={setClinicReportTab}
+                    />
+                  ) : (
+                    <ClinicReportTab2
+                      clinicReportTab={clinicReportTab}
+                      setClinicReportTab={setClinicReportTab}
+                    />
+                  )}
                 </Box>
               </Box>
             </GridCol>
@@ -141,7 +142,24 @@ export default function Main() {
 
         <GridCol customWidth="calc(100% - 770px)">
           <Box border>
-            <BoxHead>오늘의 업무</BoxHead>
+            <BoxHead>
+              오늘의 업무
+              <CalendarOpenBtn onClick={handleClickCalendar}>
+                {CurrentDate}
+                <Image
+                  src="/images/common/icon_arrow_default.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  style={{
+                    transform: "rotate(90deg)",
+                    verticalAlign: "middle",
+                    marginLeft: "4px",
+                  }}
+                />
+              </CalendarOpenBtn>
+              <CalendarSmall visibleCalendar={visibleCalendar} />
+            </BoxHead>
             <TodayWorks />
           </Box>
         </GridCol>
@@ -160,3 +178,11 @@ export default function Main() {
     </>
   );
 }
+const CalendarOpenBtn = styled.button`
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  height: 28px;
+  border: none;
+  background-color: transparent;
+`;
