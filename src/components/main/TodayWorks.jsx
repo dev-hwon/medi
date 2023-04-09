@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 import moment, {
   Current,
   CurrentDate,
   CurrentDataMonth,
 } from "@/src/components/Current";
+import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { flushSync } from "react-dom";
 import Addtodo from "../todos/Addtodo";
@@ -49,6 +51,7 @@ function CurrentTimesCategory({ currentCategoryData }) {
   );
 }
 export default function TodayWorks() {
+  const [visibleCalendar, setVisibleCalendar] = useState(false);
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const { categorys } = dataList;
@@ -70,9 +73,32 @@ export default function TodayWorks() {
         .duration(moment().diff(moment(data.endTime, "HH:mm")))
         .asMinutes() < 0
   );
-
+  const handleClickCalendar = () => {
+    setVisibleCalendar(!visibleCalendar);
+  };
   return (
     <>
+      <CalendarOpenBtnWrap>
+        <CalendarOpenBtn onClick={handleClickCalendar}>
+          {CurrentDate}
+          <Image
+            src="/images/common/icon_arrow_default.svg"
+            alt=""
+            width={16}
+            height={16}
+            style={{
+              transform: `${
+                !visibleCalendar ? "rotate(90deg)" : "rotate(270deg)"
+              }`,
+              verticalAlign: "middle",
+              marginLeft: "4px",
+              transition: "all .4s",
+            }}
+          />
+        </CalendarOpenBtn>
+        <CalendarSmall visibleCalendar={visibleCalendar} />
+      </CalendarOpenBtnWrap>
+
       <CurrentTimesWrap>
         {/* <CurrentDays>
             {moment(time).locale("ko").format(`YYYY년 M월 D일 (dd)`)}
@@ -84,7 +110,10 @@ export default function TodayWorks() {
       </CurrentTimesWrap>
       <Progress className="">
         <div className="title">업무진행률</div>
-        <div className="subinfo">업무시간 AM 9:00~12:00</div>
+        <ProgressCount>
+          <span className="completeCnt">9</span>
+          <span className="totalCnt">/10</span>
+        </ProgressCount>
         <ProgressBar percent={30} className="works_progressBar">
           <span></span>
         </ProgressBar>
@@ -96,16 +125,36 @@ export default function TodayWorks() {
             <ListItem key={idx} list={list}></ListItem>
           ))}
         </ul>
-        <AddTodos>업무 생성하기</AddTodos>
+        <AddTodos>
+          <Image
+            src="/images/main/icon_plus.png"
+            alt=""
+            width={20}
+            height={20}
+            style={{ verticalAlign: "top", marginRight: "4px" }}
+          />
+          업무 생성하기
+        </AddTodos>
       </TodoLists>
     </>
   );
 }
+const CalendarOpenBtnWrap = styled.div`
+  position: relative;
+  padding: 20px 20px 0;
+  margin-bottom: 6px;
+`;
+const CalendarOpenBtn = styled.button`
+  height: 28px;
+  border: none;
+  background-color: transparent;
+`;
+
 const CurrentTimesWrap = styled.div`
-  padding: 22px 20px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-
+  margin-bottom: 16px;
   > div {
     flex: 0 0 auto;
   }
@@ -145,6 +194,7 @@ const CurrentCategoryInfo = styled.div`
   }
 `;
 const Progress = styled.div`
+  position: relative;
   padding: 0 20px;
 
   .title {
@@ -152,12 +202,22 @@ const Progress = styled.div`
     font-weight: bold;
     color: #666;
   }
-  .subinfo {
-    font-size: 12px;
-    color: #999ea7;
-    margin-top: 6px;
+`;
+const ProgressCount = styled.div`
+  position: absolute;
+  top: -4px;
+  right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #dfe3e9;
+  .completeCnt {
+    color: #25aae1;
+  }
+  .totalCnt {
   }
 `;
+
 const ProgressBar = styled.div`
   position: relative;
   width: 100%;

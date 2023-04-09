@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState, useContext } from "react";
-
+import styled from "styled-components";
 import {
   Box,
   BoxHead,
@@ -20,9 +20,6 @@ import AiRecomlist from "@/src/components/main/AiRecomlist";
 import Image from "next/image";
 import ToolTip from "@/src/components/tooltip/ToolTip";
 import TodayWorks from "@/src/components/main/TodayWorks";
-import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
-import { CurrentDate } from "@/src/components/Current";
-import styled from "styled-components";
 import ClinicReportTab1 from "@/src/components/main/ClinicReportTab1";
 import ClinicReportTab2 from "@/src/components/main/ClinicReportTab2";
 
@@ -30,12 +27,8 @@ import ClinicReportTab2 from "@/src/components/main/ClinicReportTab2";
 export default function Main() {
   const [modalProps, setModalProps] = useState([]);
   const [clinicReportTab, setClinicReportTab] = useState(0);
-  const [visibleCalendar, setVisibleCalendar] = useState(false);
   // const [filter, setFilter] = useState(filters[0]);
 
-  const handleClickCalendar = () => {
-    setVisibleCalendar(!visibleCalendar);
-  };
   const closeModal = () => {
     setModalProps({ visible: false });
   };
@@ -43,13 +36,23 @@ export default function Main() {
     <>
       {/* {dayWork[0].title.repeat(4)} */}
       <GridWrap colGap={16}>
-        <GridCol customWidth="770px">
+        <GridCol customWidth="770px" margin="0">
           <GridWrap colGap={16}>
             <GridCol customWidth="100%">
               <Box border>
                 <BoxHead>
                   {clinicReportTab === 0 ? "클리닉 리포트" : "클리닉 업무 추이"}
-                  <ModalOpenBtn
+                  <Link href="/report" className="reportAllView">
+                    <Image
+                      src="/images/main/icon_report_btn.svg"
+                      alt=""
+                      width={16}
+                      height={16}
+                      style={{ marginRight: "4px", verticalAlign: "-2px" }}
+                    />
+                    리모트 모아보기
+                  </Link>
+                  {/* <ModalOpenBtn
                     modalWidth="400px"
                     className="btn_modal reportAllView"
                     childData={<span>test</span>}
@@ -64,7 +67,7 @@ export default function Main() {
                     }
                     buttonName="리모트 모아보기"
                     modalProps={setModalProps}
-                  />
+                  /> */}
                 </BoxHead>
                 {/* 클리닉 긍정도 평가 */}
                 <Box padding="15px 24px">
@@ -85,7 +88,7 @@ export default function Main() {
           </GridWrap>
           <GridWrap colGap={16}>
             {/* 클리닉평가 */}
-            <GridCol customWidth="360px">
+            <GridCol customWidth="360px" margin="0">
               <GridWrap colGap={16} colWidth="100%">
                 <GridCol>
                   <Box border>
@@ -120,7 +123,7 @@ export default function Main() {
               </GridWrap>
             </GridCol>
             {/* AI추천업무리스트 */}
-            <GridCol customWidth="calc(100% - 360px)">
+            <GridCol customWidth="calc(100% - 360px)" margin="0">
               <Box border>
                 <BoxHead>
                   AI추천업무리스트
@@ -140,25 +143,27 @@ export default function Main() {
           </GridWrap>
         </GridCol>
 
-        <GridCol customWidth="calc(100% - 770px)">
+        <GridCol customWidth="calc(100% - 770px)" margin="0">
           <Box border>
-            <BoxHead>
-              오늘의 업무
-              <CalendarOpenBtn onClick={handleClickCalendar}>
-                {CurrentDate}
+            <BoxHead align="center">
+              <PrevCategory>
                 <Image
                   src="/images/common/icon_arrow_default.svg"
                   alt=""
                   width={16}
                   height={16}
-                  style={{
-                    transform: "rotate(90deg)",
-                    verticalAlign: "middle",
-                    marginLeft: "4px",
-                  }}
+                  style={{ transform: "rotate(180deg)" }}
                 />
-              </CalendarOpenBtn>
-              <CalendarSmall visibleCalendar={visibleCalendar} />
+              </PrevCategory>
+              오늘의 업무
+              <NextCategory>
+                <Image
+                  src="/images/common/icon_arrow_default.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                />
+              </NextCategory>
             </BoxHead>
             <TodayWorks />
           </Box>
@@ -178,11 +183,25 @@ export default function Main() {
     </>
   );
 }
-const CalendarOpenBtn = styled.button`
+
+const PrevCategory = styled.button`
   position: absolute;
-  top: 14px;
-  right: 20px;
-  height: 28px;
-  border: none;
+  top: 12px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #eeeff3;
+  border-radius: 4px;
   background-color: transparent;
+  transition: all 0.4s;
+  > img {
+    vertical-align: top;
+  }
+  &:hover {
+    background-color: #f6f6f7;
+  }
+`;
+const NextCategory = styled(PrevCategory)`
+  left: auto;
+  right: 20px;
 `;

@@ -200,7 +200,7 @@ textarea:focus:-ms-input-placeholder {color:transparent;}
 /* ----------------------------------------------------------------
     @공통_container
 -----------------------------------------------------------------*/
-.container { position:relative; width: 1140px; min-height: calc(100vh - 120px); padding:40px 32px; margin:0 auto;}
+.container { position:relative; width: 1204px; min-height: calc(100vh - 120px); padding:40px 32px; margin:0 auto;}
 
 /* 반응형 제거
 @media (max-width:767px){.container {width:100%}}
@@ -603,6 +603,12 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
     position:absolute;
     top:50%;
     right:24px;
+    font-size: 14px;
+    font-weight:500;
+    color:#444;
+    border:1px solid #E3E8EC;
+    border-radius: 4px;
+    line-height: 36px;
     transform: translateY(-50%);
     padding:0 8px;
 }

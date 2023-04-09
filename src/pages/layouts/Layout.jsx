@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GlobalHeader from "./GlobalHeader";
-import GlobalFooter from "./GlobalFooter";
+// import GlobalFooter from "./GlobalFooter";
 import GlobalLnb from "./GlobalLnb";
 
 export default function Layout({ children }) {
@@ -30,7 +30,7 @@ export default function Layout({ children }) {
           ></GlobalHeader>
 
           <div className="container">{children}</div>
-          <GlobalFooter />
+          {/* <GlobalFooter /> */}
         </div>
       </div>
       <div id="modal-root"></div>

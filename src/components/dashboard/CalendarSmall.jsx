@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 // import Moment from "react-moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -47,10 +48,32 @@ export default function CalendarSmall({ visibleCalendar }) {
             navigationAriaLabel="go up"
             minDetail="decade"
             maxDetail="month"
+            prevLabel={
+              <Image
+                src="/images/common/icon_arrow_default.svg"
+                alt=""
+                width={16}
+                height={16}
+                style={{ transform: "rotate(180deg)", verticalAlign: "-2px" }}
+              />
+            }
+            nextLabel={
+              <Image
+                src="/images/common/icon_arrow_default.svg"
+                alt=""
+                width={16}
+                height={16}
+                style={{ verticalAlign: "-2px" }}
+              />
+            }
             prev2Label={null}
             next2Label={null}
             showNavigation={true} // 상단날짜네비게이션
             showNeighboringMonth={true} // 이전,이후달의 날짜 노출여부
+            tileDisabled={({ date, view }) =>
+              moment(date).format("YYYY-MM-DD") >
+              moment(Current).format("YYYY-MM-DD")
+            }
             // 나중에...일자에 표시..할수도있을듯하여...일단남겨둠
             // onClickDay={(date) =>
             //   console.log(moment(date).format("YYYY-MM-DD"))
@@ -78,31 +101,35 @@ export default function CalendarSmall({ visibleCalendar }) {
             //     );
             // }}
           ></Calendar>
-
-          <GridWrap className="" colWidth={50} colWidthUnit="%">
-            <GridCol>
-              <Status className="">
-                완료<em>{thisMonthCompleteCount}</em>
-              </Status>
-            </GridCol>
-            <GridCol>
-              <Status className="">
-                미처리<em>{thisMonthActiveCount}</em>
-              </Status>
-            </GridCol>
-          </GridWrap>
+          <CalendarSubinfo>
+            <GridWrap className="" colAlign="space-between">
+              <GridCol>
+                <Status className="">
+                  완료<em>{thisMonthCompleteCount}</em>
+                </Status>
+              </GridCol>
+              <GridCol>
+                <Status className="">
+                  미처리<em>{thisMonthActiveCount}</em>
+                </Status>
+              </GridCol>
+            </GridWrap>
+          </CalendarSubinfo>
         </div>
       )}
     </>
   );
 }
 
+const CalendarSubinfo = styled.div`
+  padding: 0 24px;
+`;
 const Status = styled.div`
   font-size: 13px;
   font-weight: 500;
   color: #000;
   text-align: center;
-  padding: 8px 0 22px;
+  padding: 8px 0;
   > em {
     display: inline-block;
     width: 32px;

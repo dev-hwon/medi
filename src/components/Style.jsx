@@ -123,6 +123,7 @@ export const BoxHead = styled.div`
   padding: 16px 20px;
   line-height: 24px;
   border-bottom: 1px solid #eaebee;
+  text-align: ${(props) => (props.align ? props.align : "left")};
 `;
 export const BoxFoot = styled.div`
   font-size: 12px;
