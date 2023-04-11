@@ -1,15 +1,14 @@
-
 {
   "name": "medi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "envdev": "env-cmd -f .env.development next dev",
-    "dev": "next dev", 
+    "dev": "next dev",
     "build": "next build",
     "start": "env-cmd -f .env.production next start",
     "lint": "next lint",
-    "server" : "json-server --host 0.0.0.0 --watch ./src/db/todos.json --port 8000"
+    "server": "json-server --host 0.0.0.0 --watch ./src/db/todos.json --port 8000"
   },
   "dependencies": {
     "@next/font": "13.2.4",
@@ -19,6 +18,7 @@
     "json-server": "^0.17.3",
     "moment": "^2.29.4",
     "next": "13.2.4",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-calendar": "^4.1.0",
     "react-dom": "18.2.0",
