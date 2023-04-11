@@ -3,6 +3,10 @@ import { setCookie, destroyCookie, parseCookies } from 'nookies';
 
 const AuthContext = createContext();
 
+const signOut = async () => {
+
+};
+
 function AuthProvider({ children }) {
     
     // 쿠키 파싱 ( medivalue_web )
@@ -12,7 +16,11 @@ function AuthProvider({ children }) {
     // console.log( cookies );
 
     return (
-        <AuthContext.Provider>
+        <AuthContext.Provider
+            value={{
+                signOut
+            }}
+        >
             {children}
         </AuthContext.Provider>
     )
