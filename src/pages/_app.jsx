@@ -10,14 +10,19 @@ import { AuthProvider } from "../context/AuthContext";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
-  return getLayout(
+
+  return (
     <AuthProvider>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <GlobalContextProvider>
-        <Component {...pageProps} />
-      </GlobalContextProvider>
+      {getLayout(
+        <AuthProvider>
+          <Head>
+            <meta name="viewport" content="initial-scale=1, width=device-width" />
+          </Head>
+          <GlobalContextProvider>
+            <Component {...pageProps} />
+          </GlobalContextProvider>
+        </AuthProvider>
+      )}
     </AuthProvider>
-  ); 
+  )
 }

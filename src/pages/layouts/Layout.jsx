@@ -7,7 +7,7 @@ export default function Layout({ children }) {
   const [lnbFold, setLnbFold] = useState(false);
   const [lnbHover, setLnbHover] = useState(false);
   const [postItActive, setPostItActive] = useState(false);
-
+  
   return (
     <>
       <div

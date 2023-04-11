@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../layouts/Layout";
-import useAuth from "@/src/hooks/useMember";
+import useAuth from "@/src/hooks/useAuth";
 
 export default function ReportIndex() {
 
