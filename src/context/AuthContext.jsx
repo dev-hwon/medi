@@ -1,5 +1,7 @@
-import { ReactNode } from 'react';
+import { createContext, ReactNode } from 'react';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
+
+const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     
@@ -9,6 +11,11 @@ function AuthProvider({ children }) {
 
     // console.log( cookies );
 
+    return (
+        <AuthContext.Provider>
+            {children}
+        </AuthContext.Provider>
+    )
 }
 
 export { AuthProvider };
