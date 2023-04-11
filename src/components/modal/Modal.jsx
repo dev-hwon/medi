@@ -16,10 +16,10 @@ export function ModalOpenBtn({
   buttonName,
   // title,
   childData,
-  modalProps,
+  setModalProps,
 }) {
   const openModal = () => {
-    modalProps({
+    setModalProps({
       visible: true,
       modalWidth: modalWidth,
       maskClosable: true,

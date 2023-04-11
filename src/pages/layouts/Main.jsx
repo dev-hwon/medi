@@ -10,7 +10,7 @@ import {
   GridWrap,
   ButtonWrapper,
 } from "@/src/components/Style";
-import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
+
 import ClinicPositivity from "@/src/components/main/ClinicNeedleChart";
 import Link from "next/link";
 import ClinicPositivityDesc from "@/src/components/main/ClinicNeedleChartDesc";
@@ -25,13 +25,9 @@ import ClinicReportTab2 from "@/src/components/main/ClinicReportTab2";
 
 // const filters = ["all", "active", "completed"];
 export default function Main() {
-  const [modalProps, setModalProps] = useState([]);
   const [clinicReportTab, setClinicReportTab] = useState(0);
   // const [filter, setFilter] = useState(filters[0]);
 
-  const closeModal = () => {
-    setModalProps({ visible: false });
-  };
   return (
     <>
       {/* {dayWork[0].title.repeat(4)} */}
@@ -42,7 +38,7 @@ export default function Main() {
               <Box border>
                 <BoxHead>
                   {clinicReportTab === 0 ? "클리닉 리포트" : "클리닉 업무 추이"}
-                  <Link href="/report" className="reportAllView">
+                  <Link href="/report" className="btn_reportAllView">
                     <Image
                       src="/images/main/icon_report_btn.svg"
                       alt=""
@@ -52,22 +48,6 @@ export default function Main() {
                     />
                     리모트 모아보기
                   </Link>
-                  {/* <ModalOpenBtn
-                    modalWidth="400px"
-                    className="btn_modal reportAllView"
-                    childData={<span>test</span>}
-                    buttonIcon={
-                      <Image
-                        src="/images/main/icon_report_btn.svg"
-                        alt=""
-                        width={16}
-                        height={16}
-                        style={{ marginRight: "4px", verticalAlign: "-2px" }}
-                      ></Image>
-                    }
-                    buttonName="리모트 모아보기"
-                    modalProps={setModalProps}
-                  /> */}
                 </BoxHead>
                 {/* 클리닉 긍정도 평가 */}
                 <Box padding="15px 24px">
@@ -169,17 +149,6 @@ export default function Main() {
           </Box>
         </GridCol>
       </GridWrap>
-
-      {modalProps.visible && (
-        <Modal
-          visible={modalProps.visible}
-          modalWidth={modalProps.modalWidth}
-          maskClosable={modalProps.maskClosable}
-          closable={modalProps.closable}
-          childData={modalProps.childData}
-          onClose={closeModal}
-        ></Modal>
-      )}
     </>
   );
 }

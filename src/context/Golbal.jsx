@@ -71,6 +71,17 @@ function dataReducer(state, action) {
         todos: [...state.todos, adjData],
       };
     }
+    case "TODOS_MODIFY": {
+      const { id, todosStatus, completeDate, completeTime } = action;
+      return {
+        ...state,
+        todos: state.todos.map((data) =>
+          data.id === id
+            ? { ...data, todosStatus, completeDate, completeTime }
+            : data
+        ),
+      };
+    }
     // 반복업무 자동일감생성...인데 나중에 작업예정..
     case "TODOS_ADD_REPEAT": {
       const { id, todosDate } = action;
@@ -149,7 +160,7 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-  }, []);
+  }, [dataDispatch]);
 
   // 로딩중.. 추후 부분적으로 적용예정 일단 전체에 걸어버림
   const { loading, errorMessage, datas } = data;

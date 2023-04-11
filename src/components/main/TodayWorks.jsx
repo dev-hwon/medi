@@ -9,40 +9,76 @@ import moment, {
 import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { flushSync } from "react-dom";
-import Addtodo from "../todos/Addtodo";
+import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
+import Formtodo from "../todos/Formtodo";
 
-const lists = [
-  { title: "고객 원장님 상담 요청", state: 1 },
-  { title: "진료 도구 소독 상태 확인하기", state: 1 },
-  { title: "장비 세팅하기", state: 1 },
-  { title: "인포데스크 확인 하기", state: 1 },
-  { title: "우편물 확인 및 정리하기", state: 0 },
-];
+const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
 
-const listsBtnTxt = ["미완료", "진행", "업무완료", "확인필요", "확인완료"];
+// 시간차
+const diffTime = (target, standard) => {
+  return moment
+    .duration(moment(target, "HH:mm").diff(moment(standard, "HH:mm")))
+    .asMinutes();
+};
 
-function ListItem({ list }) {
-  const [listState, setListState] = useState(list.state);
+function ListItem({ list, todosStatus, dataDispatch, setModalProps }) {
   const handleClick = () => {
-    if (listState >= 4) {
-      setListState(1);
-    } else {
-      setListState(listState + 1);
-    }
+    // flushSync(() => {
+
+    // });
+
+    fetch(todosUrl + `/${list.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...list,
+        todosStatus: list.todosStatus === "active" ? "complete" : "active",
+        completeDate:
+          list.todosStatus === "active"
+            ? moment(Current).format("YYYY-MM-DD")
+            : "",
+        completeTime:
+          list.todosStatus === "active"
+            ? moment(Current).format("HH:mm:ss")
+            : "",
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        dataDispatch({
+          type: "TODOS_MODIFY",
+          id: list.id,
+          todosStatus: list.todosStatus === "active" ? "complete" : "active",
+          completeDate:
+            list.todosStatus === "active"
+              ? moment(Current).format("YYYY-MM-DD")
+              : "",
+          completeTime:
+            list.todosStatus === "active"
+              ? moment(Current).format("HH:mm:ss")
+              : "",
+        });
+      });
   };
   return (
-    <li className={"li_state_" + listState}>
-      <button className="btn_title">{list.title}</button>
-      <button className="btn_status" onClick={handleClick}>
-        {listsBtnTxt[listState]}
-      </button>
+    <li className={"li_state " + todosStatus}>
+      <ModalOpenBtn
+        modalWidth="400px"
+        className="btn_title"
+        childData={<span>test</span>}
+        buttonName={list.todosName}
+        modalProps={setModalProps}
+      />
+      <button className="btn_status_change" onClick={handleClick}></button>
     </li>
   );
 }
 
 function CurrentTimesCategory({ currentCategoryData }) {
-  const color = currentCategoryData ? currentCategoryData.color : "ddd";
-  const name = currentCategoryData ? currentCategoryData.name : "업무종료";
+  const color = currentCategoryData.color;
+  const name = currentCategoryData.name;
   return (
     <CurrentCategoryInfo color={color}>
       <div className="current_status">진행중</div>
@@ -50,32 +86,78 @@ function CurrentTimesCategory({ currentCategoryData }) {
     </CurrentCategoryInfo>
   );
 }
+
 export default function TodayWorks() {
+  const [modalProps, setModalProps] = useState([]);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
-  const { categorys } = dataList;
+  const { todos, categorys } = dataList;
 
+  const closeModal = () => {
+    setModalProps({ visible: false });
+  };
+
+  // 타이머 (워닝뜨는데 확인필요)
   let timer = null;
   const [time, setTime] = useState(moment());
   useEffect(() => {
     timer = setInterval(() => {
       setTime(moment());
-    }, 1000);
+    }, 60000);
+
     return () => {
       clearInterval(timer);
     };
   }, [time]);
 
-  const currentCategoryData = categorys.filter(
-    (data) =>
-      moment
-        .duration(moment().diff(moment(data.endTime, "HH:mm")))
-        .asMinutes() < 0
+  // 업무전
+  const beforeWork = diffTime(time, categorys[0].startTime);
+  // 업무마감
+  const afterWork = diffTime(time, categorys[3].endTime);
+  // 업무중
+  const workTime = beforeWork > 0 && afterWork < 0;
+  const currentCategoryData = workTime
+    ? categorys.filter((data) => diffTime(moment(), data.endTime) < 0)
+    : beforeWork < 0
+    ? [
+        {
+          id: "category0",
+          name: "업무시작전",
+          color: "ddd",
+        },
+      ]
+    : afterWork > 0 && [
+        {
+          id: "category0",
+          name: "업무마감",
+          color: "ddd",
+        },
+      ];
+
+  // 할일리스트 상태
+  const [todosStatus, setTodosStatus] = useState("active");
+
+  // 현재 카테고리 할일
+  const currentCategoryTodos = todos.filter(
+    (data) => data.category === currentCategoryData[0].id
   );
+
+  // 현재 카테고리 할일 > 진행중인건
+  const completeCnt = currentCategoryTodos.filter(
+    (data) => data.todosStatus === "complete"
+  );
+
+  const completeCntPercent = completeCnt * currentCategoryTodos.length * 0.01;
+  // 현재 카테고리 할일 > 진행중인건
+  const currentCategoryTodosFiletered = currentCategoryTodos.filter(
+    (data) => data.todosStatus === todosStatus
+  );
+
   const handleClickCalendar = () => {
     setVisibleCalendar(!visibleCalendar);
   };
+
   return (
     <>
       <CalendarOpenBtnWrap>
@@ -111,34 +193,78 @@ export default function TodayWorks() {
       <Progress className="">
         <div className="title">업무진행률</div>
         <ProgressCount>
-          <span className="completeCnt">9</span>
-          <span className="totalCnt">/10</span>
+          <span className="completeCnt">{completeCnt.length}</span>
+          <span className="totalCnt">/{currentCategoryTodos.length}</span>
         </ProgressCount>
-        <ProgressBar percent={30} className="works_progressBar">
+        <ProgressBar percent={completeCntPercent} className="works_progressBar">
           <span></span>
         </ProgressBar>
       </Progress>
       <TodoLists>
-        <div className="title">해야 할일 목록</div>
-        <ul>
-          {lists.map((list, idx) => (
-            <ListItem key={idx} list={list}></ListItem>
-          ))}
-        </ul>
-        <AddTodos>
-          <Image
-            src="/images/main/icon_plus.png"
-            alt=""
-            width={20}
-            height={20}
-            style={{ verticalAlign: "top", marginRight: "4px" }}
-          />
-          업무 생성하기
-        </AddTodos>
+        <TodoListsTab
+          className={todosStatus === "active" ? "active" : ""}
+          onClick={() => setTodosStatus("active")}
+        >
+          해야 할일 목록
+        </TodoListsTab>
+        <TodoListsTab
+          className={todosStatus === "complete" ? "active" : ""}
+          onClick={() => setTodosStatus("complete")}
+        >
+          완료된 업무
+        </TodoListsTab>
+        <div>
+          <ul>
+            {currentCategoryTodosFiletered.map((list, idx) => (
+              <ListItem
+                key={idx}
+                list={list}
+                todosStatus={todosStatus}
+                dataDispatch={dataDispatch}
+                setModalProps={setModalProps}
+              ></ListItem>
+            ))}
+          </ul>
+        </div>
+
+        <ModalOpenBtn
+          modalWidth="464px"
+          className="btn_modal btn_addTodos"
+          childData={
+            <Formtodo
+              status="write"
+              label="AI"
+              labelColor="#FF5363"
+              setModalProps={setModalProps}
+            />
+          }
+          buttonIcon={
+            <Image
+              src="/images/main/icon_plus.png"
+              alt=""
+              width={16}
+              height={16}
+              style={{ marginRight: "4px", verticalAlign: "-3px" }}
+            />
+          }
+          buttonName="업무 생성하기"
+          setModalProps={setModalProps}
+        />
       </TodoLists>
+      {modalProps.visible && (
+        <Modal
+          visible={modalProps.visible}
+          modalWidth={modalProps.modalWidth}
+          maskClosable={modalProps.maskClosable}
+          closable={modalProps.closable}
+          childData={modalProps.childData}
+          onClose={closeModal}
+        ></Modal>
+      )}
     </>
   );
 }
+
 const CalendarOpenBtnWrap = styled.div`
   position: relative;
   padding: 20px 20px 0;
@@ -236,6 +362,31 @@ const ProgressBar = styled.div`
   }
 `;
 
+const TodoListsTab = styled.button`
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  border: none;
+  padding: 0 2px;
+  background-color: transparent;
+  margin-right: 16px;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #222;
+    transform: scale(0);
+    transition: all 0.4s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  &.active:after {
+    transform: scale(1);
+  }
+`;
 const TodoLists = styled.div`
   margin-top: 26px;
   padding: 0 20px;
@@ -252,10 +403,10 @@ const TodoLists = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-around;
-      padding: 8px;
       border: 1px solid #dfe3e9;
       border-radius: 40px;
       margin-bottom: 8px;
+      padding-right: 8px;
 
       .btn_title {
         flex: 0 0 auto;
@@ -265,66 +416,61 @@ const TodoLists = styled.div`
         border: none;
         background-color: transparent;
         text-align: left;
-        padding-left: 10px;
+        padding-left: 18px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
         margin-right: 10px;
+        height: 42px;
       }
-      .btn_status {
+      .btn_status_change {
         flex: 0 0 auto;
-        width: 56px;
+        width: 24px;
         height: 24px;
-        color: #25aae1;
         font-size: 11px;
-        border: 1px solid #25aae1;
-        border-radius: 24px;
+        border: none;
         background-color: transparent;
+        background-image: url("/images/common/icon_checkoff.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        bacgkround-position: 0 0;
       }
     }
-    li.li_state_2 {
-      .btn_status {
-        color: #fff;
-        background-color: #25aae1;
+    li.li_state.complete {
+      .btn_status_change {
+        background-image: url("/images/common/icon_checkon.svg");
       }
     }
-    li.li_state_3 {
-      border-color: #feebe7;
-      background-color: #feebe7;
-      .btn_title {
-        color: #ff5363;
-      }
-      .btn_status {
-        color: #fff;
-        border-color: #ff5363;
-        background-color: #ff5363;
-      }
-    }
-    li.li_state_4 {
-      border-color: #25aae1;
-      background-color: #25aae1;
-      .btn_title {
-        color: #fff;
-      }
-      .btn_status {
-        color: #fff;
-        border-color: #0379aa;
-        background-color: #0379aa;
-      }
-    }
-    li.li_state_0 {
-      .btn_status {
-        color: #fff;
-        border-color: #c2cad4;
-        background-color: #c2cad4;
-      }
-    }
+    // li.li_state_3 {
+    //   border-color: #feebe7;
+    //   background-color: #feebe7;
+    //   .btn_title {
+    //     color: #ff5363;
+    //   }
+    //   .btn_status {
+    //     color: #fff;
+    //     border-color: #ff5363;
+    //     background-color: #ff5363;
+    //   }
+    // }
+    // li.li_state_4 {
+    //   border-color: #25aae1;
+    //   background-color: #25aae1;
+    //   .btn_title {
+    //     color: #fff;
+    //   }
+    //   .btn_status {
+    //     color: #fff;
+    //     border-color: #0379aa;
+    //     background-color: #0379aa;
+    //   }
+    // }
+    // li.li_state_0 {
+    //   .btn_status {
+    //     color: #fff;
+    //     border-color: #c2cad4;
+    //     background-color: #c2cad4;
+    //   }
+    // }
   }
-`;
-const AddTodos = styled.button`
-  width: 100%;
-  height: 40px;
-  border: 1px dashed #c2cad4;
-  border-radius: 40px;
-  background-color: #fff;
 `;
