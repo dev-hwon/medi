@@ -42,10 +42,10 @@
       "id": "4",
       "category": "category2",
       "todosName": "진행중인 업무",
-      "todosStatus": "complete",
+      "todosStatus": "active",
       "todosDate": "2023-04-06",
-      "completeDate": "2023-04-11",
-      "completeTime": "14:57:17",
+      "completeDate": "",
+      "completeTime": "",
       "fileList": null,
       "confirm": null
     },
@@ -64,10 +64,10 @@
       "id": "6",
       "category": "category2",
       "todosName": "완료된 업무",
-      "todosStatus": "active",
+      "todosStatus": "complete",
       "todosDate": "2023-04-06",
-      "completeDate": "",
-      "completeTime": "",
+      "completeDate": "2023-04-12",
+      "completeTime": "14:06:28",
       "fileList": null,
       "confirm": null
     }

@@ -5,6 +5,7 @@ import moment, {
   Current,
   CurrentDate,
   CurrentDataMonth,
+  diffTime,
 } from "@/src/components/Current";
 import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
@@ -13,13 +14,6 @@ import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
 import Formtodo from "../todos/Formtodo";
 
 const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
-
-// 시간차
-const diffTime = (target, standard) => {
-  return moment
-    .duration(moment(target, "HH:mm").diff(moment(standard, "HH:mm")))
-    .asMinutes();
-};
 
 function ListItem({ list, todosStatus, dataDispatch, setModalProps }) {
   const handleClick = () => {
@@ -92,7 +86,7 @@ export default function TodayWorks() {
   const [visibleCalendar, setVisibleCalendar] = useState(false);
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
-  const { todos, categorys } = dataList;
+  const { loading, todos, categorys } = dataList;
 
   const closeModal = () => {
     setModalProps({ visible: false });
@@ -110,7 +104,7 @@ export default function TodayWorks() {
       clearInterval(timer);
     };
   }, [time]);
-
+  console.log(categorys);
   // 업무전
   const beforeWork = diffTime(time, categorys[0].startTime);
   // 업무마감

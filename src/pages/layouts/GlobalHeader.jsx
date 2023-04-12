@@ -7,13 +7,12 @@ import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/router";
 
 export default function GlobalHeader() {
-
   const { signOut } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
     await signOut();
-    alert('메인 이동');
+    alert("메인 이동");
     router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
   };
 
@@ -70,7 +69,6 @@ export default function GlobalHeader() {
               </GridCol>
               <GridCol>
                 <button onClick={() => handleSignOut()}>로그아웃</button>
-                <Link href="">로그아웃</Link>
               </GridCol>
               <GridCol>
                 <Link href="">고객센터</Link>
@@ -138,6 +136,15 @@ const Topmenu = styled.div`
     display: inline-block;
     text-align: center;
     font-size: 14px;
+  }
+  button {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+    border: none;
+    background-color: transparent;
   }
 `;
 const MemberLevel = styled.span`

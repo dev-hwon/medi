@@ -132,6 +132,11 @@ export function GlobalContextProvider({ children }) {
   const [user, userDispatch] = useReducer(userReducer, initialUser);
   const [data, dataDispatch] = useReducer(dataReducer, initialData);
 
+  // async function fetchData(url) {
+  //   const respons = await fetch(url);
+  //   const result = await respons.json();
+  //   return result;
+  // }
   useEffect(() => {
     fetch(todosUrl)
       .then((res) => res.json())

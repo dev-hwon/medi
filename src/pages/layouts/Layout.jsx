@@ -1,3 +1,4 @@
+import Loader from "@/src/components/Loader";
 import React, { useState } from "react";
 import GlobalHeader from "./GlobalHeader";
 // import GlobalFooter from "./GlobalFooter";
@@ -7,7 +8,7 @@ export default function Layout({ children }) {
   const [lnbFold, setLnbFold] = useState(false);
   const [lnbHover, setLnbHover] = useState(false);
   const [postItActive, setPostItActive] = useState(false);
-  
+
   return (
     <>
       <div
@@ -34,6 +35,7 @@ export default function Layout({ children }) {
         </div>
       </div>
       <div id="modal-root"></div>
+      <Loader size={{ width: "200px", height: "200px" }} />
     </>
   );
 }

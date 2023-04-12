@@ -41,7 +41,7 @@ export default function ClinicBarChart() {
           <span className="legend_incomplete">미완료 업무</span>
           <span className="legend_complete">완료 업무</span>
         </Legend>
-        <button> 1개월 이거 나중에추가해도됨여??ㅋㅋ</button>
+        <button> 1개월</button>
       </ChartInfo>
 
       <ChartWrap>
