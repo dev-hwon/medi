@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useRef, useState } from "react";
+import styled from "styled-components";
 
 export default function FileInput() {
   const [files, setFiles] = useState([]);
@@ -74,6 +75,10 @@ export default function FileInput() {
         />
         파일 올리기
       </button>
+      <FileUploadNoti className="">
+        첨부파일은 최대 5MB (JPG,PDF, TXT,WORD,EXCEL,PPT,HWP,ZIP)
+      </FileUploadNoti>
+
       <input
         type="file"
         ref={fileInput}
@@ -82,21 +87,84 @@ export default function FileInput() {
         accept=".gif, .jpg, .png, .pdf, .txt, .doc, .docx, .xlsx, .xls, .zip "
         multiple
       />
-      <ul className="upload_file_list">
+      <FileUploadList className="upload_file_list">
         {files.map((file, index) => (
           <li key={`${file.name}_${index}`}>
-            {file.name}
+            <Image
+              src={"/images/file/icon_file_" + getExtName(file.name) + ".png"}
+              alt={getExtName(file.name)}
+              width={20}
+              height={20}
+            />
+            <span className="file_name">{file.name}</span>
+            <span className="file_size">
+              {Math.round((file.size / 1024 / 1024) * 100) / 100 + "MB"}
+            </span>
             <button
               type="button"
               className="btn_singlefile_delete"
               onClick={() => handleClickDelete(index)}
             >
-              {" "}
-              삭제{" "}
+              삭제
             </button>
           </li>
         ))}
-      </ul>
+      </FileUploadList>
     </>
   );
 }
+function getExtName(filename) {
+  let fileLength = filename.length;
+  let dotPosition = filename.lastIndexOf(".");
+  let fileExt = filename.substring(dotPosition + 1, fileLength).toLowerCase();
+  return fileExt;
+}
+const FileUploadNoti = styled.div`
+  font-size: 12px;
+  color: #a8b5c0;
+  text-align: left;
+  margin-top: 6px;
+  margin-bottom: 16px;
+`;
+const FileUploadList = styled.ul`
+  > li {
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #eeeff3;
+    margin-bottom: 6px;
+    padding: 8px;
+    img {
+      vertical-align: middle;
+    }
+    .file_name {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 13px;
+      color: #444;
+      margin: 0 4px;
+      max-width: 230px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .file_size {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 13px;
+      color: #a8b5c0;
+    }
+
+    img {
+    }
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      color: #25aae1;
+      padding: 0 8px;
+      border: none;
+      background-color: #fff;
+    }
+  }
+`;

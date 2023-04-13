@@ -269,18 +269,33 @@ export const ModalSummary = styled.div`
   margin-top: 4px;
 `;
 export const ButtonWrapper = styled.div`
-  text-align: ${(props) => (props.align ? props.align : "left")};
-  margin: ${(props) => (props.margin ? props.margin : "0")};
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => (props.align ? props.align : "flex-start")};
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "0")};
+  margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "0")};
 `;
 export const CancelButton = styled.button`
-  width: 96px;
-  border-radius: 32px;
-`;
-export const ConfirmButton = styled.button`
-  width: 96px;
+  flex: 1 1 auto;
+  width: ${(props) => (props.width ? props.width : "auto")};
+  height: 36px;
+  padding: 0 6px;
+  color: #666666;
   border-radius: 4px;
+  border: 1px solid #dfe3e9;
+  background-color: #fff;
+  & + button {
+    margin-left: 12px;
+  }
+`;
+export const RemoveButton = styled(CancelButton)``;
+export const ConfirmButton = styled(CancelButton)`
+  flex: 1 1 auto;
+  border-color: #25aae1;
+  background-color: #25aae1;
+  color: #fff;
   &:disable {
-    background-color: #dfe3ea;
+    background-color: #25aae1;
   }
 `;
 // default table

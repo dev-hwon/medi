@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { useState, useContext } from "react";
 import styled from "styled-components";
@@ -9,8 +10,9 @@ import {
   ModalTitle,
   ModalSummary,
   ButtonWrapper,
-  ConfirmButton,
   CancelButton,
+  RemoveButton,
+  ConfirmButton,
 } from "../Style";
 const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
 const categorysUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_CATEGORYS}`;
@@ -20,7 +22,14 @@ const categorysUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_CATEGORYS}`;
 // label = string
 // labelColor = # + hexcode
 
-export default function Formtodo({ status, label, labelColor, setModalProps }) {
+export default function Formtodo({
+  status,
+  label,
+  labelColor,
+  setModalProps,
+  aiTitle,
+  aiContents,
+}) {
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const [targetCategory, setTargetCategory] = useState("category1");
@@ -72,6 +81,7 @@ export default function Formtodo({ status, label, labelColor, setModalProps }) {
       category: targetCategory,
       todosStatus: "active",
       todosName: updateData.todosName,
+      todosContents: updateData.todosContents,
       isRepeat: updateData.isRepeat,
       todosDate: moment(Current).format("YYYY-MM-DD"),
       ...updateData,
@@ -145,7 +155,7 @@ export default function Formtodo({ status, label, labelColor, setModalProps }) {
           <input
             type="text"
             placeholder="일감제목을 입력하세요"
-            value={updateData.todosName}
+            value={aiTitle ? aiTitle : updateData.todosName}
             onChange={handleChangeTodosName}
           />
           {label && (
@@ -173,23 +183,69 @@ export default function Formtodo({ status, label, labelColor, setModalProps }) {
           </label>
         </InputIsRepeat>
         <InputContents>
-          <textarea onChange={handleChangeTodosContents}></textarea>
+          <textarea
+            onChange={handleChangeTodosContents}
+            value={aiContents ? aiContents : updateData.todosContents}
+          ></textarea>
         </InputContents>
         <InputFilesUpload>
           <FileInput updateData={updateData} setUpdateData={setUpdateData} />
         </InputFilesUpload>
-        <ButtonWrapper align="right">
-          <CancelButton
-            type="button"
-            className="common_btn btn_sm btn_cancel"
-            onClick={handleClickCancel}
-          >
-            취소
-          </CancelButton>
-          <ConfirmButton type="submit" className="common_btn btn_sm btn_submit">
-            추가
-          </ConfirmButton>
-        </ButtonWrapper>
+
+        <Reply>
+          <ReplyTitle>리뷰 내용 확인</ReplyTitle>
+          <ReplyForm>
+            <div className="reply_userImage">
+              <Image
+                src="/images/common/icon_user.svg"
+                alt="user"
+                width={20}
+                height={20}
+              />
+            </div>
+            <input type="text" placeholder="댓글을 입력해 주세요" />
+            <button type="button">등록</button>
+          </ReplyForm>
+          <ul>
+            <li>리스트는 나중에 작업할꺼...</li>
+          </ul>
+        </Reply>
+
+        {status === "write" && (
+          <ButtonWrapper align="right">
+            <CancelButton type="button" onClick={handleClickCancel} width="50%">
+              취소
+            </CancelButton>
+            <ConfirmButton type="submit" width="50%">
+              업무 생성하기
+            </ConfirmButton>
+          </ButtonWrapper>
+        )}
+        {status === "modify" && (
+          <ButtonWrapper align="right">
+            <CancelButton
+              type="button"
+              onClick={handleClickCancel}
+              width="33.3333%"
+            >
+              취소
+            </CancelButton>
+            <RemoveButton type="button" width="33.3333%">
+              제거
+            </RemoveButton>
+            <ConfirmButton type="submit" width="33.3333%">
+              저장
+            </ConfirmButton>
+          </ButtonWrapper>
+        )}
+        {status === "view" && (
+          <ButtonWrapper align="right">
+            <CancelButton type="button" onClick={handleClickCancel} width="50%">
+              취소
+            </CancelButton>
+            <ConfirmButton type="button">확인</ConfirmButton>
+          </ButtonWrapper>
+        )}
       </form>
     </>
   );
@@ -403,5 +459,50 @@ const InputFilesUpload = styled.div`
       .btn_singlefile_delete {
       }
     }
+  }
+`;
+const Reply = styled.div`
+  text-align: left;
+  margin-bottom: 16px;
+`;
+const ReplyTitle = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 16px;
+`;
+const ReplyForm = styled.div`
+  position: relative;
+  padding-left: 48px;
+  padding-right: 60px;
+  margin-bottom: 16px;
+  .reply_userImage {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    border-radius: 14px;
+    background-color: #cce6ff;
+    border: 1px solid #c3dcf4;
+  }
+  input {
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    border-radius: 4px;
+    border: 1px solid #dfe3e9;
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    padding: 0 16px;
+    background-color: #25aae1;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
   }
 `;

@@ -224,14 +224,7 @@ export default function TodayWorks() {
         <ModalOpenBtn
           modalWidth="464px"
           className="btn_modal btn_addTodos"
-          childData={
-            <Formtodo
-              status="write"
-              label="AI"
-              labelColor="#FF5363"
-              setModalProps={setModalProps}
-            />
-          }
+          childData={<Formtodo status="write" setModalProps={setModalProps} />}
           buttonIcon={
             <Image
               src="/images/main/icon_plus.png"
