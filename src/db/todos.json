@@ -104,36 +104,28 @@
       "name": "ㅁㄴㅀㅁㄴㅀ",
       "color": "F65555",
       "startTime": "09:00",
-      "startMeridiem": "AM",
-      "endTime": "10:30",
-      "endMeridiem": "AM"
+      "endTime": "10:30"
     },
     {
       "id": "category2",
       "name": "진료중",
       "color": "FE8947",
       "startTime": "10:30",
-      "startMeridiem": "AM",
-      "endTime": "16:00",
-      "endMeridiem": "PM"
+      "endTime": "16:00"
     },
     {
       "id": "category3",
       "name": "진료마감",
       "color": "00AF5B",
       "startTime": "16:00",
-      "startMeridiem": "PM",
-      "endTime": "17:30",
-      "endMeridiem": "PM"
+      "endTime": "17:30"
     },
     {
       "id": "category4",
       "name": "기타요2",
       "color": "7C18FB",
       "startTime": "17:30",
-      "startMeridiem": "PM",
-      "endTime": "20:30",
-      "endMeridiem": "PM"
+      "endTime": "20:30"
     }
   ],
   "boardlists": [

@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
-import { Current, CurrentDate } from "../Current";
+import { Current, CurrentDate, diffTime } from "../Current";
 import FileInput from "../FileInput";
 import {
   ModalTitle,
@@ -168,9 +168,15 @@ export default function Formtodo({
         />
         <InputIsRepeat>
           <SelectCategoryTimeinfo>
-            {selectedCategoryData[0].startMeridiem}&nbsp;
-            {selectedCategoryData[0].startTime} ~{" "}
-            {selectedCategoryData[0].endMeridiem}&nbsp;
+            {diffTime("12:00", selectedCategoryData[0].startTime) > 0
+              ? "AM"
+              : "PM"}
+            &nbsp;
+            {selectedCategoryData[0].startTime}~
+            {diffTime("12:00", selectedCategoryData[0].endTime) > 0
+              ? "AM"
+              : "PM"}
+            &nbsp;
             {selectedCategoryData[0].endTime}
           </SelectCategoryTimeinfo>
           <label>
