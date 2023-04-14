@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import Modal, { ModalOpenBtn } from "../modal/Modal";
+import Formtodo from "../todos/Formtodo";
 const lists = [
   {
     title: "모두닥 리뷰 내용 확인",
@@ -88,6 +91,10 @@ function CirclePercent({ percent, trackLength }) {
   );
 }
 function ListItem({ list }) {
+  const [modalProps, setModalProps] = useState([]);
+  const closeModal = () => {
+    setModalProps({ visible: false });
+  };
   const { title, percent, category, categoryColor } = list;
   return (
     <List>
@@ -99,15 +106,40 @@ function ListItem({ list }) {
         <div className="AiList_summary">{percent}% 클리닉이 적용중</div>
       </div>
       <div className="AiList_right">
-        <AilistAdd>
-          <Image
-            src="/images/main/icon_add.svg"
-            alt=""
-            width={16}
-            height={16}
-          />
-        </AilistAdd>
+        <ModalOpenBtn
+          modalWidth="464px"
+          className="btn_modal btn_addTodos_ai"
+          childData={
+            <Formtodo
+              status="write"
+              label="AI"
+              labelColor="#FF5363"
+              setModalProps={setModalProps}
+              aiTitle={title}
+              aiContents="상세내용 전달"
+            />
+          }
+          buttonIcon={
+            <Image
+              src="/images/main/icon_add.svg"
+              alt=""
+              width={16}
+              height={16}
+            />
+          }
+          setModalProps={setModalProps}
+        />
       </div>
+      {modalProps.visible && (
+        <Modal
+          visible={modalProps.visible}
+          modalWidth={modalProps.modalWidth}
+          maskClosable={modalProps.maskClosable}
+          closable={modalProps.closable}
+          childData={modalProps.childData}
+          onClose={closeModal}
+        ></Modal>
+      )}
     </List>
   );
 }
@@ -192,17 +224,4 @@ const InnerText = styled.div`
   font-size: 13px;
   font-weight: bold;
   color: ${(props) => (props.color ? "#" + props.color : "#222")};
-`;
-const AilistAdd = styled.button`
-  background-color: #fff;
-  border: 1px solid #aaafb9;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
-  > img {
-    vertical-align: top;
-  }
-  &:hover {
-    border-color: #25aae1;
-  }
 `;

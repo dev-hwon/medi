@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const reportData = [
@@ -34,14 +36,52 @@ function BarWrap() {
   );
 }
 export default function ClinicBarChart() {
+  const [sortListVisible, setSortListVisible] = useState(false);
+  const [sort, setSort] = useState("1");
+  const handleClickSortVisible = () => {
+    setSortListVisible(!sortListVisible);
+  };
+  const handleClickSort = (month) => {
+    setSort(month);
+    setSortListVisible(false);
+  };
   return (
     <>
       <ChartInfo>
+        <SortBy>
+          <SortByMonthButton onClick={handleClickSortVisible}>
+            {sort}개월
+            <Image
+              src="/images/common/icon_arrow_default.svg"
+              alt=""
+              width={16}
+              height={16}
+              style={{
+                transform: `${
+                  !sortListVisible ? "rotate(90deg)" : "rotate(270deg)"
+                }`,
+                verticalAlign: "-3px",
+                marginLeft: "16px",
+                transition: "all .4s",
+              }}
+            />
+          </SortByMonthButton>
+          <SortMonthList visible={sortListVisible}>
+            <li>
+              <button onClick={() => handleClickSort(1)}>1개월</button>
+            </li>
+            <li>
+              <button onClick={() => handleClickSort(3)}>3개월</button>
+            </li>
+            <li>
+              <button onClick={() => handleClickSort(5)}>5개월</button>
+            </li>
+          </SortMonthList>
+        </SortBy>
         <Legend>
           <span className="legend_incomplete">미완료 업무</span>
           <span className="legend_complete">완료 업무</span>
         </Legend>
-        <button> 1개월</button>
       </ChartInfo>
 
       <ChartWrap>
@@ -69,13 +109,15 @@ const ChartInfo = styled.div`
   display: flex;
   justify-content: space-between;
   height: 28px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 `;
 const Legend = styled.div`
-  font-size: 10px;
-  color: #667085;
+  display: felx;
+  align-items: center;
 
   span {
+    font-size: 10px;
+    color: #667085;
     margin-right: 8px;
     &:before {
       content: "";
@@ -196,5 +238,41 @@ const IncompleteBar = styled.div`
 
   &:hover {
     background-color: #bdd9ff;
+  }
+`;
+const SortBy = styled.div`
+  position: relative;
+`;
+const SortByMonthButton = styled.button`
+  height: 28px;
+  font-size: 12px;
+  color: #222;
+  padding: 0 12px;
+  border: 1px solid #eee;
+  background-color: transparent;
+`;
+const SortMonthList = styled.ul`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: ${(props) => (props.visible ? "block" : "none")};
+  z-index: 10;
+  border: 1px solid #eee;
+  background-color: #fff;
+  > li {
+    button {
+      width: 100%;
+      height: 28px;
+      font-size: 12px;
+      color: #222;
+      text-align: left;
+      padding: 2px 12px;
+      background-color: #fff;
+      border: none;
+      &:hover {
+        background-color: #dbeafe;
+      }
+    }
   }
 `;

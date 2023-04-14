@@ -147,6 +147,12 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
+  }, [dataDispatch]);
+
+  // 데이터 분리호출할예정!!
+  // 글쓴이 이제 호출안함!!
+
+  useEffect(() => {
     fetch(categorysUrl)
       .then((res) => res.json())
       .then((res) => {
@@ -156,15 +162,15 @@ export function GlobalContextProvider({ children }) {
       .catch(() => {
         dataDispatch({ type: "ERROR" });
       });
-    fetch(authorsUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        const authorsData = res;
-        dataDispatch({ type: "SUCCESS", authorsData });
-      })
-      .catch(() => {
-        dataDispatch({ type: "ERROR" });
-      });
+    // fetch(authorsUrl)
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     const authorsData = res;
+    //     dataDispatch({ type: "SUCCESS", authorsData });
+    //   })
+    //   .catch(() => {
+    //     dataDispatch({ type: "ERROR" });
+    //   });
   }, [dataDispatch]);
 
   // 로딩중.. 추후 부분적으로 적용예정 일단 전체에 걸어버림

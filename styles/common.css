@@ -621,3 +621,14 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
     border-radius: 40px;
     background-color: #fff;
 }
+.btn_addTodos_ai {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    background-color: #fff;
+    border: 1px solid #aaafb9;
+    border-radius: 4px;
+}
+.btn_addTodos_ai:hover {
+    border-color: #25aae1;
+}
