@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { CommontitleH3, CommonSummary, Box } from "../../components/Style";
 import Layout from "../layouts/Layout";
+import useTitle from "@/src/hooks/useTitle";
 
 import Alarm from "./Alarm";
 import Author from "./Author";
@@ -44,6 +45,9 @@ export default function SettingIndex() {
   //     setTabStatus(0);
   //   };
   // }, []);
+
+  useTitle('설정관리');
+
   return (
     <>
       <CommontitleH3>설정관리</CommontitleH3>

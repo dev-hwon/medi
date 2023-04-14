@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
 import Layout from "../layouts/Layout";
+import useTitle from "@/src/hooks/useTitle";
 // console.log(moment(new Date()).format("YYYY년 MM월 DD일  HH시mm분ss초"));
 
 export default function FileIndex() {
@@ -9,6 +10,8 @@ export default function FileIndex() {
   const dataDispatch = useContext(DatasDispatchContext);
   const { loading, errorMessage, categorys } = dataList;
   const handleClick = (e) => {};
+
+  useTitle('파일함');
 
   return (
     <div>

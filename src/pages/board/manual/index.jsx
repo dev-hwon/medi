@@ -13,6 +13,7 @@ import {
 } from "@/src/components/Style";
 import { useRouter } from "next/router";
 import Layout from "../../layouts/Layout";
+import useTitle from "@/src/hooks/useTitle";
 
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const boardName = "manual";
@@ -24,6 +25,8 @@ export default function BoardIndex() {
   const dataList = useContext(DatasContext);
   const dataDispatch = useContext(DatasDispatchContext);
   const { loading, errorMessage, boardlists } = dataList;
+
+  useTitle('우리병원 매뉴얼');
 
   useEffect(() => {
     fetch(boardlistsUrl)

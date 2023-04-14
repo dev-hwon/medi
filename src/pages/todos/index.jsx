@@ -3,6 +3,8 @@ import TodoList from "@/src/components/todos/TodoList";
 import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useContext } from "react";
 import Layout from "../layouts/Layout";
+import useTitle from "@/src/hooks/useTitle";
+
 const todosyUrl = `${process.env.REACT_APP_TEST_JSONSERVER_TODOS}`;
 const categoryUrl = `${process.env.REACT_APP_TEST_JSONSERVER_CATEGORYS}`;
 
@@ -13,6 +15,9 @@ export default function TodosIndex({ filter }) {
 
   const todosfiltered = todos.filter((f) => f.category === filter);
   const categorysfiltered = categorys.filter((f) => f.id === filter);
+
+  useTitle('할일관리');
+  
   return (
     <>
       {loading ? (
