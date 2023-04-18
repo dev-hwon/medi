@@ -13,6 +13,8 @@ import {
   Line,
 } from "../../components/Style";
 
+// 보류페이지
+
 export default function Author() {
   const authorsList = useContext(DatasContext);
   const authorsDispatch = useContext(DatasDispatchContext);

@@ -9,7 +9,9 @@ import {
   Line,
 } from "../../components/Style";
 import styled from "styled-components";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
+
+// api 보고 다시작업예정
+
 const tabinfo = [
   {
     tabname: "카테고리1",
@@ -65,7 +67,7 @@ function Tabcontent({ tabStatus }) {
     </>
   );
 }
-function TabMenu({ categorys, tabStatus, setTabStatus }) {
+function TabMenu({ tabStatus, setTabStatus }) {
   const handleClick = (status) => {
     setTabStatus(status);
   };
@@ -76,24 +78,13 @@ function TabMenu({ categorys, tabStatus, setTabStatus }) {
       colWidth={108}
       colWidthUnit="px"
     >
-      {categorys.map((category, idx) => (
-        <GridWrap key={idx}>
-          <button
-            onClick={() => handleClick(idx)}
-            className={idx === tabStatus ? "active" : ""}
-          >
-            {category.name}
-          </button>
-        </GridWrap>
-      ))}
+      <button>asdf</button>
+      <button className="active">asdf</button>
     </GridWrap>
   );
 }
 export default function Guide() {
   const [tabStatus, setTabStatus] = useState(0);
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, categorys } = dataList;
   const handleClick = (e) => {};
   return (
     <>
@@ -110,11 +101,7 @@ export default function Guide() {
         <CommontitleH5 style={{ marginBottom: "16px" }}>
           자주찾는 질문
         </CommontitleH5>
-        <TabMenu
-          categorys={categorys}
-          tabStatus={tabStatus}
-          setTabStatus={setTabStatus}
-        />
+        <TabMenu tabStatus={tabStatus} setTabStatus={setTabStatus} />
       </Box>
       <Box>
         <Tabcontent tabStatus={tabStatus} />

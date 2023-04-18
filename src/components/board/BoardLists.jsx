@@ -8,31 +8,7 @@ import {
 } from "react";
 import { Table, TableBody, TableHeader } from "../Style";
 
-function List({ boardlists, boardName }) {
-  const router = useRouter();
-  const handleClick = (id) => {
-    // router.push(`/board/${boardName}/id/${id}`, { replace: true });
-  };
-  console.log(boardlists);
-  return (
-    <TableBody>
-      {boardlists.map(
-        (list, idx) =>
-          list.type === boardName && (
-            <tr key={list.id} onClick={() => handleClick(list.id)}>
-              <td>{idx}</td>
-              <td>{list.subject}</td>
-              <td>{list.author}</td>
-              <td>{list.resDate}</td>
-              <td>{list.viewCount}</td>
-            </tr>
-          )
-      )}
-    </TableBody>
-  );
-}
-
-export default function BoardLists({ boardlists, boardName }) {
+export default function BoardLists({ boardListData }) {
   return (
     <>
       <Table>
@@ -46,8 +22,31 @@ export default function BoardLists({ boardlists, boardName }) {
           </tr>
         </TableHeader>
 
-        <List boardlists={boardlists} boardName={boardName} />
+        <List boardListData={boardListData} />
       </Table>
     </>
+  );
+}
+
+function List({ boardListData, boardName }) {
+  const router = useRouter();
+  const handleClick = (id) => {
+    router.push(`/${id}`, { replace: true });
+  };
+
+  return (
+    <TableBody>
+      {boardListData.map((list, idx) => (
+        <tr key={list.id} onClick={() => handleClick(list.id)}>
+          <td>{idx}</td>
+          <td>
+            {list.subject}_{list.id}
+          </td>
+          <td>{list.author}</td>
+          <td>{list.resDate}</td>
+          <td>{list.viewCount}</td>
+        </tr>
+      ))}
+    </TableBody>
   );
 }

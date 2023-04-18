@@ -17,28 +17,25 @@ import useTitle from "@/src/hooks/useTitle";
 
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const boardName = "manual";
+const boardNameKr = "우리병원 매뉴얼";
 
 export default function BoardIndex() {
   const [modalProps, setModalProps] = useState([]);
   const router = useRouter();
   const { params = [] } = router.query;
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, boardlists } = dataList;
+  const [boardDatas, setBoardDatas] = useState({ loading: true, datas: [] });
 
-  useTitle('우리병원 매뉴얼');
+  useTitle(boardNameKr);
 
   useEffect(() => {
     fetch(boardlistsUrl)
       .then((res) => res.json())
       .then((res) => {
-        const boardlistsData = res;
-        dataDispatch({ type: "SUCCESS", boardlistsData });
-      })
-      .catch(() => {
-        dataDispatch({ type: "ERROR" });
+        const data = res;
+        const filterdData = data.filter((d) => d.name === boardName);
+        setBoardDatas({ loading: false, datas: filterdData[0].lists });
       });
-  }, [dataDispatch]);
+  }, [boardDatas]);
 
   const closeModal = () => {
     setModalProps({ visible: false });
@@ -52,7 +49,7 @@ export default function BoardIndex() {
     <>
       <GridWrap colGap={16} colWidth="50%">
         <GridCol>
-          <CommontitleH4 className="">우리병원 매뉴얼</CommontitleH4>
+          <CommontitleH4 className="">{boardNameKr}</CommontitleH4>
           <CommonSummary>
             운영하는 클리닉의 업무 매뉴얼을 직접 작성해 보세요
           </CommonSummary>
@@ -70,12 +67,11 @@ export default function BoardIndex() {
           </Box>
         </GridCol>
       </GridWrap>
-      {loading ? (
+      {boardDatas.loading ? (
         "loading.."
       ) : (
-        <BoardLists boardlists={boardlists} boardName={boardName} />
+        <BoardLists boardListData={boardDatas.datas} boardName={boardName} />
       )}
-      {errorMessage ? errorMessage : null}
       {modalProps.visible && (
         <Modal
           visible={modalProps.visible}

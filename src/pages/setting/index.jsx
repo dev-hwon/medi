@@ -8,9 +8,10 @@ import Alarm from "./Alarm";
 import Author from "./Author";
 import Guide from "./Guide";
 
+// { tabclass: "tab_author", tabname: "글쓴이", tabcontent: <Author /> },
+// { tabclass: "tab_alarm", tabname: "알람", tabcontent: <Alarm /> },
+
 const tabinfo = [
-  { tabclass: "tab_author", tabname: "글쓴이", tabcontent: <Author /> },
-  { tabclass: "tab_alarm", tabname: "알람", tabcontent: <Alarm /> },
   { tabclass: "tab_guide", tabname: "서비스 가이드", tabcontent: <Guide /> },
 ];
 
@@ -46,7 +47,7 @@ export default function SettingIndex() {
   //   };
   // }, []);
 
-  useTitle('설정관리');
+  useTitle("설정관리");
 
   return (
     <>

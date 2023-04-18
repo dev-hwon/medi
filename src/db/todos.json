@@ -128,33 +128,35 @@
       "endTime": "20:30"
     }
   ],
-  "boardlists": [
-    {
-      "id": "1",
-      "type": "manual",
-      "subject": "게시글 제목1",
-      "content": "게시판1 내용입니다~",
-      "author": "홍길동",
-      "resDate": "09:00",
-      "viewCount": "17"
-    },
-    {
-      "id": "2",
-      "type": "manual",
-      "subject": "게시글 제목2",
-      "content": "게시판2 내용입니다~",
-      "author": "개나리",
-      "resDate": "09:00",
-      "viewCount": "255"
-    },
-    {
-      "id": "3",
-      "type": "free",
-      "subject": "게시글 제목2",
-      "content": "게시판2 내용입니다~",
-      "author": "개나리",
-      "resDate": "09:00",
-      "viewCount": "255"
+  "board": [
+    { 
+      "name" : "manual",
+      "lists" : [
+        {
+          "id": "1",
+          "subject": "게시글 제목1",
+          "content": "게시판1 내용입니다~",
+          "author": "홍길동",
+          "resDate": "09:00",
+          "viewCount": "17"
+        },
+        {
+          "id": "2",
+          "subject": "게시글 제목2",
+          "content": "게시판2 내용입니다~",
+          "author": "개나리",
+          "resDate": "09:00",
+          "viewCount": "255"
+        },
+        {
+          "id": "3",
+          "subject": "게시글 제목2",
+          "content": "게시판2 내용입니다~",
+          "author": "개나리",
+          "resDate": "09:00",
+          "viewCount": "255"
+        }
+      ]
     }
   ]
 }

@@ -10,6 +10,8 @@ import {
   Line,
 } from "../../components/Style";
 
+// 보류페이지
+
 const InputCheckboxOne = (props) => {
   const { alarm, setAlarm } = props;
   return (

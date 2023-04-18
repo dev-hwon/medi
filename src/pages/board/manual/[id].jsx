@@ -16,28 +16,9 @@ import Layout from "../../layouts/Layout";
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 
 export default function BoardIndex() {
-  const [modalProps, setModalProps] = useState([]);
   const router = useRouter();
   const { params = [] } = router.query;
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, boardlists } = dataList;
 
-  useEffect(() => {
-    fetch(boardlistsUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        const boardlistsData = res;
-        dataDispatch({ type: "SUCCESS", boardlistsData });
-      })
-      .catch(() => {
-        dataDispatch({ type: "ERROR" });
-      });
-  }, [dataDispatch, boardlists]);
-
-  const closeModal = () => {
-    setModalProps({ visible: false });
-  };
   return <>자세히보기</>;
 }
 BoardIndex.getLayout = function getLayout(page) {
