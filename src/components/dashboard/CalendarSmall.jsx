@@ -6,23 +6,21 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment, { Current, CurrentDate, CurrentDataMonth } from "../Current";
 import { GridWrap, GridCol } from "../Style";
-import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
+import { TodosContext, TodosDispatchContext } from "@/src/context/Golbal";
 
 const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
 
 export default function CalendarSmall({ visibleCalendar }) {
-  const dataList = useContext(DatasContext);
+  const todosData = useContext(TodosContext);
+  const todosDataDispatch = useContext(TodosDispatchContext);
   const [sDate, setSDate] = useState(moment(Current).format("YYYY-MM-DD"));
-
-  // 데이터 가져오기
-  const { todos } = dataList;
 
   // 이번달 시작일
   const startOfMonth = moment().startOf("month").format("YYYY-MM-DD");
   // 이번달 마지막일
   const endOfMonth = moment().endOf("month").format("YYYY-MM-DD");
   // 이번달 포함리스트 필터링
-  const thisMonthList = todos.filter((td) =>
+  const thisMonthList = todosData.datas.filter((td) =>
     moment(td.todosDate).isBetween(startOfMonth, endOfMonth) ? td : ""
   );
   // 이번달리스트 미작업리스트갯수

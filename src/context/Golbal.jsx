@@ -9,17 +9,16 @@ const initialUser = { name: "Guest" };
 const initialData = {
   loading: true,
   errorMessage: "",
-  todos: [],
-  categorys: [],
-  authors: [],
-  boardlists: [],
+  datas: [],
 };
 export const ThemeContext = createContext();
 export const ThemeDispatchContext = createContext();
 export const UserContext = createContext();
 export const UserDispatchContext = createContext();
-export const DatasContext = createContext();
-export const DatasDispatchContext = createContext();
+export const TodosContext = createContext();
+export const TodosDispatchContext = createContext();
+export const CategorysContext = createContext();
+export const CategorysDispatchContext = createContext();
 
 function themeReducer(state, action) {
   switch (action.type) {
@@ -45,37 +44,27 @@ function userReducer(state, action) {
   }
 }
 
-function dataReducer(state, action) {
+function todosReducer(state, action) {
   switch (action.type) {
     case "SUCCESS":
-      const { todosData, categorysData, authorsData, boardlistsData } = action;
+      const { data } = action;
       return {
         loading: false,
         errorMessage: "",
-        todos: todosData ? todosData : [...state.todos],
-        categorys: categorysData ? categorysData : [...state.categorys],
-        authors: authorsData ? authorsData : [...state.authors],
-        boardlists: boardlistsData ? boardlistsData : [...state.boardlists],
+        datas: data ? data : [...state.data],
       };
-    case "ERROR": {
-      return {
-        loading: false,
-        errorMessage: "Something went wrong!",
-        datas: [],
-      };
-    }
     case "TODOS_ADD": {
       const { adjData } = action;
       return {
         ...state,
-        todos: [...state.todos, adjData],
+        datas: [...state.datas, adjData],
       };
     }
     case "TODOS_MODIFY": {
       const { id, todosStatus, completeDate, completeTime } = action;
       return {
         ...state,
-        todos: state.todos.map((data) =>
+        datas: state.todos.map((data) =>
           data.id === id
             ? { ...data, todosStatus, completeDate, completeTime }
             : data
@@ -87,38 +76,21 @@ function dataReducer(state, action) {
       const { id, todosDate } = action;
       return {
         ...state,
-        todos: [...state.todos, id, todosDate],
+        datas: [...state.datas, id, todosDate],
       };
     }
     case "TODOS_DELETE": {
       return {
         loading: false,
         errorMessage: "",
-        categorys: "",
+        datas: "",
       };
     }
-    case "CATEGORYS_UPDATE": {
-      const { id, name, color } = action;
-      // const ddd = state.map((d) => d.id === "todos")
+    case "ERROR": {
       return {
-        ...state,
-        categorys: state.categorys.map((list) =>
-          list.id === id ? { ...list, name, color } : list
-        ),
-      };
-    }
-    case "AUTHORS_UPDATE": {
-      const { addTarget } = action;
-      return {
-        ...state,
-        authors: [...state.authors, addTarget],
-      };
-    }
-    case "AUTHORS_DELETE": {
-      const { authors, deleteTarget } = action;
-      return {
-        ...state,
-        authors: authors.filter((a) => a.id !== deleteTarget.id),
+        loading: false,
+        errorMessage: "Something went wrong!",
+        datas: [],
       };
     }
     default: {
@@ -127,10 +99,67 @@ function dataReducer(state, action) {
   }
 }
 
+function categorysReducer(state, action) {
+  switch (action.type) {
+    case "SUCCESS":
+      const { data } = action;
+      return {
+        loading: false,
+        errorMessage: "",
+        datas: data ? data : [...state.datas],
+      };
+    case "ERROR": {
+      return {
+        loading: false,
+        errorMessage: "Something went wrong!",
+        datas: [],
+      };
+    }
+    case "CATEGORYS_UPDATE": {
+      const { id, name, color } = action;
+      // const ddd = state.map((d) => d.id === "todos")
+      return {
+        ...state,
+        datas: state.datas.map((list) =>
+          list.id === id ? { ...list, name, color } : list
+        ),
+      };
+    }
+    default: {
+      throw Error(`알수 없는 액션 타입 : ${action.type}`);
+    }
+  }
+}
+// function authorsReducer(state, action) {
+//   switch (action.type) {
+//     case "AUTHORS_UPDATE": {
+//       const { addTarget } = action;
+//       return {
+//         ...state,
+//         authors: [...state.authors, addTarget],
+//       };
+//     }
+//     case "AUTHORS_DELETE": {
+//       const { authors, deleteTarget } = action;
+//       return {
+//         ...state,
+//         authors: authors.filter((a) => a.id !== deleteTarget.id),
+//       };
+//     }
+//     default: {
+//       throw Error(`알수 없는 액션 타입 : ${action.type}`);
+//     }
+//   }
+// }
+
 export function GlobalContextProvider({ children }) {
   const [theme, themeDispatch] = useReducer(themeReducer, initialTheme);
   const [user, userDispatch] = useReducer(userReducer, initialUser);
-  const [data, dataDispatch] = useReducer(dataReducer, initialData);
+  const [todos, todosDispatch] = useReducer(todosReducer, initialData);
+  const [categorys, categorysDispatch] = useReducer(
+    categorysReducer,
+    initialData
+  );
 
   // async function fetchData(url) {
   //   const respons = await fetch(url);
@@ -141,13 +170,13 @@ export function GlobalContextProvider({ children }) {
     fetch(todosUrl)
       .then((res) => res.json())
       .then((res) => {
-        const todosData = res;
-        dataDispatch({ type: "SUCCESS", todosData });
+        const data = res;
+        todosDispatch({ type: "SUCCESS", data });
       })
       .catch(() => {
-        dataDispatch({ type: "ERROR" });
+        todosDispatch({ type: "ERROR" });
       });
-  }, [dataDispatch]);
+  }, [todosDispatch]);
 
   // 데이터 분리호출할예정!!
   // 글쓴이 이제 호출안함!!
@@ -156,11 +185,11 @@ export function GlobalContextProvider({ children }) {
     fetch(categorysUrl)
       .then((res) => res.json())
       .then((res) => {
-        const categorysData = res;
-        dataDispatch({ type: "SUCCESS", categorysData });
+        const data = res;
+        categorysDispatch({ type: "SUCCESS", data });
       })
       .catch(() => {
-        dataDispatch({ type: "ERROR" });
+        categorysDispatch({ type: "ERROR" });
       });
     // fetch(authorsUrl)
     //   .then((res) => res.json())
@@ -171,24 +200,30 @@ export function GlobalContextProvider({ children }) {
     //   .catch(() => {
     //     dataDispatch({ type: "ERROR" });
     //   });
-  }, [dataDispatch]);
-
-  // 로딩중.. 추후 부분적으로 적용예정 일단 전체에 걸어버림
-  const { loading, errorMessage, datas } = data;
+  }, [categorysDispatch]);
 
   return (
     <ThemeContext.Provider value={theme}>
       <ThemeDispatchContext.Provider value={themeDispatch}>
-        <DatasContext.Provider value={data}>
-          <DatasDispatchContext.Provider value={dataDispatch}>
-            <UserContext.Provider value={user}>
-              <UserDispatchContext.Provider value={userDispatch}>
-                {loading ? "loading.." : children}
-                {errorMessage ? errorMessage : null}
-              </UserDispatchContext.Provider>
-            </UserContext.Provider>
-          </DatasDispatchContext.Provider>
-        </DatasContext.Provider>
+        <TodosContext.Provider value={todos}>
+          <TodosDispatchContext.Provider value={todosDispatch}>
+            {todos.loading ? (
+              "loading.."
+            ) : (
+              <CategorysContext.Provider value={categorys}>
+                <CategorysDispatchContext.Provider value={categorysDispatch}>
+                  <UserContext.Provider value={user}>
+                    <UserDispatchContext.Provider value={userDispatch}>
+                      {categorys.loading ? "loading.." : children}
+                      {categorys.errorMessage ? categorys.errorMessage : null}
+                    </UserDispatchContext.Provider>
+                  </UserContext.Provider>
+                </CategorysDispatchContext.Provider>
+              </CategorysContext.Provider>
+            )}
+            {todos.errorMessage ? todos.errorMessage : null}
+          </TodosDispatchContext.Provider>
+        </TodosContext.Provider>
       </ThemeDispatchContext.Provider>
     </ThemeContext.Provider>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
+import { CategorysContext, TodosDispatchContext } from "../../context/Golbal";
 import { Current, CurrentDate, diffTime } from "../Current";
 import FileInput from "../FileInput";
 import {
@@ -30,10 +30,9 @@ export default function Formtodo({
   aiTitle,
   aiContents,
 }) {
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
+  const categorysDataList = useContext(CategorysContext);
+  const todosDataDispatch = useContext(TodosDispatchContext);
   const [targetCategory, setTargetCategory] = useState("category1");
-  const { categorys } = dataList;
   const [updateData, setUpdateData] = useState({
     todosName: "",
     todosContents: "",
@@ -46,7 +45,9 @@ export default function Formtodo({
     repleCount: null,
   });
 
-  const selectedCategoryData = categorys.filter((d) => d.id === targetCategory);
+  const selectedCategoryData = categorysDataList.datas.filter(
+    (d) => d.id === targetCategory
+  );
   const handleClickCancel = () => {
     setModalProps({ visible: false });
   };
@@ -96,7 +97,7 @@ export default function Formtodo({
     })
       .then((response) => response.json())
       .then(() => {
-        dataDispatch({ type: "TODOS_ADD", adjData });
+        todosDataDispatch({ type: "TODOS_ADD", adjData });
       });
 
     setUpdateData({ ...updateData, todosName: "" });
@@ -125,7 +126,7 @@ export default function Formtodo({
     })
       .then((response) => response.json())
       .then(() => {
-        dataDispatch({
+        todosDataDispatch({
           type: "TODOS_MODIFY",
           id: list.id,
           todosStatus: list.todosStatus === "active" ? "complete" : "active",
@@ -163,7 +164,7 @@ export default function Formtodo({
           )}
         </InputTitle>
         <SelectCategory
-          categorys={categorys}
+          categorysDataList={categorysDataList}
           setTargetCategory={setTargetCategory}
         />
         <InputIsRepeat>
@@ -257,13 +258,13 @@ export default function Formtodo({
   );
 }
 
-function SelectCategory({ categorys, setTargetCategory }) {
+function SelectCategory({ categorysDataList, setTargetCategory }) {
   const handleChangeSelectedCategory = (e) => {
     setTargetCategory(e.target.value);
   };
   return (
     <CategoryList>
-      {categorys.map((cate, idx) => (
+      {categorysDataList.datas.map((cate, idx) => (
         <label key={idx}>
           <input
             type="radio"

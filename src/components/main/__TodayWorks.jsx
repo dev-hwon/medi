@@ -12,6 +12,7 @@ import {
   TodosContext,
   TodosDispatchContext,
   CategorysContext,
+  CategorysDispatchContext,
 } from "@/src/context/Golbal";
 import { flushSync } from "react-dom";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
@@ -19,7 +20,7 @@ import Formtodo from "../todos/Formtodo";
 
 const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
 
-function ListItem({ list, todosStatus, todosDataDispatch, setModalProps }) {
+function ListItem({ list, todosStatus, dataDispatch, setModalProps }) {
   const handleClick = () => {
     // flushSync(() => {
 
@@ -45,7 +46,7 @@ function ListItem({ list, todosStatus, todosDataDispatch, setModalProps }) {
     })
       .then((response) => response.json())
       .then(() => {
-        todosDataDispatch({
+        dataDispatch({
           type: "TODOS_MODIFY",
           id: list.id,
           todosStatus: list.todosStatus === "active" ? "complete" : "active",
@@ -67,7 +68,7 @@ function ListItem({ list, todosStatus, todosDataDispatch, setModalProps }) {
         className="btn_title"
         childData={<span>test</span>}
         buttonName={list.todosName}
-        setModalProps={setModalProps}
+        modalProps={setModalProps}
       />
       <button className="btn_status_change" onClick={handleClick}></button>
     </li>
@@ -91,6 +92,7 @@ export default function TodayWorks() {
   const todosData = useContext(TodosContext);
   const todosDataDispatch = useContext(TodosDispatchContext);
   const categorysDataList = useContext(CategorysContext);
+  const categorysDataDispatch = useContext(CategorysDispatchContext);
 
   const closeModal = () => {
     setModalProps({ visible: false });
@@ -116,7 +118,7 @@ export default function TodayWorks() {
   // 업무중
   const workTime = beforeWork > 0 && afterWork < 0;
   const currentCategoryData = workTime
-    ? categorysDataList.datas.filter(
+    ? categorysDataList.data.filter(
         (data) => diffTime(moment(), data.endTime) < 0
       )
     : beforeWork < 0
@@ -139,7 +141,7 @@ export default function TodayWorks() {
   const [todosStatus, setTodosStatus] = useState("active");
 
   // 현재 카테고리 할일
-  const currentCategoryTodos = todosData.datas.filter(
+  const currentCategoryTodos = todos.filter(
     (data) => data.category === currentCategoryData[0].id
   );
 
@@ -220,7 +222,7 @@ export default function TodayWorks() {
                 key={idx}
                 list={list}
                 todosStatus={todosStatus}
-                todosDataDispatch={todosDataDispatch}
+                dataDispatch={dataDispatch}
                 setModalProps={setModalProps}
               ></ListItem>
             ))}
