@@ -1,27 +1,45 @@
 import { createContext, ReactNode } from 'react';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 import { useRouter } from "next/router";
+import { getOption } from "@/src/util/fetchUtil";
 
 const AuthContext = createContext();
 
-const testNm = '이엘치과';
+const storeCookieNm = 'medivalue_web';
 
 // 고객 정보
+// hash : 스토어에서 넘어온 쿠키값
 // id : 병원 id
 // name : 병원명
 // clinicUse : 클리닉 서비스 사용여부
+// member_type : 회원 구분 
+// addr : 병원 주소 ( full address )
 const User = {
+    hash : '',
     id: 0,
-    name: testNm,
-    clinicUse: false
+    name: '',
+    clinicUse: false,
+    memberType : '',
+    addr : ''
 };
 
 const signOut = async () => {
     // 초기화
-    destroyCookie(undefined, 'test');
+    destroyCookie(undefined, storeCookieNm);
+    User.hash = '';
     User.id = 0;
-    User.name = testNm;
+    User.name = '';
     User.clinicUse = false;
+    User.memberType = '';
+    User.addr = '';
+};
+
+const authorsUrl = `${process.env.NEXT_PUBLIC_MEDI_HOME}`;
+const signIn = async (hash) => {
+    if(hash) {
+        fetch(process.env.NEXT_PUBLIC_MEDI_API + '/member?hash=' + hash, getOption)
+            
+    }  
 };
 
 function AuthProvider({ children }) {
@@ -29,9 +47,15 @@ function AuthProvider({ children }) {
     // 쿠키 파싱 ( medivalue_web )
     // decompile 
     const cookies = parseCookies();
-    // console.log( cookies );
 
     // 로그인 관련 구현
+    // 로그인 안됨
+    if(User.hash == '') {
+        signIn( cookies[ `${storeCookieNm}` ]  );
+
+    } else {
+
+    }
    
     return (
         <AuthContext.Provider

@@ -7,14 +7,18 @@ import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/router";
 
 export default function GlobalHeader() {
-  const { signOut } = useAuth();
+  const { User, signOut } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
     await signOut();
-    alert("메인 이동");
+    // alert("메인 이동");
     router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
   };
+
+  if(!User) {
+    router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
+  }
 
   return (
     <Header>
@@ -59,12 +63,14 @@ export default function GlobalHeader() {
               colNomargin
             >
               <GridCol>
+                { /*
                 <MemberLevel>
                   <span>
                     이엘치과 담당자(<em>일반</em>)
                   </span>
                   님
                 </MemberLevel>
+                */ }
                 <MemberName>이엘치과</MemberName>
               </GridCol>
               <GridCol>
