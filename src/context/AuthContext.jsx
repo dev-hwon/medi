@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 import { useRouter } from "next/router";
 import { getOption } from "@/src/util/fetchUtil";
@@ -38,7 +38,18 @@ const authorsUrl = `${process.env.NEXT_PUBLIC_MEDI_HOME}`;
 const signIn = async (hash) => {
     if(hash) {
         fetch(process.env.NEXT_PUBLIC_MEDI_API + '/member?hash=' + hash, getOption)
-            
+        .then(response => response.json())
+        .then(res => {
+            if(res.success) {
+                const uData = res.data;
+                User.hash = hash;
+                User.id = uData.id;
+                User.name = uData.medi_nm;
+                User.clinicUse = (uData.click_yn=='Y') ? true : false;
+                User.memberType = uData.member_type;
+                User.addr = uData.medi_addr;
+            }
+        });
     }  
 };
 
@@ -52,9 +63,6 @@ function AuthProvider({ children }) {
     // 로그인 안됨
     if(User.hash == '') {
         signIn( cookies[ `${storeCookieNm}` ]  );
-
-    } else {
-
     }
    
     return (

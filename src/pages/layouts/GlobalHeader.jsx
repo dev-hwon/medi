@@ -18,8 +18,13 @@ export default function GlobalHeader() {
 
   if(!User) {
     router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
+  } else {
+    if(User.member_type == 'L') {
+      // 유도 레이어
+      alert('기공소는 사용하실 수 없어요');
+    }
   }
-
+ 
   return (
     <Header>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
@@ -71,7 +76,7 @@ export default function GlobalHeader() {
                   님
                 </MemberLevel>
                 */ }
-                <MemberName>이엘치과</MemberName>
+                <MemberName>{User.name}</MemberName>
               </GridCol>
               <GridCol>
                 <button onClick={() => handleSignOut()}>로그아웃</button>
