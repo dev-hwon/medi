@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Autoplay } from "swiper";
 export default function TopNotice() {
+  
+  const [notice, setNotice] = useState([]);
+  
+  useEffect(() => {
+    fetch(process.env.NEXT_PUBLIC_MEDI_API + '/clinic/notice')
+      .then((res) => res.json())
+      .then((data) => setNotice(data.data));
+  }, []);
+
+  
+
   return (
     <VereticalSwiperWrap>
       <Swiper
@@ -20,12 +31,13 @@ export default function TopNotice() {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        <SwiperSlide>
-          <NoticeList>공지사항 내용이 표시되는 영역입니다.1</NoticeList>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NoticeList>공지사항 내용이 표시되는 영역입니다.2</NoticeList>
-        </SwiperSlide>
+      {
+          notice.map((item, index) => 
+            <SwiperSlide key={index}>
+              <NoticeList>{item.title}</NoticeList>
+            </SwiperSlide>
+          ) 
+      }
       </Swiper>
     </VereticalSwiperWrap>
   );
