@@ -43,7 +43,7 @@ export default function MainLayout({ children }) {
           ></Header>
 
           <div className="container">{children}</div>
-          {/* <GlobalFooter /> */}
+          {/* <Footer /> */}
         </div>
       </div>
       <div id="modal-root"></div>

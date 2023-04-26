@@ -109,7 +109,6 @@ export default function TodayWorks() {
       clearInterval(timer);
     };
   }, [time]);
-  console.log(categorysDataList.datas);
   // 업무전
   const beforeWork = diffTime(time, categorysDataList.datas[0].startTime);
   // 업무마감

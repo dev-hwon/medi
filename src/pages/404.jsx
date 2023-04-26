@@ -1,8 +1,8 @@
 import Link from "next/link";
-import MainLayout from "@/src/layouts/main/MainLayout";
+import ErrorLayout from "../layouts/error/ErrorLayout";
 
 // ----------------------------------------------------------------------
-Page404.getLayout = (page) => <MainLayout> {page} </MainLayout>;
+Page404.getLayout = (page) => <ErrorLayout> {page} </ErrorLayout>;
 // ----------------------------------------------------------------------
 
 export default function Page404() {
