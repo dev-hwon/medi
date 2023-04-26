@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Footer,
-  FooterExpandBtn,
+  Foot,
+  FootExpandBtn,
   Fnb,
   CSInfo,
   CompanyInfo,
@@ -10,14 +10,14 @@ import {
 } from "@/styles/HeadFootStyle";
 import { GridCol, GridWrap } from "@/src/components/Style";
 
-export default function GlobalFooter() {
+export default function Footer() {
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);
   };
   return (
-    <Footer>
-      <FooterExpandBtn onClick={handleClick}></FooterExpandBtn>
+    <Foot>
+      <FootExpandBtn onClick={handleClick}></FootExpandBtn>
       <Fnb>
         <li>
           <Link href="https://medivalue.co.kr/company/info">메디밸류 소개</Link>
@@ -97,6 +97,6 @@ export default function GlobalFooter() {
       <CopyrightText>
         Copyright © MEDIVALUE Corp. All Rights Reserved
       </CopyrightText>
-    </Footer>
+    </Foot>
   );
 }

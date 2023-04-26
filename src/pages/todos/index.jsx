@@ -1,9 +1,13 @@
 import React from "react";
-import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import { useContext } from "react";
-import Layout from "../layouts/Layout";
 import TodoList from "@/src/components/todos/TodoList";
 import AiList from "@/src/components/todos/AiList";
+import MainLayout from "@/src/layouts/main/MainLayout";
+import { CategorysContext } from "@/src/context/Golbal";
+
+// ----------------------------------------------------------------------
+TodosIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
+// ----------------------------------------------------------------------
 
 // export default function TodosIndex({ filter }) {
 //   const dataList = useContext(DatasContext);
@@ -36,24 +40,20 @@ import AiList from "@/src/components/todos/AiList";
 //   );
 // }
 export default function TodosIndex({ filter }) {
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
-  const { loading, errorMessage, todos, categorys } = dataList;
-  console.log(dataList);
+  const categorysDataList = useContext(CategorysContext);
+  const { loading, errorMessage, datas } = categorysDataList;
   return (
     <>
       {loading ? (
         "loading.."
       ) : (
         <div className="">
-          <TodoList todos={todos} categorys={categorys} />
-          <AiList />
+          헿 여긴 나중에...
+          {/* <TodoList todos={todos} categorys={categorys} />
+          <AiList /> */}
         </div>
       )}
       {errorMessage ? errorMessage : null}
     </>
   );
 }
-TodosIndex.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};

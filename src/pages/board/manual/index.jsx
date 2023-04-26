@@ -12,8 +12,12 @@ import {
   Box,
 } from "@/src/components/Style";
 import { useRouter } from "next/router";
-import Layout from "../../layouts/Layout";
 import useTitle from "@/src/hooks/useTitle";
+import MainLayout from "@/src/layouts/main/MainLayout";
+
+// ----------------------------------------------------------------------
+BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
+// ----------------------------------------------------------------------
 
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 const boardName = "manual";
@@ -85,6 +89,3 @@ export default function BoardIndex() {
     </>
   );
 }
-BoardIndex.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};

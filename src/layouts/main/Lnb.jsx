@@ -106,7 +106,7 @@ const NaviMenu = (props) => {
   );
 };
 
-export default function GlobalLnb({ lnbFold, setLnbFold, setLnbHover }) {
+export default function Lnb({ lnbFold, setLnbFold, setLnbHover }) {
   const router = useRouter();
   const handleClick = () => {
     setLnbFold((prev) => !prev);

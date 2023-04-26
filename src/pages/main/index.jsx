@@ -24,7 +24,7 @@ import ClinicReportTab1 from "@/src/components/main/ClinicReportTab1";
 import ClinicReportTab2 from "@/src/components/main/ClinicReportTab2";
 
 // const filters = ["all", "active", "completed"];
-export default function Main() {
+export default function MainIndex() {
   const [clinicReportTab, setClinicReportTab] = useState(0);
   // const [filter, setFilter] = useState(filters[0]);
 

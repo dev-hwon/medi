@@ -5,7 +5,6 @@ import "@/styles/setting.css";
 import "@/styles/calendarSmall.css";
 import Head from "next/head";
 import { GlobalContextProvider } from "../context/Golbal";
-import GlobalLayout from "./layouts/Layout";
 import { AuthProvider } from "../context/AuthContext";
 
 export default function App({ Component, pageProps }) {
@@ -16,7 +15,10 @@ export default function App({ Component, pageProps }) {
       {getLayout(
         <AuthProvider>
           <Head>
-            <meta name="viewport" content="initial-scale=1, width=device-width" />
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
           </Head>
           <GlobalContextProvider>
             <Component {...pageProps} />
@@ -24,5 +26,5 @@ export default function App({ Component, pageProps }) {
         </AuthProvider>
       )}
     </AuthProvider>
-  )
+  );
 }

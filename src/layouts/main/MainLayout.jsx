@@ -1,10 +1,22 @@
+import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import Loader from "@/src/components/Loader";
-import React, { useState } from "react";
-import GlobalHeader from "./GlobalHeader";
-// import GlobalFooter from "./GlobalFooter";
-import GlobalLnb from "./GlobalLnb";
 
-export default function Layout({ children }) {
+const Header = dynamic(() => import("./Header"), { ssr: false });
+const Footer = dynamic(() => import("./Footer"), { ssr: false });
+const Lnb = dynamic(() => import("./Lnb"), { ssr: false });
+
+// ----------------------------------------------------------------------
+
+MainLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+export default function MainLayout({ children }) {
+  const { pathname } = useRouter();
+  const isHome = pathname === "/";
   const [lnbFold, setLnbFold] = useState(false);
   const [lnbHover, setLnbHover] = useState(false);
   const [postItActive, setPostItActive] = useState(false);
@@ -18,17 +30,17 @@ export default function Layout({ children }) {
           (lnbHover ? " lnbHover" : "")
         }
       >
-        <GlobalLnb
+        <Lnb
           lnbFold={lnbFold}
           setLnbFold={setLnbFold}
           setLnbHover={setLnbHover}
         />
         {/* <PostIts isActive={postItActive}></PostIts> */}
         <div className="global_container">
-          <GlobalHeader
+          <Header
             postItActive={postItActive}
             setPostItActive={setPostItActive}
-          ></GlobalHeader>
+          ></Header>
 
           <div className="container">{children}</div>
           {/* <GlobalFooter /> */}

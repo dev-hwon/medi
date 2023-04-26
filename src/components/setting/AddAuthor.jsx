@@ -1,5 +1,5 @@
 import React, { useCallback, useReducer, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import uuidv4 from "@/src/util/uuidv4";
 //https://velog.io/@hwang-eunji/React-Hooks-5-useReducer
 const authorsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_AUTHORS}`;
 export default function AddAuthor({ onAdd, authors }) {

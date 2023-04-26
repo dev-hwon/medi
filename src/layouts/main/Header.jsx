@@ -1,12 +1,19 @@
 import Link from "next/link";
 import React from "react";
 import styled, { css } from "styled-components";
+import {
+  Head,
+  FamilySiteTab,
+  Topmenu,
+  MemberLevel,
+  MemberName,
+} from "@/styles/HeadFootStyle";
 import { GridCol, GridWrap } from "@/src/components/Style";
 import TopNotice from "@/src/components/main/TopNotice";
 import useAuth from "@/src/hooks/useAuth";
 import { useRouter } from "next/router";
 
-export default function GlobalHeader() {
+export default function Header() {
   const { User, signOut } = useAuth();
   const router = useRouter();
 
@@ -16,17 +23,17 @@ export default function GlobalHeader() {
     router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
   };
 
-  if(!User) {
+  if (!User) {
     router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
   } else {
-    if(User.member_type == 'L') {
+    if (User.member_type == "L") {
       // 유도 레이어
-      alert('기공소는 사용하실 수 없어요');
+      alert("기공소는 사용하실 수 없어요");
     }
   }
- 
+
   return (
-    <Header>
+    <Head>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
         <GridCol className="text_left">
           <TopNotice />
@@ -68,14 +75,14 @@ export default function GlobalHeader() {
               colNomargin
             >
               <GridCol>
-                { /*
+                {/*
                 <MemberLevel>
                   <span>
                     이엘치과 담당자(<em>일반</em>)
                   </span>
                   님
                 </MemberLevel>
-                */ }
+                */}
                 <MemberName>{User.name}</MemberName>
               </GridCol>
               <GridCol>
@@ -88,88 +95,6 @@ export default function GlobalHeader() {
           </Topmenu>
         </GridCol>
       </GridWrap>
-    </Header>
+    </Head>
   );
 }
-
-const Header = styled.header`
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-  // transition: all 0.4s;
-  display: flex;
-  > div {
-    padding: 0 40px;
-  }
-  a {
-    color: #aaa;
-    font-size: 16px;
-  }
-  ${(props) =>
-    props.isFold &&
-    css`
-      background-color: #000;
-      > .header_logo {
-        display: flex;
-        align-items: center;
-      }
-    `};
-`;
-const FamilySiteTab = styled.div`
-  a {
-    position: relative;
-    display: block;
-    text-align: center;
-    padding: 19px 0;
-    font-size: 13px;
-  }
-  a.active {
-    color: #25aae1;
-    font-weight: bold;
-  }
-  a.active::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #25aae1;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-`;
-
-const Topmenu = styled.div`
-  a {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    font-size: 14px;
-  }
-  button {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    font-size: 14px;
-    color: #aaa;
-    border: none;
-    background-color: transparent;
-  }
-`;
-const MemberLevel = styled.span`
-  font-size: 12px;
-  color: #444;
-  > span {
-    font-weight: bold;
-    > em {
-    }
-  }
-`;
-const MemberName = styled.span`
-  font-size: 13px;
-  font-weight: bold;
-  color: #25aae1;
-  margin-left: 8px;
-`;

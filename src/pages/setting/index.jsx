@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { CommontitleH3, CommonSummary, Box } from "../../components/Style";
-import Layout from "../layouts/Layout";
 import useTitle from "@/src/hooks/useTitle";
-
+import MainLayout from "@/src/layouts/main/MainLayout";
 import Alarm from "./Alarm";
 import Author from "./Author";
 import Guide from "./Guide";
+
+// ----------------------------------------------------------------------
+SettingIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
+// ----------------------------------------------------------------------
 
 // { tabclass: "tab_author", tabname: "글쓴이", tabcontent: <Author /> },
 // { tabclass: "tab_alarm", tabname: "알람", tabcontent: <Alarm /> },
@@ -60,7 +63,3 @@ export default function SettingIndex() {
     </>
   );
 }
-
-SettingIndex.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};

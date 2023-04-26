@@ -11,8 +11,13 @@ import {
   Box,
 } from "@/src/components/Style";
 import { useRouter } from "next/router";
-import Layout from "../../layouts/Layout";
 // import BoardWrite from "@/src/components/board/BoardWrite";
+import MainLayout from "@/src/layouts/main/MainLayout";
+
+// ----------------------------------------------------------------------
+BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
+// ----------------------------------------------------------------------
+
 const boardlistsUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_BOARDLISTS}`;
 
 export default function BoardIndex() {
@@ -21,6 +26,3 @@ export default function BoardIndex() {
 
   return <>자세히보기</>;
 }
-BoardIndex.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
