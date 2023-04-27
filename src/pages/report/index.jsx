@@ -3,6 +3,7 @@ import useAuth from "@/src/hooks/useAuth";
 import { Timer, diffTime } from "@/src/components/Current";
 import useTitle from "@/src/hooks/useTitle";
 import MainLayout from "@/src/layouts/main/MainLayout";
+
 // ----------------------------------------------------------------------
 ReportIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
