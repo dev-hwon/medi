@@ -290,7 +290,6 @@ export const CancelButton = styled.button`
 `;
 export const RemoveButton = styled(CancelButton)``;
 export const ConfirmButton = styled(CancelButton)`
-  flex: 1 1 auto;
   border-color: #25aae1;
   background-color: #25aae1;
   color: #fff;

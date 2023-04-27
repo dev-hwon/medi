@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import { Box, BoxHead, GridCol, GridWrap } from "@/src/components/Style";
-
 import {
   ReviewsGoods,
   ReviewsBads,
@@ -13,11 +12,28 @@ import {
   ClinicReportTab2,
 } from "@/src/components/main";
 import ToolTip from "@/src/components/tooltip/ToolTip";
+import todosData from "../../db/todos.json";
 
 // const filters = ["all", "active", "completed"];
 export default function MainIndex() {
   const [clinicReportTab, setClinicReportTab] = useState(0);
-  // const [filter, setFilter] = useState(filters[0]);
+  const [todosCategoryTab, setTodosCategoryTab] = useState(0);
+
+  const todosDataList = todosData.data.list;
+  const handleClickPrevCategory = () => {
+    if (todosCategoryTab > 0) {
+      setTodosCategoryTab((prev) => prev - 1);
+    } else {
+      setTodosCategoryTab(todosDataList.length - 1);
+    }
+  };
+  const handleClickNextCategory = () => {
+    if (todosCategoryTab < todosDataList.length - 1) {
+      setTodosCategoryTab((prev) => prev + 1);
+    } else {
+      setTodosCategoryTab(0);
+    }
+  };
 
   return (
     <>
@@ -117,7 +133,7 @@ export default function MainIndex() {
         <GridCol customWidth="calc(100% - 770px)" margin="0">
           <Box border>
             <BoxHead align="center">
-              <PrevCategory>
+              <PrevCategory onClick={handleClickPrevCategory}>
                 <Image
                   src="/images/common/icon_arrow_default.svg"
                   alt=""
@@ -127,7 +143,7 @@ export default function MainIndex() {
                 />
               </PrevCategory>
               오늘의 업무
-              <NextCategory>
+              <NextCategory onClick={handleClickNextCategory}>
                 <Image
                   src="/images/common/icon_arrow_default.svg"
                   alt=""
@@ -136,7 +152,7 @@ export default function MainIndex() {
                 />
               </NextCategory>
             </BoxHead>
-            <TodayWorks />
+            <TodayWorks todosCategoryTab={todosCategoryTab} />
           </Box>
         </GridCol>
       </GridWrap>

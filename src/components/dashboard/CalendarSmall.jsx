@@ -6,31 +6,29 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment, { Current, CurrentDate, CurrentDataMonth } from "../Current";
 import { GridWrap, GridCol } from "../Style";
-import { TodosContext, TodosDispatchContext } from "@/src/context/Golbal";
+import { TodosContext, TodosDispatchContext } from "@/src/context/ColorTheme";
 
 const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
 
 export default function CalendarSmall({ visibleCalendar }) {
-  const todosData = useContext(TodosContext);
-  const todosDataDispatch = useContext(TodosDispatchContext);
   const [sDate, setSDate] = useState(moment(Current).format("YYYY-MM-DD"));
 
-  // 이번달 시작일
-  const startOfMonth = moment().startOf("month").format("YYYY-MM-DD");
-  // 이번달 마지막일
-  const endOfMonth = moment().endOf("month").format("YYYY-MM-DD");
-  // 이번달 포함리스트 필터링
-  const thisMonthList = todosData.datas.filter((td) =>
-    moment(td.todosDate).isBetween(startOfMonth, endOfMonth) ? td : ""
-  );
-  // 이번달리스트 미작업리스트갯수
-  const thisMonthActiveCount = thisMonthList.filter(
-    (list) => list.todosStatus === "active"
-  ).length;
-  // 이번달리스트 완료갯수
-  const thisMonthCompleteCount = thisMonthList.filter(
-    (list) => list.todosStatus === "complete"
-  ).length;
+  // // 이번달 시작일
+  // const startOfMonth = moment().startOf("month").format("YYYY-MM-DD");
+  // // 이번달 마지막일
+  // const endOfMonth = moment().endOf("month").format("YYYY-MM-DD");
+  // // 이번달 포함리스트 필터링
+  // const thisMonthList = todosData.datas.filter((td) =>
+  //   moment(td.todosDate).isBetween(startOfMonth, endOfMonth) ? td : ""
+  // );
+  // // 이번달리스트 미작업리스트갯수
+  // const thisMonthActiveCount = thisMonthList.filter(
+  //   (list) => list.todosStatus === "active"
+  // ).length;
+  // // 이번달리스트 완료갯수
+  // const thisMonthCompleteCount = thisMonthList.filter(
+  //   (list) => list.todosStatus === "complete"
+  // ).length;
 
   return (
     <>
@@ -103,12 +101,12 @@ export default function CalendarSmall({ visibleCalendar }) {
             <GridWrap className="" colAlign="space-between">
               <GridCol>
                 <Status className="">
-                  완료<em>{thisMonthCompleteCount}</em>
+                  완료<em>3</em>
                 </Status>
               </GridCol>
               <GridCol>
                 <Status className="">
-                  미처리<em>{thisMonthActiveCount}</em>
+                  미처리<em>2</em>
                 </Status>
               </GridCol>
             </GridWrap>

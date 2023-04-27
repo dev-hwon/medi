@@ -7,11 +7,19 @@ import {
   useContext,
 } from "react";
 import { Table, TableBody, TableHeader } from "../Style";
+import adjColon from "@/src/util/adjColon";
 
-export default function BoardLists({ boardListData }) {
+export default function BoardLists({ boardDataList, boardName }) {
   return (
     <>
       <Table>
+        <colgroup>
+          <col width="80" />
+          <col />
+          <col width="100" />
+          <col width="100" />
+          <col width="80" />
+        </colgroup>
         <TableHeader>
           <tr>
             <td>번호</td>
@@ -22,28 +30,28 @@ export default function BoardLists({ boardListData }) {
           </tr>
         </TableHeader>
 
-        <List boardListData={boardListData} />
+        <List boardDataList={boardDataList} boardName={boardName} />
       </Table>
     </>
   );
 }
 
-function List({ boardListData, boardName }) {
+function List({ boardDataList, boardName }) {
   const router = useRouter();
   const handleClick = (id) => {
-    router.push(`/${id}`, { replace: true });
+    router.push(`/board/${boardName}/${id}`);
   };
-
+  console.log(boardDataList);
   return (
     <TableBody>
-      {boardListData.map((list, idx) => (
+      {boardDataList.map((list, idx) => (
         <tr key={list.id} onClick={() => handleClick(list.id)}>
           <td>{idx}</td>
           <td>
             {list.subject}_{list.id}
           </td>
           <td>{list.author}</td>
-          <td>{list.resDate}</td>
+          <td>{adjColon(list.resDate)}</td>
           <td>{list.viewCount}</td>
         </tr>
       ))}

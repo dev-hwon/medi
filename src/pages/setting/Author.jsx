@@ -1,4 +1,4 @@
-import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
+import { DatasContext, DatasDispatchContext } from "@/src/context/ColorTheme";
 import React, { useState, useEffect, useReducer } from "react";
 import { useContext } from "react";
 import AddAuthor from "../../components/setting/AddAuthor";

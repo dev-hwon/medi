@@ -13,7 +13,7 @@ import {
   TodosDispatchContext,
   CategorysContext,
   CategorysDispatchContext,
-} from "@/src/context/Golbal";
+} from "@/src/context/ColorTheme";
 import { flushSync } from "react-dom";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
 import Formtodo from "../todos/Formtodo";

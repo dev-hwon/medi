@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { DatasContext, DatasDispatchContext } from "../../context/Golbal";
+import { DatasContext, DatasDispatchContext } from "../../context/ColorTheme";
 import {
   ModalTitle,
   ModalSummary,

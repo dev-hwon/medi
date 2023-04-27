@@ -1,94 +1,39 @@
 {
-  "categorys": [
-    {
-      "id": "category1",
-      "name": "진료전",
-      "color": "#0d6efd",
-      "startTime": "09:00",
-      "endtTime": "10:30",
-      "todos": [
-        {
-          "id": "todo1",
-          "todosName": "할일1",
-          "todosStatus": "active",
-          "todosDate": "2023-03-06",
-          "completeDate": null,
-          "completeTime": null,
-          "fileList": null,
-          "confirm": null,
-          "reple": null,
-          "repleCount": null
-        },
-        {
-          "id": "todo2",
-          "todosName": "할일2",
-          "todosStatus": "active",
-          "todosDate": "2023-03-07",
-          "completeDate": null,
-          "completeTime": null,
-          "fileList": null,
-          "confirm": null,
-          "reple": null,
-          "repleCount": null
-        }
+  "data" : {
+      "list" : [
+          {
+              "id" : 1,
+              "cate_nm" : "진료전",
+              "rgb" : "FFD600",
+              "time_check_yn" : "Y",
+              "time_start" : "0800",
+              "time_finish" : "0900"
+          },
+          {
+              "id" : 2,
+              "cate_nm" : "진료중",
+              "rgb" : "FE8947",
+              "time_check_yn" : "Y",
+              "time_start" : "0900",
+              "time_finish" : "1800"
+          },
+          {
+              "id" : 3,
+              "cate_nm" : "진료마감",
+              "rgb" : "00AF5B",
+              "time_check_yn" : "Y",
+              "time_start" : "1800",
+              "time_finish" : "1900"
+          },
+          {
+              "id" : 4,
+              "cate_nm" : "기타업무",
+              "rgb" : "1868FB",
+              "time_check_yn" : "N",
+              "time_start" : "",
+              "time_finish" : ""
+          }
       ]
-    },
-    {
-      "id": "category2",
-      "name": "진료중",
-      "color": "#dc3545",
-      "startTime": "10:30",
-      "endtTime": "16:00",
-      "todos": [
-        {
-          "id": "1",
-          "todosName": "할일1",
-          "todosStatus": "complete",
-          "todosDate": "2023-03-06",
-          "completeDate": null,
-          "completeTime": null,
-          "fileList": null,
-          "confirm": null
-        }
-      ]
-    },
-    {
-      "id": "category3",
-      "name": "진료마감",
-      "color": "#fd7e14",
-      "startTime": "16:00",
-      "endtTime": "17:30",
-      "todos": [
-        {
-          "id": "1",
-          "todosName": "할일1",
-          "todosStatus": "active",
-          "todosDate": "2023-04-06",
-          "completeDate": null,
-          "completeTime": null,
-          "fileList": null,
-          "confirm": null
-        }
-      ]
-    },
-    {
-      "id": "category4",
-      "name": "기타",
-      "color": "#6c757d",
-      "startTime": "17:30",
-      "endtTime": "18:30",
-      "todos": [
-        {
-          "id": "1",
-          "todosName": "할일1",
-          "todosStatus": "active",
-          "todosDate": "2023-04-07",
-          "completeDate": null,
-          "completeTime": null,
-          "fileList": null,
-          "confirm": null
-        }
-      ]
-    }
-  ]
+  },
+  "success" : true
 }

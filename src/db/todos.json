@@ -1,162 +1,121 @@
 {
-  "todos": [
-    {
-      "id": "1",
-      "category": "category1",
-      "todosName": "할일1",
-      "todosStatus": "active",
-      "todosDate": "2023-03-06",
-      "isRepeat": true,
-      "completeDate": null,
-      "completeTime": null,
-      "fileList": null,
-      "confirm": null,
-      "reple": null,
-      "repleCount": null
-    },
-    {
-      "id": "2",
-      "category": "category1",
-      "todosName": "할일2",
-      "todosStatus": "active",
-      "todosDate": "2023-03-07",
-      "completeDate": null,
-      "completeTime": null,
-      "fileList": null,
-      "confirm": null,
-      "reple": null,
-      "repleCount": null
-    },
-    {
-      "id": "3",
-      "category": "category1",
-      "todosName": "할일3",
-      "todosStatus": "complete",
-      "todosDate": "2023-03-06",
-      "completeDate": null,
-      "completeTime": null,
-      "fileList": null,
-      "confirm": null
-    },
-    {
-      "id": "4",
-      "category": "category2",
-      "todosName": "진행중인 업무",
-      "todosStatus": "active",
-      "todosDate": "2023-04-06",
-      "completeDate": "",
-      "completeTime": "",
-      "fileList": null,
-      "confirm": null
-    },
-    {
-      "id": "5",
-      "category": "category4",
-      "todosName": "할일15",
-      "todosStatus": "active",
-      "todosDate": "2023-04-07",
-      "completeDate": null,
-      "completeTime": null,
-      "fileList": null,
-      "confirm": null
-    },
-    {
-      "id": "6",
-      "category": "category2",
-      "todosName": "완료된 업무",
-      "todosStatus": "complete",
-      "todosDate": "2023-04-06",
-      "completeDate": "2023-04-12",
-      "completeTime": "14:06:28",
-      "fileList": null,
-      "confirm": null
-    }
-  ],
-  "authors": [
-    {
-      "id": "9bed5ff7-133e-46e0-8819-985eaedd27a0",
-      "name": "예실장"
-    },
-    {
-      "id": "f96e10e6-3091-498f-944c-a3e0c93696ec",
-      "name": "승우아빠"
-    },
-    {
-      "id": "c3b46aaa-6ce7-466b-991d-8dad3d22370e",
-      "name": "아마테우스모짜"
-    },
-    {
-      "id": "806e8977-00e8-45a6-a492-c6aaf39126ae",
-      "name": "혀우너"
-    },
-    {
-      "id": "90620f97-3192-423d-ab60-72090b6db90d",
-      "name": "고츠까르"
-    },
-    {
-      "id": "fbee060c-a737-4af9-9252-d198044b8eac",
-      "name": "근육법사"
-    }
-  ],
-  "categorys": [
-    {
-      "id": "category1",
-      "name": "ㅁㄴㅀㅁㄴㅀ",
-      "color": "F65555",
-      "startTime": "09:00",
-      "endTime": "10:30"
-    },
-    {
-      "id": "category2",
-      "name": "진료중",
-      "color": "FE8947",
-      "startTime": "10:30",
-      "endTime": "16:00"
-    },
-    {
-      "id": "category3",
-      "name": "진료마감",
-      "color": "00AF5B",
-      "startTime": "16:00",
-      "endTime": "17:30"
-    },
-    {
-      "id": "category4",
-      "name": "기타요2",
-      "color": "7C18FB",
-      "startTime": "17:30",
-      "endTime": "20:30"
-    }
-  ],
-  "board": [
-    { 
-      "name" : "manual",
-      "lists" : [
-        {
-          "id": "1",
-          "subject": "게시글 제목1",
-          "content": "게시판1 내용입니다~",
-          "author": "홍길동",
-          "resDate": "09:00",
-          "viewCount": "17"
-        },
-        {
-          "id": "2",
-          "subject": "게시글 제목2",
-          "content": "게시판2 내용입니다~",
-          "author": "개나리",
-          "resDate": "09:00",
-          "viewCount": "255"
-        },
-        {
-          "id": "3",
-          "subject": "게시글 제목2",
-          "content": "게시판2 내용입니다~",
-          "author": "개나리",
-          "resDate": "09:00",
-          "viewCount": "255"
-        }
+  "data" : {
+      "list" : [
+          {
+              "cate_nm" : "진료전", 
+              "complete_cnt" : 3,
+              "total_cnt" : 5,
+              "rgb" : "FFD600",
+              "time_check_yn" : "Y",
+              "time_start_hm" : "0800",
+              "time_finish_hm" : "0900",
+              "template_list" : [
+                  {
+                      "template_id" : 1,
+                      "template_nm" : "진료전1",
+                      "status" : "N"
+                  },
+                  {
+                      "template_id" : 2,
+                      "template_nm" : "진료전2",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 3,
+                      "template_nm" : "진료전3",
+                      "status" : "N"
+                  },
+                  {
+                      "template_id" : 4,
+                      "template_nm" : "진료전4",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 5,
+                      "template_nm" : "진료전5",
+                      "status" : "Y"
+                  }
+              ]
+          },
+          {
+              "cate_nm" : "진료중", 
+              "complete_cnt" : 1,
+              "total_cnt" : 3,
+              "rgb" : "FE8947",
+              "time_check_yn" : "Y",
+              "time_start_hm" : "0900",
+              "time_finish_hm" : "1800",
+              "template_list" : [
+                  {
+                      "template_id" : 6,
+                      "template_nm" : "진료중1",
+                      "status" : "N"
+                  },
+                  {
+                      "template_id" : 7,
+                      "template_nm" : "진료중2",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 8,
+                      "template_nm" : "진료중3",
+                      "status" : "N"
+                  }
+              ]
+          },
+          {
+              "cate_nm" : "진료마감", 
+              "complete_cnt" : 3,
+              "total_cnt" : 4,
+              "rgb" : "00AF5B",
+              "time_check_yn" : "Y",
+              "time_start_hm" : "1800",
+              "time_finish_hm" : "1900",
+              "template_list" : [
+                  {
+                      "template_id" : 9,
+                      "template_nm" : "진료마감1",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 10,
+                      "template_nm" : "진료마감2",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 11,
+                      "template_nm" : "진료마감3",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 12,
+                      "template_nm" : "진료마감4",
+                      "status" : "N"
+                  }
+              ]
+          },
+          {
+              "cate_nm" : "기타업무", 
+              "complete_cnt" : 2,
+              "total_cnt" : 2,
+              "rgb" : "1868FB",
+              "time_check_yn" : "N",
+              "time_start_hm" : "",
+              "time_finish_hm" : "",
+              "template_list" : [
+                  {
+                      "template_id" : 13,
+                      "template_nm" : "기타업무1",
+                      "status" : "Y"
+                  },
+                  {
+                      "template_id" : 14,
+                      "template_nm" : "기타업무2",
+                      "status" : "Y"
+                  }
+              ]
+          }
       ]
-    }
-  ]
+    },
+  "success" : true
 }

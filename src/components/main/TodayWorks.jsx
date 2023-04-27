@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import { flushSync } from "react-dom";
 import Image from "next/image";
+import styled from "styled-components";
 import moment, {
   Current,
   CurrentDate,
@@ -8,65 +9,22 @@ import moment, {
   diffTime,
 } from "@/src/components/Current";
 import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
-import {
-  TodosContext,
-  TodosDispatchContext,
-  CategorysContext,
-} from "@/src/context/Golbal";
-import { flushSync } from "react-dom";
 import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
 import Formtodo from "../todos/Formtodo";
+import todosData from "../../db/todos.json";
+import adjColon from "@/src/util/adjColon";
 
-const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
-
-function ListItem({ list, todosStatus, todosDataDispatch, setModalProps }) {
+function ListItem({ list, tabTodosStatus, setModalProps }) {
   const handleClick = () => {
-    // flushSync(() => {
-
-    // });
-
-    fetch(todosUrl + `/${list.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...list,
-        todosStatus: list.todosStatus === "active" ? "complete" : "active",
-        completeDate:
-          list.todosStatus === "active"
-            ? moment(Current).format("YYYY-MM-DD")
-            : "",
-        completeTime:
-          list.todosStatus === "active"
-            ? moment(Current).format("HH:mm:ss")
-            : "",
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        todosDataDispatch({
-          type: "TODOS_MODIFY",
-          id: list.id,
-          todosStatus: list.todosStatus === "active" ? "complete" : "active",
-          completeDate:
-            list.todosStatus === "active"
-              ? moment(Current).format("YYYY-MM-DD")
-              : "",
-          completeTime:
-            list.todosStatus === "active"
-              ? moment(Current).format("HH:mm:ss")
-              : "",
-        });
-      });
+    console.log("button click event!");
   };
   return (
-    <li className={"li_state " + todosStatus}>
+    <li className={"li_state " + tabTodosStatus}>
       <ModalOpenBtn
         modalWidth="400px"
         className="btn_title"
         childData={<span>test</span>}
-        buttonName={list.todosName}
+        buttonName={list.template_nm}
         setModalProps={setModalProps}
       />
       <button className="btn_status_change" onClick={handleClick}></button>
@@ -75,8 +33,8 @@ function ListItem({ list, todosStatus, todosDataDispatch, setModalProps }) {
 }
 
 function CurrentTimesCategory({ currentCategoryData }) {
-  const color = currentCategoryData.color;
-  const name = currentCategoryData.name;
+  const color = currentCategoryData.rgb;
+  const name = currentCategoryData.cate_nm;
   return (
     <CurrentCategoryInfo color={color}>
       <div className="current_status">진행중</div>
@@ -85,13 +43,10 @@ function CurrentTimesCategory({ currentCategoryData }) {
   );
 }
 
-export default function TodayWorks() {
-  // 다른 기능 테스트를 위해 잠시 내림
+export default function TodayWorks({ todosCategoryTab }) {
   const [modalProps, setModalProps] = useState([]);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
-  const todosData = useContext(TodosContext);
-  const todosDataDispatch = useContext(TodosDispatchContext);
-  const categorysDataList = useContext(CategorysContext);
+  const [tabTodosStatus, setTabTodosStatus] = useState("Y");
 
   const closeModal = () => {
     setModalProps({ visible: false });
@@ -109,50 +64,28 @@ export default function TodayWorks() {
       clearInterval(timer);
     };
   }, [time]);
-  // 업무전
-  const beforeWork = diffTime(time, categorysDataList.datas[0].startTime);
-  // 업무마감
-  const afterWork = diffTime(time, categorysDataList.datas[3].endTime);
-  // 업무중
-  const workTime = beforeWork > 0 && afterWork < 0;
-  const currentCategoryData = workTime
-    ? categorysDataList.datas.filter(
-        (data) => diffTime(moment(), data.endTime) < 0
-      )
-    : beforeWork < 0
-    ? [
-        {
-          id: "category0",
-          name: "업무시작전",
-          color: "ddd",
-        },
-      ]
-    : afterWork > 0 && [
-        {
-          id: "category0",
-          name: "업무마감",
-          color: "ddd",
-        },
-      ];
+  const todosDataList = todosData.data.list;
+  // isAutoChange 카테고리 시간기제안할시 무조건 내용전환 안되게 막음 _ prev,next버튼클릭시에 전환만 가능
+  const isAutoChange =
+    todosDataList.filter((d) => d.time_check_yn).length > 0 ? false : true;
 
-  // 할일리스트 상태
-  const [todosStatus, setTodosStatus] = useState("active");
+  // 완료백분율
+  const completeCntPercent =
+    (todosDataList[todosCategoryTab].complete_cnt /
+      todosDataList[todosCategoryTab].total_cnt) *
+    100;
 
-  // 현재 카테고리 할일
-  const currentCategoryTodos = todosData.datas.filter(
-    (data) => data.category === currentCategoryData[0].id
-  );
-
-  // 현재 카테고리 할일 > 진행중인건
-  const completeCnt = currentCategoryTodos.filter(
-    (data) => data.todosStatus === "complete"
-  );
-
-  const completeCntPercent = completeCnt * currentCategoryTodos.length * 0.01;
-  // 현재 카테고리 할일 > 진행중인건
-  const currentCategoryTodosFiletered = currentCategoryTodos.filter(
-    (data) => data.todosStatus === todosStatus
-  );
+  if (isAutoChange) {
+    //업무전
+    const beforeWork = diffTime(time, adjColon(todosDataList[0].time_start_hm));
+    // 업무마감
+    const afterWork = diffTime(
+      time,
+      adjColon(todosDataList[todosDataList.length - 1].time_start_hm)
+    );
+    // 업무중
+    const isWorkTime = beforeWork > 0 && afterWork < 0;
+  }
 
   const handleClickCalendar = () => {
     setVisibleCalendar(!visibleCalendar);
@@ -182,48 +115,53 @@ export default function TodayWorks() {
       </CalendarOpenBtnWrap>
 
       <CurrentTimesWrap>
-        {/* <CurrentDays>
-            {moment(time).locale("ko").format(`YYYY년 M월 D일 (dd)`)}
-          </CurrentDays> */}
         <CurrentTimes>{moment(time).locale("ko").format(`HH:mm`)}</CurrentTimes>
         <CurrentTimesCategory
-          currentCategoryData={currentCategoryData[0]}
+          currentCategoryData={todosDataList[todosCategoryTab]}
         ></CurrentTimesCategory>
       </CurrentTimesWrap>
       <Progress className="">
         <div className="title">업무진행률</div>
         <ProgressCount>
-          <span className="completeCnt">{completeCnt.length}</span>
-          <span className="totalCnt">/{currentCategoryTodos.length}</span>
+          <span className="completeCnt">
+            {todosDataList[todosCategoryTab].complete_cnt}
+          </span>
+          <span className="totalCnt">
+            /{todosDataList[todosCategoryTab].total_cnt}
+          </span>
         </ProgressCount>
         <ProgressBar percent={completeCntPercent} className="works_progressBar">
           <span></span>
         </ProgressBar>
       </Progress>
+
       <TodoLists>
         <TodoListsTab
-          className={todosStatus === "active" ? "active" : ""}
-          onClick={() => setTodosStatus("active")}
+          className={tabTodosStatus === "Y" ? "active" : ""}
+          onClick={() => setTabTodosStatus("Y")}
         >
           해야 할일 목록
         </TodoListsTab>
         <TodoListsTab
-          className={todosStatus === "complete" ? "active" : ""}
-          onClick={() => setTodosStatus("complete")}
+          className={tabTodosStatus === "N" ? "active" : ""}
+          onClick={() => setTabTodosStatus("N")}
         >
           완료된 업무
         </TodoListsTab>
         <div>
           <ul>
-            {currentCategoryTodosFiletered.map((list, idx) => (
-              <ListItem
-                key={idx}
-                list={list}
-                todosStatus={todosStatus}
-                todosDataDispatch={todosDataDispatch}
-                setModalProps={setModalProps}
-              ></ListItem>
-            ))}
+            {todosDataList[todosCategoryTab].template_list.map((list) => {
+              if (list.status === tabTodosStatus) {
+                return (
+                  <ListItem
+                    key={list.template_id}
+                    list={list}
+                    tabTodosStatus={tabTodosStatus}
+                    setModalProps={setModalProps}
+                  />
+                );
+              }
+            })}
           </ul>
         </div>
 

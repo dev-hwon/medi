@@ -3,7 +3,7 @@ import { useContext } from "react";
 import TodoList from "@/src/components/todos/TodoList";
 import AiList from "@/src/components/todos/AiList";
 import MainLayout from "@/src/layouts/main/MainLayout";
-import { CategorysContext } from "@/src/context/Golbal";
+import todosData from "../../db/todos.json";
 
 // ----------------------------------------------------------------------
 TodosIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -40,20 +40,6 @@ TodosIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 //   );
 // }
 export default function TodosIndex({ filter }) {
-  const categorysDataList = useContext(CategorysContext);
-  const { loading, errorMessage, datas } = categorysDataList;
-  return (
-    <>
-      {loading ? (
-        "loading.."
-      ) : (
-        <div className="">
-          헿 여긴 나중에...
-          {/* <TodoList todos={todos} categorys={categorys} />
-          <AiList /> */}
-        </div>
-      )}
-      {errorMessage ? errorMessage : null}
-    </>
-  );
+  const todosList = todosData.data.list;
+  return <>dnfkfkfkfk</>;
 }

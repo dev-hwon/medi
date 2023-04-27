@@ -4,8 +4,9 @@ import "@/styles/common.css";
 import "@/styles/setting.css";
 import "@/styles/calendarSmall.css";
 import Head from "next/head";
-import { GlobalContextProvider } from "../context/Golbal";
 import { AuthProvider } from "../context/AuthContext";
+import { UserContextProvider } from "../context/UserContext";
+import { ColorThemeContextProvider } from "../context/ColorTheme";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -20,9 +21,11 @@ export default function App({ Component, pageProps }) {
               content="initial-scale=1, width=device-width"
             />
           </Head>
-          <GlobalContextProvider>
-            <Component {...pageProps} />
-          </GlobalContextProvider>
+          <ColorThemeContextProvider>
+            <UserContextProvider>
+              <Component {...pageProps} />
+            </UserContextProvider>
+          </ColorThemeContextProvider>
         </AuthProvider>
       )}
     </AuthProvider>

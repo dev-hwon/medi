@@ -2,9 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { useState, useContext } from "react";
 import styled from "styled-components";
-
-import { CategorysContext, TodosDispatchContext } from "../../context/Golbal";
-import { Current, CurrentDate, diffTime } from "../Current";
+import { Current, diffTime } from "../Current";
 import FileInput from "../FileInput";
 import {
   ModalTitle,
@@ -15,8 +13,8 @@ import {
   ConfirmButton,
 } from "../Style";
 import uuidv4 from "@/src/util/uuidv4";
-const todosUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_TODOS}`;
-const categorysUrl = `${process.env.NEXT_PUBLIC_JSONSERVER_CATEGORYS}`;
+import TodosData from "../../db/todos.json";
+import adjColon from "@/src/util/adjColon";
 
 // Formtodo
 // status="write" ,"view", "modify"
@@ -31,9 +29,7 @@ export default function Formtodo({
   aiTitle,
   aiContents,
 }) {
-  const categorysDataList = useContext(CategorysContext);
-  const todosDataDispatch = useContext(TodosDispatchContext);
-  const [targetCategory, setTargetCategory] = useState("category1");
+  const [targetCategory, setTargetCategory] = useState(0);
   const [updateData, setUpdateData] = useState({
     todosName: "",
     todosContents: "",
@@ -45,101 +41,30 @@ export default function Formtodo({
     reple: null,
     repleCount: null,
   });
-  const selectedCategoryData = categorysDataList.datas.filter(
-    (d) => d.id === targetCategory
-  );
+  const todosDataList = TodosData.data.list;
+
   const handleClickCancel = () => {
     setModalProps({ visible: false });
   };
   const handleChangeTodosName = (e) => {
-    setUpdateData({ ...updateData, todosName: e.target.value });
+    console.log("제목기입");
   };
   const handleChangeTodosContents = (e) => {
-    setUpdateData({ ...updateData, todosContents: e.target.value });
+    console.log("내용기입");
   };
 
   const handleChangeTodosRepeat = (e) => {
-    if (e.target.checked) {
-      setUpdateData({ ...updateData, isRepeat: true });
-    } else {
-      setUpdateData({ ...updateData, isRepeat: false });
-    }
+    console.log("반복체크박스 click!");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      updateData.todosName.trim() === "" ||
-      updateData.todosName.trim() === 0
-    ) {
-      alert("제목누락");
-      return;
-    }
-
-    const adjData = {
-      id: uuidv4(),
-      category: targetCategory,
-      todosStatus: "active",
-      todosName: updateData.todosName,
-      todosContents: updateData.todosContents,
-      isRepeat: updateData.isRepeat,
-      todosDate: moment(Current).format("YYYY-MM-DD"),
-      ...updateData,
-    };
-
-    fetch(todosUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(adjData),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        todosDataDispatch({ type: "TODOS_ADD", adjData });
-      });
-
-    setUpdateData({ ...updateData, todosName: "" });
-    setModalProps({ visible: false });
+    console.log("저장변경 버튼 click!");
   };
 
   // 상태변경 버튼
   const handleClick = () => {
-    fetch(todosUrl + `/${list.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...list,
-        todosStatus: list.todosStatus === "active" ? "complete" : "active",
-        completeDate:
-          list.todosStatus === "active"
-            ? moment(Current).format("YYYY-MM-DD")
-            : "",
-        completeTime:
-          list.todosStatus === "active"
-            ? moment(Current).format("HH:mm:ss")
-            : "",
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        todosDataDispatch({
-          type: "TODOS_MODIFY",
-          id: list.id,
-          todosStatus: list.todosStatus === "active" ? "complete" : "active",
-          completeDate:
-            list.todosStatus === "active"
-              ? moment(Current).format("YYYY-MM-DD")
-              : "",
-          completeTime:
-            list.todosStatus === "active"
-              ? moment(Current).format("HH:mm:ss")
-              : "",
-        });
-      });
+    console.log("상태변경 버튼 click!");
   };
 
   return (
@@ -164,21 +89,27 @@ export default function Formtodo({
           )}
         </InputTitle>
         <SelectCategory
-          categorysDataList={categorysDataList}
+          todosDataList={todosDataList}
           setTargetCategory={setTargetCategory}
         />
         <InputIsRepeat>
           <SelectCategoryTimeinfo>
-            {diffTime("12:00", selectedCategoryData[0].startTime) > 0
+            {diffTime(
+              "12:00",
+              adjColon(todosDataList[targetCategory].time_start_hm)
+            ) > 0
               ? "AM"
               : "PM"}
             &nbsp;
-            {selectedCategoryData[0].startTime}~
-            {diffTime("12:00", selectedCategoryData[0].endTime) > 0
+            {adjColon(todosDataList[targetCategory].time_start_hm)}~
+            {diffTime(
+              "12:00",
+              adjColon(todosDataList[targetCategory].time_finish_hm)
+            ) > 0
               ? "AM"
               : "PM"}
             &nbsp;
-            {selectedCategoryData[0].endTime}
+            {adjColon(todosDataList[targetCategory].time_finish_hm)}
           </SelectCategoryTimeinfo>
           <label>
             <input
@@ -258,22 +189,22 @@ export default function Formtodo({
   );
 }
 
-function SelectCategory({ categorysDataList, setTargetCategory }) {
-  const handleChangeSelectedCategory = (e) => {
-    setTargetCategory(e.target.value);
+function SelectCategory({ todosDataList, setTargetCategory }) {
+  const handleChangeSelectedCategory = (idx) => {
+    setTargetCategory(idx);
   };
   return (
     <CategoryList>
-      {categorysDataList.datas.map((cate, idx) => (
+      {todosDataList.map((cate, idx) => (
         <label key={idx}>
           <input
             type="radio"
             name="categoryName"
-            value={cate.id}
-            onChange={handleChangeSelectedCategory}
+            value={idx}
+            onChange={() => handleChangeSelectedCategory(idx)}
             defaultChecked={idx === 0}
           />
-          <span className="input_box_shape">{cate.name}</span>
+          <span className="input_box_shape">{cate.cate_nm}</span>
         </label>
       ))}
     </CategoryList>

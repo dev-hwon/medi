@@ -1,6 +1,5 @@
-import { DatasContext, DatasDispatchContext } from "@/src/context/Golbal";
 import React, { useState, useContext, useMemo, useRef } from "react";
-// import EditorComponent from "../EditorComponent";
+import EditorComponent from "../EditorComponent";
 import {
   ButtonWrapper,
   CancelButton,
@@ -18,23 +17,20 @@ const FileUpload = () => {
     </div>
   );
 };
-export default function BoardWrite({ modalProps }) {
-  const dataList = useContext(DatasContext);
-  const dataDispatch = useContext(DatasDispatchContext);
+export default function BoardWrite({ setModalProps }) {
   const [textAreaValue, setTextAreaValue] = useState("");
-  const { authors } = dataList;
   const [subjectText, setSubjectText] = useState("");
   const handleChange = (e) => {
     setSubjectText(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    modalProps({ visible: false });
+    setModalProps({ visible: false });
   };
 
   return (
     <>
-      {/* <ModalTitle style={{ marginBottom: "10px" }}>글 작성</ModalTitle>
+      <ModalTitle style={{ marginBottom: "10px" }}>글 작성</ModalTitle>
       <form onSubmit={handleSubmit}>
         <Table>
           <TableBody>
@@ -56,14 +52,7 @@ export default function BoardWrite({ modalProps }) {
               <td className="cell_head" style={{ width: "140px" }}>
                 작성자 선택
               </td>
-              <td>
-                <select style={{ height: "32px" }}>
-                  <option value="">선택하세요</option>
-                  {authors.map((a, idx) => (
-                    <option key={idx}>{a.name}</option>
-                  ))}
-                </select>
-              </td>
+              <td></td>
             </tr>
             <tr>
               <td colSpan={2} style={{ padding: "0" }}>
@@ -76,15 +65,15 @@ export default function BoardWrite({ modalProps }) {
           </TableBody>
         </Table>
         <FileUpload />
-        <ButtonWrapper align="right" margin="10px 0 0 0">
-          <CancelButton className="common_btn btn_sm btn_cancel">
+        <ButtonWrapper layout="auto" align="right" margin="10px 0 0 0">
+          <CancelButton type="button" width="auto">
             취소
           </CancelButton>
-          <ConfirmButton type="submit" className="common_btn btn_sm btn_submit">
+          <ConfirmButton type="submit" width="auto">
             추가
           </ConfirmButton>
         </ButtonWrapper>
-      </form> */}
+      </form>
     </>
   );
 }
