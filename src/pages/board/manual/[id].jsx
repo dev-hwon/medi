@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import MainLayout from "@/src/layouts/main/MainLayout";
 import Board from "../../../db/board.json";
+import MainLayout from "@/src/layouts/main/MainLayout";
 
 // ----------------------------------------------------------------------
 BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;

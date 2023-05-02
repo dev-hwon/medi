@@ -5,16 +5,15 @@ import { useState } from "react";
 import Loader from "@/src/components/Loader";
 
 const Header = dynamic(() => import("./Header"), { ssr: false });
-const Footer = dynamic(() => import("./Footer"), { ssr: false });
 const Lnb = dynamic(() => import("./Lnb"), { ssr: false });
 
 // ----------------------------------------------------------------------
 
-TestLayout.propTypes = {
+SubLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export default function TestLayout({ children }) {
+export default function SubLayout({ children }) {
   const { pathname } = useRouter();
   const isHome = pathname === "/";
   const [lnbFold, setLnbFold] = useState(false);
@@ -29,6 +28,9 @@ export default function TestLayout({ children }) {
           (lnbFold ? " lnbFold" : "") +
           (lnbHover ? " lnbHover" : "")
         }
+        style={{
+          backgroundColor: "var(--theme-bg2)",
+        }}
       >
         <Lnb
           lnbFold={lnbFold}
@@ -43,11 +45,10 @@ export default function TestLayout({ children }) {
           ></Header>
 
           <div className="container">{children}</div>
-          {/* <Footer /> */}
         </div>
       </div>
       <div id="modal-root"></div>
-      <Loader size={{ width: "200px", height: "200px" }} />
+      {/* <Loader size={{ width: "200px", height: "200px" }} /> */}
     </>
   );
 }

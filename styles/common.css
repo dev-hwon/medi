@@ -498,7 +498,7 @@ select { outline: none; }
 /* ----------------------------------------------------------------
     @공통_글로벌레이아웃
 -----------------------------------------------------------------*/
-.global_wrap { --global-lnb-width: 250px; --postIt-width: 250px; /* background-color: var(--theme-bg2); */ color: var(--theme-fontcolor); overflow: hidden; }
+.global_wrap { --global-lnb-width: 250px; --postIt-width: 250px; color: var(--theme-fontcolor); overflow: hidden; transition: background-color .4s;}
 .global_wrap.lnbFold { --global-lnb-width: 80px }
 
 .global_wrap > div { flex:0 0 auto; } 

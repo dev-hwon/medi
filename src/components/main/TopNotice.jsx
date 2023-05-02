@@ -3,16 +3,12 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Autoplay } from "swiper";
 export default function TopNotice() {
-  
   const [notice, setNotice] = useState([]);
-  
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_MEDI_API + '/clinic/notice')
+    fetch(process.env.NEXT_PUBLIC_MEDI_API + "/clinic/notice")
       .then((res) => res.json())
       .then((data) => setNotice(data.data));
   }, []);
-
-  
 
   return (
     <VereticalSwiperWrap>
@@ -31,13 +27,11 @@ export default function TopNotice() {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-      {
-          notice.map((item, index) => 
-            <SwiperSlide key={index}>
-              <NoticeList>{item.title}</NoticeList>
-            </SwiperSlide>
-          ) 
-      }
+        {notice.map((item, index) => (
+          <SwiperSlide key={index}>
+            <NoticeList>{item.title}</NoticeList>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </VereticalSwiperWrap>
   );

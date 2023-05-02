@@ -6,8 +6,6 @@ import {
   ConfirmButton,
   ModalTitle,
   Table,
-  TableBody,
-  TableHeader,
 } from "../Style";
 
 const FileUpload = () => {
@@ -33,7 +31,7 @@ export default function BoardWrite({ setModalProps }) {
       <ModalTitle style={{ marginBottom: "10px" }}>글 작성</ModalTitle>
       <form onSubmit={handleSubmit}>
         <Table>
-          <TableBody>
+          <tbody>
             <tr>
               <td className="cell_head" style={{ width: "140px" }}>
                 제목
@@ -62,7 +60,7 @@ export default function BoardWrite({ setModalProps }) {
                 />
               </td>
             </tr>
-          </TableBody>
+          </tbody>
         </Table>
         <FileUpload />
         <ButtonWrapper layout="auto" align="right" margin="10px 0 0 0">

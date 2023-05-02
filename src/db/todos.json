@@ -12,18 +12,25 @@
               "template_list" : [
                   {
                       "template_id" : 1,
-                      "template_nm" : "진료전1",
-                      "status" : "N"
+                      "template_nm" : "네이버 예약 환자 확인콜 처리하기 고객 전화상담",
+                      "status" : "N",
+                      "reply_new" : "Y",
+                      "reply_cnt" : 3,
+                      "file_cnt" : 2
                   },
                   {
                       "template_id" : 2,
                       "template_nm" : "진료전2",
-                      "status" : "Y"
+                      "status" : "Y",
+                      "reply_new" : "Y",
+                      "reply_cnt" : 4,
+                      "file_cnt" : 1
                   },
                   {
                       "template_id" : 3,
                       "template_nm" : "진료전3",
-                      "status" : "N"
+                      "status" : "N",
+                      "file_cnt" : 2
                   },
                   {
                       "template_id" : 4,
@@ -33,7 +40,8 @@
                   {
                       "template_id" : 5,
                       "template_nm" : "진료전5",
-                      "status" : "Y"
+                      "status" : "Y",
+                      "reply_new" : "Y"
                   }
               ]
           },

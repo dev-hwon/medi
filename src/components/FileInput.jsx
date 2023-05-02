@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import { useRef, useState } from "react";
 import styled from "styled-components";
+import getExtName from "../util/getExtName";
+import getFileSizeMB from "../util/getFileSizeMB";
 
 export default function FileInput() {
   const [files, setFiles] = useState([]);
@@ -45,8 +47,7 @@ export default function FileInput() {
       alert(
         "10MB 이하 파일만 등록할 수 있습니다.\n\n" +
           "현재파일 용량 : " +
-          Math.round((totalSize / 1024 / 1024) * 100) / 100 +
-          "MB"
+          getFileSizeMB(totalSize)
       );
       return;
     }
@@ -76,7 +77,7 @@ export default function FileInput() {
         파일 올리기
       </button>
       <FileUploadNoti className="">
-        첨부파일은 최대 5MB (JPG,PDF, TXT,WORD,EXCEL,PPT,HWP,ZIP)
+        첨부파일은 최대 5MB (JPG, PDF, TXT, WORD, EXCEL, PPT, HWP, ZIP)
       </FileUploadNoti>
 
       <input
@@ -97,9 +98,7 @@ export default function FileInput() {
               height={20}
             />
             <span className="file_name">{file.name}</span>
-            <span className="file_size">
-              {Math.round((file.size / 1024 / 1024) * 100) / 100 + "MB"}
-            </span>
+            <span className="file_size">{getFileSizeMB(file.size)}</span>
             <button
               type="button"
               className="btn_singlefile_delete"
@@ -113,12 +112,7 @@ export default function FileInput() {
     </>
   );
 }
-function getExtName(filename) {
-  let fileLength = filename.length;
-  let dotPosition = filename.lastIndexOf(".");
-  let fileExt = filename.substring(dotPosition + 1, fileLength).toLowerCase();
-  return fileExt;
-}
+
 const FileUploadNoti = styled.div`
   font-size: 12px;
   color: #a8b5c0;

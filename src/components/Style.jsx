@@ -20,14 +20,16 @@ export const Line = styled.div`
   margin: ${(props) => (props.margin ? props.margin : "0")};
 `;
 export const CommontitleH1 = styled.h1`
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
   color: #000;
+  letter-spacing: ${letterSpacing.half};
 `;
 export const CommontitleH2 = styled.h2`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: #000;
+  letter-spacing: ${letterSpacing.half};
 `;
 export const CommontitleH3 = styled.h3`
   font-size: 22px;
@@ -40,6 +42,12 @@ export const CommontitleH4 = styled.h4`
   font-weight: bold;
   color: #000;
   letter-spacing: ${letterSpacing.half};
+
+  > em {
+    font-size: inherit;
+    font-weight: inherit;
+    color: #25aae1;
+  }
 `;
 export const CommontitleH5 = styled.h5`
   font-size: 16px;
@@ -49,9 +57,10 @@ export const CommontitleH5 = styled.h5`
 `;
 export const CommonSummary = styled.div`
   font-size: 13px;
+  font-weight: normal;
   color: #aaa;
-  margin-top: 4px;
   letter-spacing: ${letterSpacing.quarter};
+  margin-top: 4px;
 `;
 export const GridWrap = styled.div`
   width: ${(props) => !props.colGap && "100%"};
@@ -72,9 +81,11 @@ export const GridWrap = styled.div`
   ${(props) =>
     props.colGap &&
     css`
-      margin: 0 ${props.colGap * -0.5}px;
+      margin-left: ${props.colGap * -0.5}px;
+      margin-right: ${props.colGap * -0.5}px;
       > div {
-        padding: 0 ${props.colGap * 0.5}px;
+        padding-left: ${props.colGap * 0.5}px;
+        padding-right: ${props.colGap * 0.5}px;
         margin-bottom: ${props.colNomargin ? "0" : props.colGap}px;
       }
     `}
@@ -87,6 +98,16 @@ export const GridWrap = styled.div`
     props.colVerticalAlign &&
     css`
       align-items: ${props.colVerticalAlign};
+    `}
+  ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: ${props.marginTop};
+    `}
+    ${(props) =>
+    props.marginBottom &&
+    css`
+      margin-top: ${props.marginBottom};
     `}
 `;
 
@@ -102,10 +123,9 @@ export const GridCol = styled.div`
     `}
 `;
 export const Box = styled.div`
-  background-color: #fff;
   height: auto;
   min-height: 100%;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: ${(props) => (props.padding ? props.padding : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   text-align: ${(props) => (props.align ? props.align : "left")};
@@ -114,6 +134,8 @@ export const Box = styled.div`
     css`
       border: 1px solid #eaebee;
     `}
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "#fff"};
 `;
 export const BoxHead = styled.div`
   position: relative;
@@ -302,40 +324,61 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  border-top: 1px solid #e1e1e1;
-  text-algin: left;
-`;
-export const TableHeader = styled.thead`
-  > tr > th,
-  > tr > td {
-    padding: 8px;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 14px;
-    font-weight: bold;
-    background: #f5f5f5;
-    color: #666;
+
+  thead {
+    > tr > th,
+    > tr > td {
+      padding: ${(props) => (props.padding ? props.padding : "10px")};
+      border-bottom: 1px solid #eaebee;
+      font-size: 14px;
+      font-weight: bold;
+      background: #fff;
+      color: #666;
+    }
+
+    th:first-child,
+    td:first-child {
+      border-radius: ${(props) => (props.radius ? props.radius : "0")};
+    }
+    th:last-child,
+    td:last-child {
+      border-radius: ${(props) =>
+        props.radius ? "0 " + props.radius + " 0 0" : "0"};
+    }
   }
-`;
-export const TableBody = styled.tbody`
-  > tr > th,
-  > tr > td {
-    border-bottom: 1px solid #e1e1e1;
-    padding: ${(props) => (props.padding ? props.padding : "10px")};
-    vertical-align: ${(props) => (props.vertical ? props.vertical : "center")};
-    text-align: ${(props) => (props.align ? props.align : "left")};
-  }
-  > tr > td.cell_head {
-    background-color: #f7f7f8;
-  }
-  > tr > th {
-    font-size: 14px;
-    font-weight: bold;
-    background: #f5f5f5;
-    color: #666;
-    text-align: left;
-  }
-  > tr > td {
-    font-size: 14px;
-    color: #333;
+
+  tbody {
+    > tr > th,
+    > tr > td {
+      padding: ${(props) => (props.padding ? props.padding : "10px")};
+      vertical-align: ${(props) =>
+        props.vertical ? props.vertical : "middle"};
+      text-align: ${(props) => (props.align ? props.align : "left")};
+    }
+    > tr > td.cell_head {
+      background-color: #f7f7f8;
+    }
+    > tr > th {
+      font-size: 14px;
+      font-weight: bold;
+      background: #f5f5f5;
+      color: #666;
+      text-align: left;
+    }
+    > tr > td {
+      font-size: 14px;
+      color: #333;
+    }
+
+    tr:last-child th:first-child,
+    tr:last-child td:first-child {
+      border-radius: ${(props) =>
+        props.radius ? "0 0 " + props.radius + " 0" : " 0"};
+    }
+    tr:last-child th:last-child,
+    tr:last-child td:last-child {
+      border-radius: ${(props) =>
+        props.radius ? "0 0 0 " + props.radius : " 0"};
+    }
   }
 `;

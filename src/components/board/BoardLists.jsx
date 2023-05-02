@@ -6,13 +6,13 @@ import {
   useReducer,
   useContext,
 } from "react";
-import { Table, TableBody, TableHeader } from "../Style";
+import { Table } from "../Style";
 import adjColon from "@/src/util/adjColon";
 
 export default function BoardLists({ boardDataList, boardName }) {
   return (
     <>
-      <Table>
+      <Table radius="8px" padding="16px 24px" vertical="middle">
         <colgroup>
           <col width="80" />
           <col />
@@ -20,15 +20,15 @@ export default function BoardLists({ boardDataList, boardName }) {
           <col width="100" />
           <col width="80" />
         </colgroup>
-        <TableHeader>
+        <thead>
           <tr>
-            <td>번호</td>
-            <td>제목</td>
-            <td>작성자</td>
-            <td>작성일</td>
-            <td>조회</td>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
           </tr>
-        </TableHeader>
+        </thead>
 
         <List boardDataList={boardDataList} boardName={boardName} />
       </Table>
@@ -43,7 +43,7 @@ function List({ boardDataList, boardName }) {
   };
   console.log(boardDataList);
   return (
-    <TableBody>
+    <tbody>
       {boardDataList.map((list, idx) => (
         <tr key={list.id} onClick={() => handleClick(list.id)}>
           <td>{idx}</td>
@@ -55,6 +55,6 @@ function List({ boardDataList, boardName }) {
           <td>{list.viewCount}</td>
         </tr>
       ))}
-    </TableBody>
+    </tbody>
   );
 }

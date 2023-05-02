@@ -72,14 +72,13 @@ function TabMenu({ tabStatus, setTabStatus }) {
     setTabStatus(status);
   };
   return (
-    <GridWrap
-      className="faq_tabmenu"
-      colGap={8}
-      colWidth={108}
-      colWidthUnit="px"
-    >
-      <button>asdf</button>
-      <button className="active">asdf</button>
+    <GridWrap className="faq_tabmenu" colGap={8} colWidth="25%">
+      <GridCol>
+        <button>asdf</button>
+      </GridCol>
+      <GridCol>
+        <button className="active">asdf</button>
+      </GridCol>
     </GridWrap>
   );
 }
@@ -87,25 +86,13 @@ export default function Guide() {
   const [tabStatus, setTabStatus] = useState(0);
   const handleClick = (e) => {};
   return (
-    <>
-      <GridWrap>
-        <GridCol>
-          <CommontitleH4 className="">서비스 가이드</CommontitleH4>
-          <CommonSummary>
-            메디밸류 클리닉 업무 관리의 이용 방법을 알아봐요
-          </CommonSummary>
-        </GridCol>
-      </GridWrap>
-      <Line lineColor="#D3D8E0" margin="24px 0 32px" />
+    <div className="tab_guide">
       <Box>
-        <CommontitleH5 style={{ marginBottom: "16px" }}>
-          자주찾는 질문
-        </CommontitleH5>
         <TabMenu tabStatus={tabStatus} setTabStatus={setTabStatus} />
       </Box>
       <Box>
         <Tabcontent tabStatus={tabStatus} />
       </Box>
-    </>
+    </div>
   );
 }

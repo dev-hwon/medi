@@ -29,6 +29,7 @@ export default function MainLayout({ children }) {
           (lnbFold ? " lnbFold" : "") +
           (lnbHover ? " lnbHover" : "")
         }
+        style={{ backgroundColor: isHome ? "#fff" : "var(--theme-bg2)" }}
       >
         <Lnb
           lnbFold={lnbFold}
@@ -47,7 +48,7 @@ export default function MainLayout({ children }) {
         </div>
       </div>
       <div id="modal-root"></div>
-      <Loader size={{ width: "200px", height: "200px" }} />
+      {/* <Loader size={{ width: "200px", height: "200px" }} /> */}
     </>
   );
 }

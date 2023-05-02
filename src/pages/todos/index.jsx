@@ -1,45 +1,66 @@
 import React from "react";
-import { useContext } from "react";
-import TodoList from "@/src/components/todos/TodoList";
-import AiList from "@/src/components/todos/AiList";
+import {
+  Box,
+  CommonSummary,
+  CommontitleH4,
+  GridCol,
+  GridWrap,
+} from "@/src/components/Style";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import todosData from "../../db/todos.json";
+import useTitle from "@/src/hooks/useTitle";
+import { AiList, TodoList } from "@/src/components/todos";
+import styled from "styled-components";
 
 // ----------------------------------------------------------------------
 TodosIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
-// export default function TodosIndex({ filter }) {
-//   const dataList = useContext(DatasContext);
-//   const dataDispatch = useContext(DatasDispatchContext);
-//   const { loading, errorMessage, todos, categorys } = dataList;
-
-//   const todosfiltered = todos.filter((f) => f.category === filter);
-//   const categorysfiltered = categorys.filter((f) => f.id === filter);
-//   return (
-//     <>
-//       {loading ? (
-//         "loading.."
-//       ) : (
-//         <div className="">
-//           할일관리
-//           <div className="">
-//             {categorysfiltered.map((dd) => (
-//               <div key={dd.id}>{dd.name}</div>
-//             ))}
-//           </div>
-//           <ul>
-//             {todosfiltered.map((dd) => (
-//               <TodoList key={dd.id} todo={dd} />
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//       {errorMessage ? errorMessage : null}
-//     </>
-//   );
-// }
 export default function TodosIndex({ filter }) {
+  useTitle("할일관리");
   const todosList = todosData.data.list;
-  return <>dnfkfkfkfk</>;
+  return (
+    <>
+      <GridWrap colAlign="space-between">
+        <GridCol>
+          <CommontitleH4>
+            <em>이엘치과</em> 의 할 일 관리
+          </CommontitleH4>
+        </GridCol>
+        <GridCol>
+          <button>일감생성</button>
+          <button>완료된 업무</button>
+          <button>카테고리</button>
+        </GridCol>
+      </GridWrap>
+      <Box margin="16px 0 58px" backgroundColor="transparent">
+        <TodoList />
+      </Box>
+
+      <GridWrap colAlign="space-between">
+        <GridCol>
+          <CommontitleH4>
+            <em>이엘치과</em> 님 이런 업무는 어떠세요?<AiLabel>AI추천</AiLabel>
+          </CommontitleH4>
+        </GridCol>
+        <GridCol>
+          <button>새로보기</button>
+        </GridCol>
+      </GridWrap>
+      <Box margin="16px 0 0" backgroundColor="transparent">
+        <AiList />
+      </Box>
+    </>
+  );
 }
+const AiLabel = styled.div`
+  display: inline-block;
+  vertical-align: 2px;
+  font-size: 11px;
+  padding: 0 13px;
+  margin-left: 8px;
+  color: #fff;
+  line-height: 24px;
+  border-radius: 24px;
+  background-color: #ff5363;
+`;

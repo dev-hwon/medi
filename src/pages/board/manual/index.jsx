@@ -5,15 +5,15 @@ import Modal, { ModalOpenBtn } from "@/src/components/modal/Modal";
 import { useCallback, useEffect, useContext, useState } from "react";
 import {
   CommonSummary,
-  CommontitleH4,
+  CommontitleH3,
   GridCol,
   GridWrap,
   Box,
 } from "@/src/components/Style";
 import { useRouter } from "next/router";
 import useTitle from "@/src/hooks/useTitle";
-import MainLayout from "@/src/layouts/main/MainLayout";
 import Board from "../../../db/board.json";
+import MainLayout from "@/src/layouts/main/MainLayout";
 
 // ----------------------------------------------------------------------
 BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -37,7 +37,7 @@ export default function BoardIndex() {
     <>
       <GridWrap colGap={16} colWidth="50%">
         <GridCol>
-          <CommontitleH4 className="">{boardNameKr}</CommontitleH4>
+          <CommontitleH3 className="">{boardNameKr}</CommontitleH3>
           <CommonSummary>
             운영하는 클리닉의 업무 매뉴얼을 직접 작성해 보세요
           </CommonSummary>
@@ -54,7 +54,9 @@ export default function BoardIndex() {
           </Box>
         </GridCol>
       </GridWrap>
-      <BoardLists boardDataList={boardDataList} boardName={boardName} />
+      <Box margin="16px 0">
+        <BoardLists boardDataList={boardDataList} boardName={boardName} />
+      </Box>
       {modalProps.visible && (
         <Modal
           visible={modalProps.visible}

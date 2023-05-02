@@ -1,8 +1,4 @@
-import { DatasContext, DatasDispatchContext } from "@/src/context/ColorTheme";
 import React, { useState, useEffect, useReducer } from "react";
-import { useContext } from "react";
-import AddAuthor from "../../components/setting/AddAuthor";
-import AuthorList from "../../components/setting/AuthorList";
 import {
   CommonSummary,
   CommontitleH4,
@@ -12,32 +8,14 @@ import {
   Box,
   Line,
 } from "../../components/Style";
+import { AddAuthor, AuthorList } from "@/src/components/setting";
 
 // 보류페이지
 
 export default function Author() {
-  const authorsList = useContext(DatasContext);
-  const authorsDispatch = useContext(DatasDispatchContext);
+  const handleAdd = (addTarget) => {};
 
-  console.log(authorsList);
-
-  const { loading, errorMessage, authors } = authorsList;
-  const reverseData = [...authors].reverse();
-
-  const handleAdd = (addTarget) => {
-    authorsDispatch({
-      type: "AUTHORS_UPDATE",
-      addTarget,
-    });
-  };
-
-  const handleDelete = (deleteTarget) => {
-    authorsDispatch({
-      type: "AUTHORS_DELETE",
-      authors,
-      deleteTarget,
-    });
-  };
+  const handleDelete = (deleteTarget) => {};
   return (
     <>
       <GridWrap colWidth="100%">
@@ -52,7 +30,10 @@ export default function Author() {
           <CommontitleH5 className="">글쓴이 신규생성</CommontitleH5>
         </GridCol>
         <GridCol customWidth="calc(100% - 200px)">
-          <AddAuthor authors={authors} onAdd={handleAdd}></AddAuthor>
+          <AddAuthor
+          // authors={authors}
+          // onAdd={handleAdd}
+          ></AddAuthor>
         </GridCol>
       </GridWrap>
       <GridWrap colGap={32}>
@@ -64,13 +45,13 @@ export default function Author() {
             "loading.."
           ) : (
             <GridWrap colGap={16} colWidth="25%">
-              {reverseData.map((a) => (
+              {/* {reverseData.map((a) => (
                 <GridCol key={a.id}>
                   <Box className="authorlist" style={{ borderRadius: "0" }}>
                     <AuthorList author={a} onDelete={handleDelete} />
                   </Box>
                 </GridCol>
-              ))}
+              ))} */}
             </GridWrap>
           )}
         </GridCol>

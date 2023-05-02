@@ -19,7 +19,7 @@ function ListItem({ list, tabTodosStatus, setModalProps }) {
     console.log("button click event!");
   };
   return (
-    <li className={"li_state " + tabTodosStatus}>
+    <li className={"li_state li_state_" + tabTodosStatus}>
       <ModalOpenBtn
         modalWidth="400px"
         className="btn_title"
@@ -81,7 +81,7 @@ export default function TodayWorks({ todosCategoryTab }) {
     // 업무마감
     const afterWork = diffTime(
       time,
-      adjColon(todosDataList[todosDataList.length - 1].time_start_hm)
+      adjColon(todosDataList[todosDataList.length - 1].time_finish_hm)
     );
     // 업무중
     const isWorkTime = beforeWork > 0 && afterWork < 0;
@@ -137,14 +137,14 @@ export default function TodayWorks({ todosCategoryTab }) {
 
       <TodoLists>
         <TodoListsTab
-          className={tabTodosStatus === "Y" ? "active" : ""}
-          onClick={() => setTabTodosStatus("Y")}
+          className={tabTodosStatus === "N" ? "active" : ""}
+          onClick={() => setTabTodosStatus("N")}
         >
           해야 할일 목록
         </TodoListsTab>
         <TodoListsTab
-          className={tabTodosStatus === "N" ? "active" : ""}
-          onClick={() => setTabTodosStatus("N")}
+          className={tabTodosStatus === "Y" ? "active" : ""}
+          onClick={() => setTabTodosStatus("Y")}
         >
           완료된 업무
         </TodoListsTab>
@@ -367,7 +367,7 @@ const TodoLists = styled.div`
         bacgkround-position: 0 0;
       }
     }
-    li.li_state.complete {
+    li.li_state_Y {
       .btn_status_change {
         background-image: url("/images/common/icon_checkon.svg");
       }
