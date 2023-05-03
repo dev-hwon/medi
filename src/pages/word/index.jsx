@@ -93,7 +93,7 @@ export default function WordIndex() {
                 if (list != undefined) {
                   return (
                     <tr key={idx}>
-                      <td>{idx + 1}</td>
+                      <td>{list.id}</td>
                       <td>{list.subject}</td>
                       <td>{list.author}</td>
                       <td>{list.resDate}</td>
@@ -113,10 +113,6 @@ export default function WordIndex() {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         listCnt={listCnt}
-        // startPage={startPage}
-        // endPage={endPage}
-        // totalPage={totalPage}
-        // pageSize={pageSize}
       />
     </>
   );

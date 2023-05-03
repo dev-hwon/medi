@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
@@ -42,14 +43,30 @@ export default function Pagination(props) {
           ""
         ) : (
           <li>
-            <button onClick={() => setPageNumber(0)}>맨첨</button>
+            <button onClick={() => setPageNumber(0)}>
+              <Image
+                src="/images/common/icon_arrow_double.svg"
+                alt=""
+                width={16}
+                height={16}
+                style={{ transform: "rotate(180deg)" }}
+              />
+            </button>
           </li>
         )}
         {pageNumber === 0 ? (
           ""
         ) : (
           <li>
-            <button onClick={() => setPageNumber(prev)}>이전</button>
+            <button onClick={() => setPageNumber(prev)}>
+              <Image
+                src="/images/common/icon_arrow_default.svg"
+                alt=""
+                width={12}
+                height={12}
+                style={{ transform: "rotate(180deg)" }}
+              />
+            </button>
           </li>
         )}
         {createArr(totalPage).map((number, idx) => (
@@ -66,14 +83,29 @@ export default function Pagination(props) {
           ""
         ) : (
           <li>
-            <button onClick={() => setPageNumber(next)}>다음</button>
+            <button onClick={() => setPageNumber(next)}>
+              <Image
+                src="/images/common/icon_arrow_default.svg"
+                alt=""
+                width={12}
+                height={12}
+              />
+            </button>
           </li>
         )}
         {pageNumber > totalPage - 3 ? (
           ""
         ) : (
           <li>
-            <button onClick={() => setPageNumber(totalPage - 1)}>맨막</button>
+            <button onClick={() => setPageNumber(totalPage - 1)}>
+              {" "}
+              <Image
+                src="/images/common/icon_arrow_double.svg"
+                alt=""
+                width={16}
+                height={16}
+              />
+            </button>
           </li>
         )}
       </ul>
