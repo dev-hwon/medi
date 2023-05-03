@@ -13,6 +13,7 @@ import MainLayout from "@/src/layouts/main/MainLayout";
 import boardData from "../../db/board.json";
 import Pagination from "@/src/components/Pagination";
 import { useEffect } from "react";
+import PaginationListCntSet from "@/src/components/PaginationListCntSet";
 // ----------------------------------------------------------------------
 WordIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
@@ -37,12 +38,26 @@ export default function WordIndex() {
 
   return (
     <>
-      <GridWrap>
+      <GridWrap
+        colGap={16}
+        colWidth="50%"
+        colVerticalAlign="flex-end"
+        colNomargin
+      >
         <GridCol>
           <CommontitleH4>단어검사</CommontitleH4>
           <CommonSummary>
             메디밸류 클리닉 업무 관리의 이용 방법을 알아봐요
           </CommonSummary>
+        </GridCol>
+        <GridCol>
+          <Box
+            align="right"
+            backgroundColor="transparent"
+            style={{ borderRadius: "0" }}
+          >
+            <PaginationListCntSet listCnt={listCnt} setListCnt={setListCnt} />
+          </Box>
         </GridCol>
       </GridWrap>
       <Box margin="16px 0 0" backgroundColor="transparent">

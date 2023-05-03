@@ -14,6 +14,8 @@ import { useRouter } from "next/router";
 import useTitle from "@/src/hooks/useTitle";
 import Board from "../../../db/board.json";
 import MainLayout from "@/src/layouts/main/MainLayout";
+import Pagination from "@/src/components/Pagination";
+import PaginationListCntSet from "@/src/components/PaginationListCntSet";
 
 // ----------------------------------------------------------------------
 BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -24,6 +26,13 @@ const boardNameKr = "우리병원 매뉴얼";
 
 export default function BoardIndex() {
   const [modalProps, setModalProps] = useState([]);
+  const [listCnt, setListCnt] = useState(6);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [currentPageData, setCurrentPageData] = useState({
+    list: [],
+    loading: true,
+  });
+
   const router = useRouter();
   const boardDataList = Board.data.list;
   useTitle(boardNameKr);
@@ -34,7 +43,12 @@ export default function BoardIndex() {
 
   return (
     <>
-      <GridWrap colGap={16} colWidth="50%">
+      <GridWrap
+        colGap={16}
+        colWidth="50%"
+        colVerticalAlign="flex-end"
+        colNomargin
+      >
         <GridCol>
           <CommontitleH3 className="">{boardNameKr}</CommontitleH3>
           <CommonSummary>
@@ -42,10 +56,15 @@ export default function BoardIndex() {
           </CommonSummary>
         </GridCol>
         <GridCol>
-          <Box align="right" style={{ borderRadius: "0" }}>
+          <Box
+            align="right"
+            backgroundColor="transparent"
+            style={{ borderRadius: "0" }}
+          >
+            <PaginationListCntSet listCnt={listCnt} setListCnt={setListCnt} />
             <ModalOpenBtn
               modalWidth="800px"
-              className=""
+              className="btn_board_write"
               // childData={<div>test....</div>}
               childData={<BoardWrite setModalProps={setModalProps} />}
               buttonName="글쓰기"
@@ -55,8 +74,23 @@ export default function BoardIndex() {
         </GridCol>
       </GridWrap>
       <Box margin="16px 0">
-        <BoardLists boardDataList={boardDataList} boardName={boardName} />
+        {currentPageData.loading ? (
+          "loading..."
+        ) : (
+          <BoardLists
+            boardDataList={currentPageData.list}
+            boardName={boardName}
+          />
+        )}
       </Box>
+      <Pagination
+        totalPageData={boardDataList}
+        currentPageData={currentPageData}
+        setCurrentPageData={setCurrentPageData}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        listCnt={listCnt}
+      />
       {modalProps.visible && (
         <Modal
           visible={modalProps.visible}

@@ -640,3 +640,16 @@ input[class*=-picker__inputGroup__input--hasLeadingZero] {
 .btn_addTodos_ai:hover {
     border-color: #25aae1;
 }
+.btn_board_write {
+    height: 34px;
+    padding: 0 12px;
+    color:#fff;
+    background-color: #25aae1;
+    border: 1px solid #25aae1;
+    border-radius: 4px;
+    margin-left:8px;
+}
+.btn_board_write:hover {
+    background-color : #2287b3;
+    border-color: #2287b3;
+}
