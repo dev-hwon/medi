@@ -1,6 +1,6 @@
 import Head from "next/head";
 import MainLayout from "../layouts/main";
-import { MainIndex } from "./main";
+import MainIndex from "./main/MainIndex";
 
 // ----------------------------------------------------------------------
 Home.getLayout = (page) => <MainLayout> {page} </MainLayout>;

@@ -22,7 +22,7 @@ export default function Pagination(props) {
       dataItem.push(totalPageData[i]);
     }
     setCurrentPageData({ list: dataItem, loading: false });
-  }, [pageNumber]);
+  }, [totalPageData, pageNumber, listCnt, setCurrentPageData]);
 
   const totalPage = Math.ceil(totalPageData.length / listCnt);
   const prev = pageNumber - 1;
@@ -53,7 +53,7 @@ export default function Pagination(props) {
           </li>
         )}
         {createArr(totalPage).map((number, idx) => (
-          <li>
+          <li key={idx}>
             <button
               className={number === pageNumber + 1 ? "active" : ""}
               onClick={() => setPageNumber(number - 1)}

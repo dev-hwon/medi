@@ -5,7 +5,6 @@ import {
   CommontitleH5,
   GridCol,
   GridWrap,
-  Box,
   Line,
 } from "../../components/Style";
 import { AddAuthor, AuthorList } from "@/src/components/setting";
@@ -13,6 +12,7 @@ import { AddAuthor, AuthorList } from "@/src/components/setting";
 // 보류페이지
 
 export default function Author() {
+  return;
   const handleAdd = (addTarget) => {};
 
   const handleDelete = (deleteTarget) => {};

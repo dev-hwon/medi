@@ -25,7 +25,6 @@ const boardNameKr = "우리병원 매뉴얼";
 export default function BoardIndex() {
   const [modalProps, setModalProps] = useState([]);
   const router = useRouter();
-  const { params = [] } = router.query;
   const boardDataList = Board.data.list;
   useTitle(boardNameKr);
 
@@ -47,6 +46,7 @@ export default function BoardIndex() {
             <ModalOpenBtn
               modalWidth="800px"
               className=""
+              // childData={<div>test....</div>}
               childData={<BoardWrite setModalProps={setModalProps} />}
               buttonName="글쓰기"
               setModalProps={setModalProps}

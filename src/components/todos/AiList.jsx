@@ -152,7 +152,7 @@ export default function AiList() {
     <>
       <GridWrap colWidth="33.333333%" colGap={16}>
         {lists.map((list, idx) => (
-          <GridCol margin="0 0 10px">
+          <GridCol key={idx} margin="0 0 10px">
             <Box border padding="12px 20px">
               <ListItem key={idx} list={list} />
             </Box>

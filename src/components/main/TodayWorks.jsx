@@ -53,10 +53,10 @@ export default function TodayWorks({ todosCategoryTab }) {
   };
 
   // 타이머 (워닝뜨는데 확인필요)
-  let timer = null;
+  // let timer = null;
   const [time, setTime] = useState(moment());
   useEffect(() => {
-    timer = setInterval(() => {
+    let timer = setInterval(() => {
       setTime(moment());
     }, 60000);
 
@@ -64,6 +64,7 @@ export default function TodayWorks({ todosCategoryTab }) {
       clearInterval(timer);
     };
   }, [time]);
+
   const todosDataList = todosData.data.list;
   // isAutoChange 카테고리 시간기제안할시 무조건 내용전환 안되게 막음 _ prev,next버튼클릭시에 전환만 가능
   const isAutoChange =

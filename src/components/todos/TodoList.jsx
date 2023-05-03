@@ -11,7 +11,7 @@ export default function TodoList() {
   return (
     <>
       <GridWrap colWidth="25%" colGap={16} colNomargin>
-        {todosDataList.map((data) => {
+        {todosDataList.map((data, idx) => {
           const statusNData = data.template_list.filter(
             (data) => data.status === "N"
           );
@@ -19,7 +19,7 @@ export default function TodoList() {
             (data) => data.status === "Y"
           );
           return (
-            <GridCol>
+            <GridCol key={idx}>
               <Box backgroundColor="transparent">
                 <TodoListCategoryName color={data.rgb}>
                   <div className="cateName">{data.cate_nm}</div>
@@ -58,8 +58,8 @@ export default function TodoList() {
 const TodoListItems = ({ data }) => {
   return (
     <Listitems>
-      {data.map((list) => (
-        <li className={"li_state li_state_" + list.status}>
+      {data.map((list, idx) => (
+        <li key={idx} className={"li_state li_state_" + list.status}>
           <button tpye="button" className="btn_item">
             <div className="item_tit">{list.template_nm}</div>
             <div className="item_info">
