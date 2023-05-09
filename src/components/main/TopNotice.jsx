@@ -7,7 +7,8 @@ export default function TopNotice() {
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_MEDI_API + "/clinic/notice")
       .then((res) => res.json())
-      .then((data) => setNotice(data.data));
+      .then((data) => setNotice(data.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

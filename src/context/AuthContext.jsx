@@ -49,7 +49,8 @@ const signIn = async (hash) => {
           User.memberType = uData.member_type;
           User.addr = uData.medi_addr;
         }
-      });
+      })
+      .catch((err) => console.log(err));
   }
 };
 
