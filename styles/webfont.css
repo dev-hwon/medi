@@ -8,11 +8,11 @@
     font-style: normal;
     font-weight: 100;
     src: local('Noto Sans Thin'), local('NotoSans-Thin'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Thin.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Thin.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Thin.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Thin.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Thin.otf) format('opentype');
+        url('./font/NotoSans-Thin.eot'),
+        url('./font/NotoSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Thin.woff2') format('woff2'),
+        url('./font/NotoSans-Thin.woff') format('woff'),
+        url('./font/NotoSans-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -20,11 +20,11 @@
     font-style: normal;
     font-weight: 300;
     src: local('Noto Sans Light'), local('NotoSans-Light'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Light.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Light.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Light.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Light.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Light.otf) format('opentype');
+        url('./font/NotoSans-Light.eot'),
+        url('./font/NotoSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Light.woff2') format('woff2'),
+        url('./font/NotoSans-Light.woff') format('woff'),
+        url('./font/NotoSans-Light.otf') format('opentype');
 }
 
 @font-face {
@@ -32,11 +32,11 @@
     font-style: normal;
     font-weight: 350;
     src: local('Noto Sans DemiLight'), local('NotoSans-DemiLight'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-DemiLight.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-DemiLight.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-DemiLight.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-DemiLight.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-DemiLight.otf) format('opentype');
+        url('./font/NotoSans-DemiLight.eot'),
+        url('./font/NotoSans-DemiLight.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-DemiLight.woff2') format('woff2'),
+        url('./font/NotoSans-DemiLight.woff') format('woff'),
+        url('./font/NotoSans-DemiLight.otf') format('opentype');
 }
 
 @font-face {
@@ -44,11 +44,11 @@
     font-style: normal;
     font-weight: 400;
     src: local('Noto Sans Regular'), local('NotoSans-Regular'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Regular.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Regular.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Regular.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Regular.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Regular.otf) format('opentype');
+        url('./font/NotoSans-Regular.eot'),
+        url('./font/NotoSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Regular.woff2') format('woff2'),
+        url('./font/NotoSans-Regular.woff') format('woff'),
+        url('./font/NotoSans-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -56,11 +56,11 @@
     font-style: normal;
     font-weight: 500;
     src: local('Noto Sans Medium'), local('NotoSans-Medium'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Medium.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Medium.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Medium.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Medium.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Medium.otf) format('opentype');
+        url('./font/NotoSans-Medium.eot'),
+        url('./font/NotoSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Medium.woff2') format('woff2'),
+        url('./font/NotoSans-Medium.woff') format('woff'),
+        url('./font/NotoSans-Medium.otf') format('opentype');
 }
 
 @font-face {
@@ -68,11 +68,11 @@
     font-style: normal;
     font-weight: 700;
     src: local('Noto Sans Bold'), local('NotoSans-Bold'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Bold.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Bold.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Bold.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Bold.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Bold.otf) format('opentype');
+        url('./font/NotoSans-Bold.eot'),
+        url('./font/NotoSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Bold.woff2') format('woff2'),
+        url('./font/NotoSans-Bold.woff') format('woff'),
+        url('./font/NotoSans-Bold.otf') format('opentype');
 }
 
 @font-face {
@@ -80,11 +80,11 @@
     font-style: normal;
     font-weight: 900;
     src: local('Noto Sans Black'), local('NotoSans-Black'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Black.eot),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Black.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Black.woff2) format('woff2'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Black.woff) format('woff'),
-        url(//img.enuri.info/fonts/NotoSans/NotoSans-Black.otf) format('opentype');
+        url('./font/NotoSans-Black.eot'),
+        url('./font/NotoSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('./font/NotoSans-Black.woff2') format('woff2'),
+        url('./font/NotoSans-Black.woff') format('woff'),
+        url('./font/NotoSans-Black.otf') format('opentype');
 }
 
 
@@ -98,11 +98,11 @@
     font-style: normal;
     font-weight: 600;
     src: local('Roboto Black'), local('Roboto-Black'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Black-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Black-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Black-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Black-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Black-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Black-webfont.eot'),
+        url('./font/Roboto-Black-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Black-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Black-webfont.woff') format('opentype'),
+        url('./font/Roboto-Black-webfont.svg#webfont') format('svg');
 }
 
 @font-face {
@@ -110,11 +110,11 @@
     font-style: normal;
     font-weight: 500;
     src: local('Roboto Bold'), local('Roboto-Bold'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Bold-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Bold-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Bold-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Bold-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Bold-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Bold-webfont.eot'),
+        url('./font/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Bold-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Bold-webfont.woff') format('opentype'),
+        url('./font/Roboto-Bold-webfont.svg#webfont') format('svg');
 }
 
 @font-face {
@@ -122,11 +122,11 @@
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Medium'), local('Roboto-Medium'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Medium-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Medium-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Medium-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Medium-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Medium-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Medium-webfont.eot'),
+        url('./font/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Medium-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Medium-webfont.woff') format('opentype'),
+        url('./font/Roboto-Medium-webfont.svg#webfont') format('svg');
 }
 
 @font-face {
@@ -134,11 +134,11 @@
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Regular'), local('Roboto-Regular'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Regular-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Regular-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Regular-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Regular-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Regular-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Regular-webfont.eot'),
+        url('./font/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Regular-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Regular-webfont.woff') format('opentype'),
+        url('./font/Roboto-Regular-webfont.svg#webfont') format('svg');
 }
 
 @font-face {
@@ -146,11 +146,11 @@
     font-style: normal;
     font-weight: 200;
     src: local('Roboto Light'), local('Roboto-Light'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Light-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Light-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Light-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Light-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Light-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Light-webfont.eot'),
+        url('./font/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Light-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Light-webfont.woff') format('opentype'),
+        url('./font/Roboto-Light-webfont.svg#webfont') format('svg');
 }
 
 @font-face {
@@ -158,9 +158,9 @@
     font-style: normal;
     font-weight: 100;
     src: local('Roboto Thin'), local('Roboto-Thin'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Thin-webfont.eot),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Thin-webfont.eot?#iefix) format('embedded-opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Thin-webfont.ttf) format('truetype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Thin-webfont.woff) format('opentype'),
-        url(//img.enuri.info/fonts/Roboto/Roboto-Thin-webfont.svg#webfont) format('svg');
+        url('./font/Roboto-Thin-webfont.eot'),
+        url('./font/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/Roboto-Thin-webfont.ttf') format('truetype'),
+        url('./font/Roboto-Thin-webfont.woff') format('opentype'),
+        url('./font/Roboto-Thin-webfont.svg#webfont') format('svg');
 }
