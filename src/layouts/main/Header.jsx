@@ -9,28 +9,8 @@ import {
 } from "@/styles/HeadFootStyle";
 import { GridCol, GridWrap } from "@/src/components/Style";
 import TopNotice from "@/src/components/main/TopNotice";
-import useAuth from "@/src/hooks/useAuth";
-import { useRouter } from "next/router";
 
 export default function Header() {
-  const { User, signOut } = useAuth();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await signOut();
-    // alert("메인 이동");
-    router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
-  };
-
-  if (!User) {
-    router.push(process.env.NEXT_PUBLIC_MEDI_HOME);
-  } else {
-    if (User.member_type == "L") {
-      // 유도 레이어
-      alert("기공소는 사용하실 수 없어요");
-    }
-  }
-
   return (
     <Head>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
@@ -74,15 +54,7 @@ export default function Header() {
               colNomargin
             >
               <GridCol>
-                {/*
-                <MemberLevel>
-                  <span>
-                    이엘치과 담당자(<em>일반</em>)
-                  </span>
-                  님
-                </MemberLevel>
-                */}
-                <MemberName>{User.name}</MemberName>
+                <MemberName>TODO 클리닉이름</MemberName>
               </GridCol>
               <GridCol>
                 <button onClick={() => handleSignOut()}>로그아웃</button>

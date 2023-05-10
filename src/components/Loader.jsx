@@ -11,12 +11,14 @@ import { useState } from "react";
 
 export default function Loader({ size }) {
   const [loader, setloader] = useState(true);
+  /*
   useEffect(() => {
     setTimeout(() => {
       setloader(false);
     }, 1000);
   }, []);
-
+  */
+ 
   return (
     <LotteWrap loader={loader}>
       <Lottie loop animationData={loaderJson} play style={size} />

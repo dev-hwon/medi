@@ -4,7 +4,7 @@ import "@/styles/common.css";
 import "@/styles/setting.css";
 import "@/styles/calendarSmall.css";
 import Head from "next/head";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "../auth/JwtContext";
 import { UserContextProvider } from "../context/UserContext";
 import { ColorThemeContextProvider } from "../context/ColorTheme";
 
