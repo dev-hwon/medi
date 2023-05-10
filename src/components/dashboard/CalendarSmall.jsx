@@ -7,8 +7,9 @@ import "react-calendar/dist/Calendar.css";
 import moment, { Current, CurrentDate, CurrentDataMonth } from "../Current";
 import { GridWrap, GridCol } from "../Style";
 import { TodosContext, TodosDispatchContext } from "@/src/context/ColorTheme";
+import { PATH_JSONSERVER } from "@/src/routes/paths";
 
-const sampleJSON = `${process.env.REACT_APP_TEST_JSONSERVER_SAMPLE}`;
+const sampleJSON = `${PATH_JSONSERVER.sample}`;
 
 export default function CalendarSmall({ visibleCalendar }) {
   const [sDate, setSDate] = useState(moment(Current).format("YYYY-MM-DD"));

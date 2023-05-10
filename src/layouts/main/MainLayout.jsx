@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "@/src/components/Loader";
+import AuthGuard from "@/src/auth/AuthGuard";
+import { AuthContext } from "@/src/auth/JwtContext";
 
-const Header = dynamic(() => import("./Header"), { ssr: false });
-const Footer = dynamic(() => import("./Footer"), { ssr: false });
-const Lnb = dynamic(() => import("./Lnb"), { ssr: false });
+const Header = dynamic(() => import("../common/Header"), { ssr: false });
+const Footer = dynamic(() => import("../common/Footer"), { ssr: false });
+const Lnb = dynamic(() => import("../common/Lnb"), { ssr: false });
 
 // ----------------------------------------------------------------------
 
@@ -20,9 +22,10 @@ export default function MainLayout({ children }) {
   const [lnbFold, setLnbFold] = useState(false);
   const [lnbHover, setLnbHover] = useState(false);
   const [postItActive, setPostItActive] = useState(false);
+  const contextValue = useContext(AuthContext);
 
   return (
-    <>
+    <AuthGuard>
       <div
         className={
           "global_wrap" +
@@ -49,6 +52,6 @@ export default function MainLayout({ children }) {
       </div>
       <div id="modal-root"></div>
       {/* <Loader size={{ width: "200px", height: "200px" }} /> */}
-    </>
+    </AuthGuard>
   );
 }

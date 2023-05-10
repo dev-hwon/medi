@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Lnb = dynamic(() => import("./Lnb"), { ssr: false });
+const Lnb = dynamic(() => import("../common/Lnb"), { ssr: false });
 
 // ----------------------------------------------------------------------
 

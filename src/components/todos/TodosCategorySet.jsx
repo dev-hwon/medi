@@ -14,8 +14,9 @@ import {
 // react-time-picker-input , react version 18에서 지원안됨
 // import TimePicker from "react-time-picker";
 import TimePicker from "react-time-picker/dist/entry.nostyle";
+import { PATH_JSONSERVER } from "@/src/routes/paths";
 
-const categoryUrl = `${process.env.REACT_APP_TEST_JSONSERVER_CATEGORYS}`;
+const categoryUrl = `${PATH_JSONSERVER.categorys}`;
 const colorList = [
   "#F65555",
   "#FE8947",

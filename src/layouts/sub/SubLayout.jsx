@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Loader from "@/src/components/Loader";
 
-const Header = dynamic(() => import("./Header"), { ssr: false });
-const Lnb = dynamic(() => import("./Lnb"), { ssr: false });
+const Header = dynamic(() => import("../common/Header"), { ssr: false });
+const Lnb = dynamic(() => import("../common/Lnb"), { ssr: false });
 
 // ----------------------------------------------------------------------
 

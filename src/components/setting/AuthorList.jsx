@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
-const authorsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_AUTHORS}`;
+import { PATH_CLINIC, PATH_JSONSERVER } from "@/src/routes/paths";
+
+const authorsUrl = `${PATH_JSONSERVER.authors}`;
 export default function AuthorList({ author, onDelete }) {
   const { id, name } = author;
   const handleDelete = () => {
@@ -24,7 +26,7 @@ export default function AuthorList({ author, onDelete }) {
         <Image
           width={24}
           height={24}
-          src={`${process.env.REACT_APP_DEFAULT_IMG_URL}/images/setting/icon_delete_author.svg`}
+          src={`${PATH_CLINIC.medi}/images/setting/icon_delete_author.svg`}
           alt=""
         />
       </button>

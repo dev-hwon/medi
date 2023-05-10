@@ -7,13 +7,14 @@ import "swiper/css";
 import styled from "styled-components";
 import ReviewLocalChart from "../review/ReviewLocalChart";
 import ToolTip from "../tooltip/ToolTip";
+import { ROOTS_CLINIC } from "@/src/routes/paths";
 
 function SlideNextButton() {
   const swiper = useSwiper();
   return (
     <ButtonNext
       onClick={() => swiper.slideNext()}
-      icon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_arrow_default.svg`}
+      icon={`${ROOTS_CLINIC}/images/common/icon_arrow_default.svg`}
     ></ButtonNext>
   );
 }
@@ -22,7 +23,7 @@ function SlidePrevButton() {
   return (
     <ButtonPrev
       onClick={() => swiper.slidePrev()}
-      icon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_arrow_default.svg`}
+      icon={`${ROOTS_CLINIC}/images/common/icon_arrow_default.svg`}
     ></ButtonPrev>
   );
 }
@@ -49,7 +50,7 @@ export default function LocalReview() {
               position="top"
               contentWidth="246px"
               buttonSize="18px"
-              buttonIcon={`${process.env.NEXT_PUBLIC_HOST}/images/common/icon_tooltip.svg`}
+              buttonIcon={`${ROOTS_CLINIC}/images/common/icon_tooltip.svg`}
               buttonIconAlpha={0.6}
               buttonIconVerticalPosition="-2px"
               content="주요 클리닉 리뷰 사이트에 작성된 리뷰를 AI가 분석 후 보여드려요"

@@ -69,7 +69,8 @@ export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const cookies = parseCookies();
 
-  console.log( cookies );
+  // 쿠키를 이용해서 accessToken 을 발급 받아야함
+  // 쿠키 유효시간 8시간
 
   const storageAvailable = localStorageAvailable();
 
@@ -186,6 +187,5 @@ export function AuthProvider({ children }) {
     }),
     [state.isAuthenticated, state.isInitialized, state.user]
   );
-
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
 }

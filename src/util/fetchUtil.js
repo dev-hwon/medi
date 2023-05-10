@@ -1,9 +1,11 @@
+import { ROOTS_CLINIC } from "../routes/paths";
+
 const getOption = {
     method: "GET",
     headers: { 
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Access-Control-Allow-Origin": process.env.NEXT_PUBLIC_HOST,
+        "Access-Control-Allow-Origin": ROOTS_CLINIC,
     },
 };
 

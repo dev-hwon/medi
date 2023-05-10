@@ -9,7 +9,9 @@ import {
   GridWrap,
   Box,
 } from "../../components/Style";
-const boardlistsUrl = `${process.env.REACT_APP_TEST_JSONSERVER_BOARDLISTS}`;
+import { PATH_JSONSERVER } from "@/src/routes/paths";
+
+const boardlistsUrl = `${PATH_JSONSERVER.board}`;
 const boardNameKR = [
   {
     id: "manual",

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Autoplay } from "swiper";
+import { PATH_API } from "@/src/routes/paths";
+
 export default function TopNotice() {
   const [notice, setNotice] = useState([]);
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_MEDI_API + "/clinic/notice")
+    fetch(PATH_API.notice)
       .then((res) => res.json())
       .then((data) => setNotice(data.data))
       .catch((err) => console.log(err));

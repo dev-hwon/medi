@@ -1,5 +1,6 @@
 // utils
 import axios from '../util/axios';
+import { PATH_LOGIN } from "@/src/routes/paths";
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +49,7 @@ export const tokenExpired = (exp) => {
   expiredTimer = setTimeout(() => {
     alert('Token expired');
     localStorage.removeItem('accessToken');
-    window.location.href = process.env.NEXT_PUBLIC_MEDI_HOME;
+    window.location.href = PATH_LOGIN;
   }, timeLeft);
 };
 
