@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Loader from "@/src/components/Loader";
 import AuthGuard from "@/src/auth/AuthGuard";
-import { AuthContext } from "@/src/auth/JwtContext";
 
 const Header = dynamic(() => import("../common/Header"), { ssr: false });
 const Footer = dynamic(() => import("../common/Footer"), { ssr: false });
@@ -22,7 +21,6 @@ export default function MainLayout({ children }) {
   const [lnbFold, setLnbFold] = useState(false);
   const [lnbHover, setLnbHover] = useState(false);
   const [postItActive, setPostItActive] = useState(false);
-  const contextValue = useContext(AuthContext);
 
   return (
     <AuthGuard>

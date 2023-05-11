@@ -21,7 +21,7 @@ const ROOTS_API = process.env.NEXT_PUBLIC_MEDI_API;
 
 export const PATH_API = {
     member: path(ROOTS_API,'/member'),
-    notice: path(ROOTS_API,'/notice'),
+    notice: path(ROOTS_API,'/clinic/notice'),
 };
 
 // JSON SERVER

@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
+import { createContext, useEffect, useReducer, useCallback, useMemo, useState } from 'react';
 // utils
 import axios from '../util/axios';
 import localStorageAvailable from './localStorageAvailable';
 //
-import { isValidToken, setSession } from './utils';
-import { parseCookies } from "nookies";
+import { isValidToken, setSession } from './jwt';
 
 // ----------------------------------------------------------------------
 
@@ -67,12 +66,22 @@ AuthProvider.propTypes = {
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const cookies = parseCookies();
-
-  // 쿠키를 이용해서 accessToken 을 발급 받아야함
-  // 쿠키 유효시간 8시간
-
   const storageAvailable = localStorageAvailable();
+ 
+  // LOGIN
+  const login = useCallback(async (mediCookie) => {
+    const response = await axios.get('/api/account/login');
+    const { accessToken, user } = response.data;
+
+    setSession(accessToken);
+
+    dispatch({
+      type: 'LOGIN',
+      payload: {
+        user,
+      },
+    });
+  }, []);
 
   const initialize = useCallback(async () => {
     try {
@@ -81,7 +90,7 @@ export function AuthProvider({ children }) {
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
-        const response = await axios.get('/api/account/my-account');
+        const response = await axios.get('/api/account/my-account?token='+accessToken);
 
         const { user } = response.data;
 
@@ -100,6 +109,10 @@ export function AuthProvider({ children }) {
             user: null,
           },
         });
+
+        // 로그인 시도 ( 자동 로그인 )
+        // 로그인 별도 처리 시 해당 구문 제거
+        login();
       }
     } catch (error) {
       console.error(error);
@@ -111,29 +124,12 @@ export function AuthProvider({ children }) {
         },
       });
     }
-  }, [storageAvailable]);
+//  }, [storageAvailable]);  
+  }, [login, storageAvailable]);
 
   useEffect(() => {
     initialize();
   }, [initialize]);
-
-  // LOGIN
-  const login = useCallback(async (email, password) => {
-    const response = await axios.post('/api/account/login', {
-      email,
-      password,
-    });
-    const { accessToken, user } = response.data;
-
-    setSession(accessToken);
-
-    dispatch({
-      type: 'LOGIN',
-      payload: {
-        user,
-      },
-    });
-  }, []);
 
   /*
   // REGISTER
@@ -184,8 +180,10 @@ export function AuthProvider({ children }) {
       isAuthenticated: state.isAuthenticated,
       user: state.user,
       method: 'jwt',
+      login,
     }),
-    [state.isAuthenticated, state.isInitialized, state.user]
+    [state.isAuthenticated, state.isInitialized, state.user, login]
   );
+
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
 }

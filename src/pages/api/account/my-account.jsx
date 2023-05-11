@@ -9,8 +9,6 @@ const MyAccount = async (req, res) => {
         const user = verify(accessToken, JWT_SECRET);
         if (!user) {
             res.status(401).json({ message: "Invalid authorization token" });
-        } else {
-            
         }
         res.status(200).json({ user });
     } catch (error) {

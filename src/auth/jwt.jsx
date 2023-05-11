@@ -6,7 +6,7 @@ const isValidToken = (accessToken) => {
   if (!accessToken) {
     return false;
   }
-  const decoded = jwtDecode<{ exp: number }>(accessToken);
+  const decoded = jwtDecode(accessToken);
   const currentTime = Date.now() / 1000;
 
   return decoded.exp > currentTime;
@@ -27,4 +27,7 @@ const setSession = (accessToken) => {
 
 const JWT_SECRET = "mediclinicjwtsecret"; // jwt 인증 secret
 
-export { verify, sign, isValidToken, setSession, JWT_SECRET };
+// Eg: 60, "2 days", "10h", "7d"
+const JWT_EXPIRES_IN = "8h";
+
+export { verify, sign, isValidToken, setSession, JWT_SECRET, JWT_EXPIRES_IN };

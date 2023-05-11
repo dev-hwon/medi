@@ -39,9 +39,9 @@ export default function AuthGuard({ children }) {
     // pre-render에서는 메세지를 노출시키지 않는다.
     // pathname 와 requestedLocation 이 같을 때
     if(pathname === requestedLocation) {
-      alert("로그인이 필요합니다");
+     // alert("로그인이 필요합니다");
     }
-    push(PATH_LOGIN);
+   //  push(PATH_LOGIN);
   }
 
   return <> {children} </>;

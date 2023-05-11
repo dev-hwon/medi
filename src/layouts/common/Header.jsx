@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { useAuthContext } from '@/src/auth/useAuthContext';
 import {
   Head,
   FamilySiteTab,
@@ -11,6 +12,9 @@ import { GridCol, GridWrap } from "@/src/components/Style";
 import TopNotice from "@/src/components/main/TopNotice";
 
 export default function Header() {
+  
+  const { user } = useAuthContext();
+
   return (
     <Head>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
@@ -54,7 +58,7 @@ export default function Header() {
               colNomargin
             >
               <GridCol>
-                <MemberName>TODO 클리닉이름</MemberName>
+                <MemberName>{user.medi_nm}</MemberName>
               </GridCol>
               <GridCol>
                 <button onClick={() => handleSignOut()}>로그아웃</button>
