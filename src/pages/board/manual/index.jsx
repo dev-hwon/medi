@@ -25,22 +25,25 @@ const boardName = "manual";
 const boardNameKr = "우리병원 매뉴얼";
 
 export default function BoardIndex() {
+  const router = useRouter();
   const [modalProps, setModalProps] = useState([]);
-  const [listCnt, setListCnt] = useState(6);
-  const [pageNumber, setPageNumber] = useState(0);
+
+  // ----------------------------------------------------------------------
+  const [listCnt, setListCnt] = useState(6); // 페이지리스트출력갯수
+  const [pageNumber, setPageNumber] = useState(0); // 선택된페이지넘버
   const [currentPageData, setCurrentPageData] = useState({
+    // 선택된페이지데이터
     list: [],
     loading: true,
   });
-
-  const router = useRouter();
+  // ----------------------------------------------------------------------
   const boardDataList = Board.data.list;
+  // ----------------------------------------------------------------------
   useTitle(boardNameKr);
-
   const closeModal = () => {
     setModalProps({ visible: false });
   };
-
+  // ----------------------------------------------------------------------
   return (
     <>
       <GridWrap
@@ -61,10 +64,14 @@ export default function BoardIndex() {
             backgroundColor="transparent"
             style={{ borderRadius: "0" }}
           >
-            <PaginationListCntSet listCnt={listCnt} setListCnt={setListCnt} />
+            <PaginationListCntSet
+              listCnt={listCnt}
+              setListCnt={setListCnt}
+              sx={{ marginRight: "4px" }}
+            />
             <ModalOpenBtn
               modalWidth="800px"
-              className="btn_board_write"
+              className="btn_common btn_write"
               // childData={<div>test....</div>}
               childData={<BoardWrite setModalProps={setModalProps} />}
               buttonName="글쓰기"

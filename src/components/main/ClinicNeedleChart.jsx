@@ -116,6 +116,7 @@ const PositivityChartTxt = styled.div`
   > span {
     display: inline-block;
     background-color: #defded;
+    font-size: 16px;
     font-weight: bold;
     color: #26d074;
     > em {

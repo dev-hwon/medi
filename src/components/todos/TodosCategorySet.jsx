@@ -216,15 +216,8 @@ export default function TodosCategorySet({ modalProps }) {
         </CategoryTimeEnd>
 
         <ButtonWrapper align="right">
-          <CancelButton className="common_btn btn_sm btn_cancel">
-            취소
-          </CancelButton>
-          <ConfirmButton
-            className="common_btn btn_sm btn_submit"
-            style={{ marginLeft: "4px" }}
-          >
-            저장
-          </ConfirmButton>
+          <CancelButton>취소</CancelButton>
+          <ConfirmButton style={{ marginLeft: "4px" }}>저장</ConfirmButton>
         </ButtonWrapper>
       </form>
     </>

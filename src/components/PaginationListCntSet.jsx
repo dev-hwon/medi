@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const page_list_set = [6, 12, 20, 50, 100, 150];
-export default function PaginationListCntSet({ listCnt, setListCnt }) {
+export default function PaginationListCntSet({ listCnt, setListCnt, sx }) {
   return (
-    <PagenationListCntSetStyle>
+    <PagenationListCntSetStyle style={sx}>
       <div className="selected">{listCnt}개씩</div>
       <ul>
         {page_list_set.map((data, idx) => (

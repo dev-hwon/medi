@@ -45,7 +45,7 @@ export default function MainIndex() {
               <Box border>
                 <BoxHead>
                   {clinicReportTab === 0 ? "클리닉 리포트" : "클리닉 업무 추이"}
-                  <Link href="/report" className="btn_reportAllView">
+                  <Link href="/report" className="btn_common btn_reportAllView">
                     <Image
                       src="/images/main/icon_report_btn.svg"
                       alt=""

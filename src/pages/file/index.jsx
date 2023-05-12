@@ -88,9 +88,13 @@ export default function FileIndex() {
           </GridWrap>
         </GridCol>
         <GridCol>
-          <button>전체선택</button>
-          <button>다운로드</button>
-          <button>파일삭제</button>
+          <button class="btn_common " style={{ marginRight: "4px" }}>
+            전체선택
+          </button>
+          <button class="btn_common " style={{ marginRight: "4px" }}>
+            다운로드
+          </button>
+          <button class="btn_common ">파일삭제</button>
         </GridCol>
       </GridWrap>
       <Box margin="16px 0 58px" border>
@@ -168,7 +172,12 @@ const TableDataLists = ({ list }) => {
   return (
     <tr>
       <td style={{ textAlign: "center" }}>
-        <input type="checkbox" onChange={handleChange} value={checked} />
+        <input
+          type="checkbox"
+          onChange={handleChange}
+          value={checked}
+          className="input_checkbox"
+        />
       </td>
       <td>{list.file_nm + "." + list.file_ext}</td>
       <td>{getFileSizeMB(list.file_size)}</td>
@@ -220,7 +229,47 @@ const SelectCateStyle = styled.div`
       }
     }
   }
+  &:after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url("/images/common/icon_arrow_default.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+    transform: rotate(90deg);
+    transition: all .4s;
+    position: absolute;
+    top 50%;
+    right:10px;
+    opacity: .3;
+    margin-top:-8px;
+  }
+  &:hover:after {
+    opacity: .8;
+    transform: rotate(270deg);
+  }
   &:hover ul {
     display: block;
   }
 `;
+
+// .btn_status_change {
+//   flex: 0 0 auto;
+//   width: 24px;
+//   height: 24px;
+//   font-size: 11px;
+//   border: none;
+//   background-color: transparent;
+//   background-image: url("/images/common/icon_checkoff.svg");
+//   background-repeat: no-repeat;
+//   background-size: 100%;
+//   bacgkround-position: 0 0;
+// }
+// }
+// li.li_state_Y {
+// .btn_status_change {
+//   background-image: url("/images/common/icon_checkon.svg");
+// }
+// }

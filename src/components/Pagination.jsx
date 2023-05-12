@@ -35,7 +35,6 @@ export default function Pagination(props) {
     return pageNumberArr;
   };
 
-  console.log(pageNumber, totalPage);
   return (
     <PaginationNumberLists>
       <ul>
@@ -136,6 +135,10 @@ const PaginationNumberLists = styled.div`
         &.active {
           color: #fff;
           background-color: #25aae1;
+        }
+
+        img {
+          vertical-align: middle;
         }
       }
     }
