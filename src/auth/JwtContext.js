@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createContext, useEffect, useReducer, useCallback, useMemo, useState } from 'react';
+import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
 // utils
 import axios from '../util/axios';
 import localStorageAvailable from './localStorageAvailable';
@@ -15,6 +15,7 @@ import { isValidToken, setSession } from './jwt';
 // ----------------------------------------------------------------------
 
 const initialState = {
+  actionType: null,
   isInitialized: false,
   isAuthenticated: false,
   user: null,
@@ -23,6 +24,7 @@ const initialState = {
 const reducer = (state, action) => {
   if (action.type === 'INITIAL') {
     return {
+      actionType: action.type,
       isInitialized: true,
       isAuthenticated: action.payload.isAuthenticated,
       user: action.payload.user,
@@ -31,18 +33,13 @@ const reducer = (state, action) => {
   if (action.type === 'LOGIN') {
     return {
       ...state,
+      actionType: action.type,
       isAuthenticated: true,
       user: action.payload.user,
     };
   }
   /*
-  if (action.type === 'REGISTER') {
-    return {
-      ...state,
-      isAuthenticated: true,
-      user: action.payload.user,
-    };
-  }
+
   if (action.type === 'LOGOUT') {
     return {
       ...state,
@@ -50,6 +47,13 @@ const reducer = (state, action) => {
       user: null,
     };
   }
+  if (action.type === 'REGISTER') {
+    return {
+      ...state,
+      isAuthenticated: true,
+      user: action.payload.user,
+    };
+  }  
   */
   return state;
 };
@@ -70,28 +74,37 @@ export function AuthProvider({ children }) {
  
   // LOGIN
   const login = useCallback(async (mediCookie) => {
-    const response = await axios.get('/api/account/login');
-    const { accessToken, user } = response.data;
+    try {
+      const response = await axios.get('/api/account/login');
+      const { accessToken, user } = response.data;
 
-    setSession(accessToken);
+      setSession(accessToken);
 
-    dispatch({
-      type: 'LOGIN',
-      payload: {
-        user,
-      },
-    });
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          isAuthenticated: false,
+          user: null,
+        },
+      });
+    }
   }, []);
 
   const initialize = useCallback(async () => {
     try {
       const accessToken = storageAvailable ? localStorage.getItem('accessToken') : '';
-
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
         const response = await axios.get('/api/account/my-account?token='+accessToken);
-
         const { user } = response.data;
 
         dispatch({
@@ -115,6 +128,7 @@ export function AuthProvider({ children }) {
         login();
       }
     } catch (error) {
+      console.log('check');
       console.error(error);
       dispatch({
         type: 'INITIAL',
@@ -124,7 +138,6 @@ export function AuthProvider({ children }) {
         },
       });
     }
-//  }, [storageAvailable]);  
   }, [login, storageAvailable]);
 
   useEffect(() => {
@@ -158,31 +171,20 @@ export function AuthProvider({ children }) {
     dispatch({
       type: 'LOGOUT',
     });
+    alert('로그아웃');
   }, []);
-  
-  const memoizedValue = useMemo(
-    () => ({
-      isInitialized: state.isInitialized,
-      isAuthenticated: state.isAuthenticated,
-      user: state.user,
-      method: 'jwt',
-      login,
-      register,
-      logout,
-    }),
-    [state.isAuthenticated, state.isInitialized, state.user, login, logout, register]
-  );
   */
-
+ 
   const memoizedValue = useMemo(
     () => ({
+      actionType: state.actionType,
       isInitialized: state.isInitialized,
       isAuthenticated: state.isAuthenticated,
       user: state.user,
       method: 'jwt',
       login,
     }),
-    [state.isAuthenticated, state.isInitialized, state.user, login]
+    [state.actionType, state.isAuthenticated, state.isInitialized, state.user, login]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

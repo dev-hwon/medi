@@ -15,6 +15,11 @@ export default function Header() {
   
   const { user } = useAuthContext();
 
+  const handleSessionReset = () => {
+    localStorage.removeItem("accessToken");
+    alert("세션초기화");    
+  };
+
   return (
     <Head>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
@@ -56,13 +61,17 @@ export default function Header() {
               colAlign="flex-end"
               colGap={12}
               colNomargin
-            >
-              <GridCol>
-                <MemberName>{user.medi_nm}</MemberName>
-              </GridCol>
-              <GridCol>
-                <button onClick={() => handleSignOut()}>로그아웃</button>
-              </GridCol>
+            >  
+              {user ?
+              <>
+                <GridCol>
+                  <MemberName>{user.medi_nm}</MemberName>
+                </GridCol>
+                <GridCol>
+                  <button onClick={() => handleSessionReset()}>세션초기화</button>
+                </GridCol>
+              </>
+              : null } 
               <GridCol>
                 <Link href="">고객센터</Link>
               </GridCol>

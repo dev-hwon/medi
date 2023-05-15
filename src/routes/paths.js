@@ -5,7 +5,7 @@ function path(root, sublink) {
 }
 
 // 스토어
-const ROOTS_STORE = process.env.NEXT_PUBLIC_MEDI_HOME;
+export const ROOTS_STORE = process.env.NEXT_PUBLIC_MEDI_HOME;
 
 export const PATH_LOGIN = path(ROOTS_STORE,'/access/login');
 

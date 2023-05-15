@@ -20,11 +20,8 @@ const Login = async(req, res) => {
 
     const cookies = cookie.parse(req.headers.cookie);
     if(cookies['medivalue_web']) {
-
         const medi_cookie = cookies['medivalue_web'];
- 
         const api_url = PATH_API.member;
-
         const formData = new FormData();
         formData.append('hash', medi_cookie);
 
@@ -39,7 +36,6 @@ const Login = async(req, res) => {
                 id: response.data.data.id,
                 medi_addr: response.data.data.medi_addr,
             };
-
             const accessToken = sign(
                 user,
                 JWT_SECRET,
@@ -48,7 +44,6 @@ const Login = async(req, res) => {
                 }
             )
             res.status(200).json({ accessToken, user });
-
         } else {
             res.status(401).json({ message: "로그인에 실패했습니다"}); 
         }

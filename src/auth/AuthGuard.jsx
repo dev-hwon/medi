@@ -14,9 +14,10 @@ AuthGuard.propTypes = {
 };
 
 export default function AuthGuard({ children }) {
-  const { isAuthenticated, isInitialized } = useAuthContext();
+  const { user, actionType, isAuthenticated, isInitialized } = useAuthContext();
   const { pathname, push } = useRouter();
   const [requestedLocation, setRequestedLocation] = useState(null); // 현재 경로
+  const [ isNoti, setIsNoti ] = useState(false); // alert 중복 방지
 
   useEffect(() => {
     if (requestedLocation && pathname !== requestedLocation) {
@@ -35,14 +36,29 @@ export default function AuthGuard({ children }) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
     }
-    // 인증 실패
-    // pre-render에서는 메세지를 노출시키지 않는다.
-    // pathname 와 requestedLocation 이 같을 때
-    if(pathname === requestedLocation) {
-     // alert("로그인이 필요합니다");
-    }
-   //  push(PATH_LOGIN);
   }
 
+  console.log("actionType : " + actionType);
+  console.log("isInitialized : " + isInitialized);
+  console.log("isAuthenticated : " + isAuthenticated);
+  console.log("user : " + user);
+  console.log("isNoti : " + isNoti);
+
+  if(actionType=="LOGIN") {
+    if (!isNoti && !isAuthenticated) {
+      alert("로그인이 필요합니다");
+      setIsNoti(true);
+    //   push(PATH_LOGIN);
+    }
+
+    if(isAuthenticated && user) {
+      if(!isNoti &&user.member_type=="L") {
+        alert("기공소는 사용하실 수 없습니다");
+        setIsNoti(true);
+        // push(ROOTS_STORE);
+      }
+    }
+  }
+ 
   return <> {children} </>;
 }
