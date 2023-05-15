@@ -18,15 +18,14 @@ ReportIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 
 export default function ReportIndex() {
   const { user } = useAuthContext();
-  const { medi_nm } = user;
   useTitle("리포트");
-  console.log(useAuthContext());
+
   return (
     <>
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">
-            <em>{medi_nm}</em>의 리포트 모아보기
+            <em> {user ? user.medi_nm : "유저님"} </em>의 리포트 모아보기
           </CommontitleH4>
           <CommonSummary>다양한 설정을 직접 관리해요</CommonSummary>
         </GridCol>

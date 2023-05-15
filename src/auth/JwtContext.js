@@ -204,14 +204,8 @@ export function AuthProvider({ children }) {
   );
 
   return (
-    <>
-      {state.isInitialized ? (
-        <AuthContext.Provider value={memoizedValue}>
-          {children}
-        </AuthContext.Provider>
-      ) : (
-        "loading..."
-      )}
-    </>
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
   );
 }
