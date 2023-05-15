@@ -28,9 +28,13 @@ export default function TodosIndex({ filter }) {
           </CommontitleH4>
         </GridCol>
         <GridCol>
-          <button>일감생성</button>
-          <button>완료된 업무</button>
-          <button>카테고리</button>
+          <button className="btn_common" style={{ marginRight: "4px" }}>
+            일감생성
+          </button>
+          <button className="btn_common" style={{ marginRight: "4px" }}>
+            완료된 업무
+          </button>
+          <button className="btn_common">카테고리</button>
         </GridCol>
       </GridWrap>
       <Box margin="16px 0 58px" backgroundColor="transparent">
@@ -44,7 +48,7 @@ export default function TodosIndex({ filter }) {
           </CommontitleH4>
         </GridCol>
         <GridCol>
-          <button>새로보기</button>
+          <button className="btn_common">새로보기</button>
         </GridCol>
       </GridWrap>
       <Box margin="16px 0 0" backgroundColor="transparent">

@@ -325,10 +325,14 @@ export const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
 
+  tr:hover {
+    background-color: #f5f5f5;
+  }
   thead {
     > tr > th,
     > tr > td {
       padding: ${(props) => (props.padding ? props.padding : "10px")};
+      text-align: ${(props) => (props.align ? props.align : "left")};
       border-bottom: 1px solid #eaebee;
       font-size: 14px;
       font-weight: bold;
@@ -361,7 +365,6 @@ export const Table = styled.table`
     > tr > th {
       font-size: 14px;
       font-weight: bold;
-      background: #f5f5f5;
       color: #666;
       text-align: left;
     }

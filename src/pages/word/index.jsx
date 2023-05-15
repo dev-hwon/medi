@@ -45,9 +45,9 @@ export default function WordIndex() {
         colNomargin
       >
         <GridCol>
-          <CommontitleH4>단어검사</CommontitleH4>
+          <CommontitleH4>문구검사</CommontitleH4>
           <CommonSummary>
-            메디밸류 클리닉 업무 관리의 이용 방법을 알아봐요
+            메디밸류 클리닉리뷰의 긍정 or 부정적인 문구를 검색 할 수 있습니다.
           </CommonSummary>
         </GridCol>
         <GridCol>
@@ -62,8 +62,19 @@ export default function WordIndex() {
       </GridWrap>
       <Box margin="16px 0 0" backgroundColor="transparent">
         <form onSubmit={handleSubmit}>
-          <input type="text" value={text} onChange={handleChange} />
-          <button>검색</button>
+          <input
+            type="text"
+            value={text}
+            onChange={handleChange}
+            placeholder="문구를 입력해 주세요."
+            className="input_text"
+          />
+          <button
+            className="btn_common btn_write"
+            style={{ marginLeft: "4px" }}
+          >
+            검색
+          </button>
         </form>
       </Box>
       <Box margin="16px 0 0">검색결과 나오는곳~~~</Box>

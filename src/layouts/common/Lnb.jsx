@@ -135,18 +135,20 @@ export default function Lnb({ lnbFold, setLnbFold, setLnbHover }) {
             />
           </Link>
         </div>
-        <NaviMenu
-          className="nav_menu"
-          setLnbHover={setLnbHover}
-          lnbData={menulist}
-          pathname={router.pathname}
-        />
-        <Line />
-        <NaviMenu
-          className="nav_menu"
-          setLnbHover={setLnbHover}
-          lnbData={menulist2}
-        />
+        <aside>
+          <NaviMenu
+            className="nav_menu"
+            setLnbHover={setLnbHover}
+            lnbData={menulist}
+            pathname={router.pathname}
+          />
+          <Line />
+          <NaviMenu
+            className="nav_menu"
+            setLnbHover={setLnbHover}
+            lnbData={menulist2}
+          />
+        </aside>
       </div>
     </>
   );

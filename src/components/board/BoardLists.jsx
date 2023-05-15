@@ -9,7 +9,7 @@ export default function BoardLists({ boardDataList, boardName }) {
   };
   return (
     <>
-      <Table radius="8px" padding="16px 24px" vertical="middle">
+      <Table align="center" radius="8px" padding="16px 24px" vertical="middle">
         <colgroup>
           <col width="80" />
           <col />
@@ -32,7 +32,7 @@ export default function BoardLists({ boardDataList, boardName }) {
               return (
                 <tr key={idx} onClick={() => handleClick(list.id)}>
                   <td>{list.id}</td>
-                  <td>
+                  <td style={{ textAlign: "left" }}>
                     {list.subject}_{list.id}
                   </td>
                   <td>{list.author}</td>
