@@ -6,7 +6,7 @@ import {
   GridWrap,
   Line,
 } from "../../components/Style";
-import useTitle from "@/src/hooks/useTitle";
+import { Helmet } from "react-helmet-async";
 import Guide from "./Guide";
 import MainLayout from "@/src/layouts/main/MainLayout";
 
@@ -15,9 +15,9 @@ SettingIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
 export default function SettingIndex() {
-  useTitle("서비스 가이드");
   return (
     <>
+      <Helmet title="서비스 가이드" />
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">서비스 가이드</CommontitleH4>

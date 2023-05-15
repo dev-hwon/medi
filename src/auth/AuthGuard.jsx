@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 // components
 import Loader from '../components/Loader';
 import { useAuthContext } from './useAuthContext';
-import { PATH_LOGIN } from "@/src/routes/paths";
+import { ROOTS_STORE, PATH_LOGIN } from "@/src/routes/paths";
 
 // ----------------------------------------------------------------------
 
@@ -38,25 +38,19 @@ export default function AuthGuard({ children }) {
     }
   }
 
-  console.log("actionType : " + actionType);
-  console.log("isInitialized : " + isInitialized);
-  console.log("isAuthenticated : " + isAuthenticated);
-  console.log("user : " + user);
-  console.log("isNoti : " + isNoti);
-
   if(actionType=="LOGIN") {
     if (!isNoti && !isAuthenticated) {
       alert("로그인이 필요합니다");
       setIsNoti(true);
-    //   push(PATH_LOGIN);
-    }
+      push(PATH_LOGIN);
+    }    
+  }
 
-    if(isAuthenticated && user) {
-      if(!isNoti &&user.member_type=="L") {
-        alert("기공소는 사용하실 수 없습니다");
-        setIsNoti(true);
-        // push(ROOTS_STORE);
-      }
+  if(isAuthenticated && user) {
+    if(!isNoti &&user.member_type=="L") {
+      alert("기공소는 사용하실 수 없습니다");
+      setIsNoti(true);
+      // push(ROOTS_STORE);
     }
   }
  

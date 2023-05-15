@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   return (
-    <Head>
+    <>
       <GridWrap colWidth={33.3333} colWidthUnit="%" colVerticalAlign="center">
         <GridCol className="text_left">
           <TopNotice />
@@ -79,6 +79,6 @@ export default function Header() {
           </Topmenu>
         </GridCol>
       </GridWrap>
-    </Head>
+    </>
   );
 }

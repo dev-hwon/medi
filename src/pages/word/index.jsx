@@ -8,18 +8,16 @@ import {
   Line,
   Table,
 } from "../../components/Style";
-import useTitle from "@/src/hooks/useTitle";
+import { Helmet } from "react-helmet-async";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import boardData from "../../db/board.json";
 import Pagination from "@/src/components/Pagination";
-import { useEffect } from "react";
 import PaginationListCntSet from "@/src/components/PaginationListCntSet";
 // ----------------------------------------------------------------------
 WordIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
-export default function WordIndex() {
-  useTitle("단어검사");
+export default function WordIndex() { 
   const [text, setText] = useState("");
   const [listCnt, setListCnt] = useState(3);
   const [pageNumber, setPageNumber] = useState(0);
@@ -38,6 +36,7 @@ export default function WordIndex() {
 
   return (
     <>
+      <Helmet title="단어검사" />
       <GridWrap
         colGap={16}
         colWidth="50%"

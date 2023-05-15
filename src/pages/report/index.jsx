@@ -1,7 +1,7 @@
 import React from "react";
 import { Timer, diffTime } from "@/src/components/Current";
 import { useAuthContext } from "@/src/auth/useAuthContext";
-import useTitle from "@/src/hooks/useTitle";
+import { Helmet } from "react-helmet-async";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import {
   Box,
@@ -18,10 +18,10 @@ ReportIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 
 export default function ReportIndex() {
   const { user } = useAuthContext();
-  useTitle("리포트");
-
+ 
   return (
     <>
+      <Helmet title="리포트" />
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">

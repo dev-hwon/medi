@@ -10,7 +10,7 @@ export default function Document() {
         ></link>
       </Head>
       <body>
-        <Main />
+        { /* <Main /> */ }
         <NextScript />
       </body>
     </Html>

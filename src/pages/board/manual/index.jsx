@@ -11,11 +11,11 @@ import {
   Box,
 } from "@/src/components/Style";
 import { useRouter } from "next/router";
-import useTitle from "@/src/hooks/useTitle";
 import Board from "../../../db/board.json";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import Pagination from "@/src/components/Pagination";
 import PaginationListCntSet from "@/src/components/PaginationListCntSet";
+import { Helmet } from "react-helmet-async";
 
 // ----------------------------------------------------------------------
 BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -39,13 +39,13 @@ export default function BoardIndex() {
   // ----------------------------------------------------------------------
   const boardDataList = Board.data.list;
   // ----------------------------------------------------------------------
-  useTitle(boardNameKr);
   const closeModal = () => {
     setModalProps({ visible: false });
   };
   // ----------------------------------------------------------------------
   return (
     <>
+      <Helmet title={boardNameKr} />
       <GridWrap
         colGap={16}
         colWidth="50%"

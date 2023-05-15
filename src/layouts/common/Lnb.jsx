@@ -132,6 +132,7 @@ export default function Lnb({ lnbFold, setLnbFold, setLnbHover }) {
               alt="medivalue"
               width={208}
               height={60}
+              priority={true}
             />
           </Link>
         </div>

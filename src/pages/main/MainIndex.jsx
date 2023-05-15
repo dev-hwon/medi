@@ -13,6 +13,7 @@ import {
 } from "@/src/components/main";
 import ToolTip from "@/src/components/tooltip/ToolTip";
 import todosData from "../../db/todos.json";
+import { Helmet } from "react-helmet-async";
 
 // const filters = ["all", "active", "completed"];
 export default function MainIndex() {
@@ -37,6 +38,7 @@ export default function MainIndex() {
 
   return (
     <>
+      <Helmet title="대시 보드" />
       {/* {dayWork[0].title.repeat(4)} */}
       <GridWrap colGap={16}>
         <GridCol customWidth="770px" margin="0">

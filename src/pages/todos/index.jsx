@@ -8,7 +8,7 @@ import {
 } from "@/src/components/Style";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import todosData from "../../db/todos.json";
-import useTitle from "@/src/hooks/useTitle";
+import { Helmet } from "react-helmet-async";
 import { AiList, TodoList } from "@/src/components/todos";
 import styled from "styled-components";
 
@@ -17,10 +17,10 @@ TodosIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
 export default function TodosIndex({ filter }) {
-  useTitle("할일관리");
   const todosList = todosData.data.list;
   return (
     <>
+      <Helmet title="할일관리" />
       <GridWrap colAlign="space-between">
         <GridCol>
           <CommontitleH4>

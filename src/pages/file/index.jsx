@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import useTitle from "@/src/hooks/useTitle";
 import categorysData from "../../db/categorys.json";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import {
@@ -11,6 +10,7 @@ import {
   Table,
 } from "@/src/components/Style";
 import getFileSizeMB from "@/src/util/getFileSizeMB";
+import { Helmet } from "react-helmet-async";
 
 // ----------------------------------------------------------------------
 FileIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -56,11 +56,11 @@ const lists = [
 
 export default function FileIndex() {
   const [selectedCate, setSelectedCate] = useState(0);
-  useTitle("파일함");
   const categorysList = categorysData.data.list;
 
   return (
     <>
+      <Helmet title="파일함" />
       <GridWrap colAlign="space-between">
         <GridCol>
           <CommontitleH4>
