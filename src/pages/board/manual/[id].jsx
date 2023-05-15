@@ -22,6 +22,7 @@ export default function BoardIndex() {
   const boardDataList = Board.data.list;
   const [filteredData, setFilteredData] = useState({ data: [], loading: true });
 
+  getServer;
   useEffect(() => {
     if (id) {
       setFilteredData({

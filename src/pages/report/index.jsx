@@ -1,6 +1,6 @@
 import React from "react";
-import useAuth from "@/src/hooks/useAuth";
 import { Timer, diffTime } from "@/src/components/Current";
+import { useAuthContext } from "@/src/auth/useAuthContext";
 import useTitle from "@/src/hooks/useTitle";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import {
@@ -17,17 +17,16 @@ ReportIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
 export default function ReportIndex() {
-  const { User } = useAuth();
-  const { id, name, clinicUse } = User;
-
+  const { user } = useAuthContext();
+  const { medi_nm } = user;
   useTitle("리포트");
-
+  console.log(useAuthContext());
   return (
     <>
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">
-            <em>이엘치과</em>의 리포트 모아보기
+            <em>{medi_nm}</em>의 리포트 모아보기
           </CommontitleH4>
           <CommonSummary>다양한 설정을 직접 관리해요</CommonSummary>
         </GridCol>
