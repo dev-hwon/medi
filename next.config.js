@@ -7,6 +7,7 @@ module.exports = {
   },
   experimental: {
     concurrentFeatures: true,
-    serverComponents: true
+    serverComponents: true,
+    appDir: true,
   }
 };

@@ -9,7 +9,7 @@ import moment, {
   diffTime,
 } from "@/src/components/Current";
 import CalendarSmall from "@/src/components/dashboard/CalendarSmall";
-import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
+import Modal, { ModalOpenBtn } from "../modal/Modal";
 import Formtodo from "../todos/Formtodo";
 import todosData from "../../db/todos.json";
 import adjColon from "@/src/util/adjColon";

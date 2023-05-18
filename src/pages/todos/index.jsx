@@ -8,7 +8,7 @@ import {
 } from "@/src/components/Style";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import todosData from "../../db/todos.json";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 import { AiList, TodoList } from "@/src/components/todos";
 import styled from "styled-components";
 
@@ -20,7 +20,7 @@ export default function TodosIndex({ filter }) {
   const todosList = todosData.data.list;
   return (
     <>
-      <Helmet title="할일관리" />
+      <NextSeo title="클리닉관리 - 할일관리" />
       <GridWrap colAlign="space-between">
         <GridCol>
           <CommontitleH4>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, BoxHead, BoxCont, CommontitleH3, CommonSummary } from "../Style";
-import TodosAchievementChart from "../../components/todos/TodosAchievementChart";
+import TodosAchievementChart from "../todos/TodosAchievementChart";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 // import "swiper/less/navigation";

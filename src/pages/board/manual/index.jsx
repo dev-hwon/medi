@@ -15,13 +15,13 @@ import Board from "../../../db/board.json";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import Pagination from "@/src/components/Pagination";
 import PaginationListCntSet from "@/src/components/PaginationListCntSet";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 
 // ----------------------------------------------------------------------
 BoardIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 // ----------------------------------------------------------------------
 
-const boardName = "manual";
+const boardName = "클리닉관리 - manual";
 const boardNameKr = "우리병원 매뉴얼";
 
 export default function BoardIndex() {
@@ -45,7 +45,7 @@ export default function BoardIndex() {
   // ----------------------------------------------------------------------
   return (
     <>
-      <Helmet title={boardNameKr} />
+      <NextSeo title={boardNameKr} />
       <GridWrap
         colGap={16}
         colWidth="50%"

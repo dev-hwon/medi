@@ -1,14 +1,14 @@
 import React from "react";
 import { useCallback, useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Modal, { ModalOpenBtn } from "../../components/modal/Modal";
+import Modal, { ModalOpenBtn } from "../modal/Modal";
 import {
   CommonSummary,
   CommontitleH4,
   GridCol,
   GridWrap,
   Box,
-} from "../../components/Style";
+} from "../Style";
 
 // ----------------------------------------------------------------------
 // 모달레이어로 띄울때 사용했던페이지

@@ -1,7 +1,7 @@
 import React from "react";
 import { Timer, diffTime } from "@/src/components/Current";
 import { useAuthContext } from "@/src/auth/useAuthContext";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import {
   Box,
@@ -21,7 +21,7 @@ export default function ReportIndex() {
  
   return (
     <>
-      <Helmet title="리포트" />
+      <NextSeo title="클리닉관리 - 리포트" />
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">

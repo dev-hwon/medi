@@ -10,7 +10,7 @@ import {
   Table,
 } from "@/src/components/Style";
 import getFileSizeMB from "@/src/util/getFileSizeMB";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 
 // ----------------------------------------------------------------------
 FileIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
@@ -60,7 +60,7 @@ export default function FileIndex() {
 
   return (
     <>
-      <Helmet title="파일함" />
+      <NextSeo title="클리닉관리 - 파일함" />
       <GridWrap colAlign="space-between">
         <GridCol>
           <CommontitleH4>

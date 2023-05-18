@@ -6,7 +6,7 @@ import {
   GridWrap,
   Line,
 } from "../../components/Style";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 import Guide from "./Guide";
 import MainLayout from "@/src/layouts/main/MainLayout";
 
@@ -17,7 +17,7 @@ SettingIndex.getLayout = (page) => <MainLayout> {page} </MainLayout>;
 export default function SettingIndex() {
   return (
     <>
-      <Helmet title="서비스 가이드" />
+      <NextSeo title="클리닉관리 - 서비스 가이드" />
       <GridWrap>
         <GridCol>
           <CommontitleH4 className="">서비스 가이드</CommontitleH4>

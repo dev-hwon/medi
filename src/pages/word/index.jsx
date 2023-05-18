@@ -8,7 +8,7 @@ import {
   Line,
   Table,
 } from "../../components/Style";
-import { Helmet } from "react-helmet-async";
+import { NextSeo } from "next-seo";
 import MainLayout from "@/src/layouts/main/MainLayout";
 import boardData from "../../db/board.json";
 import Pagination from "@/src/components/Pagination";
@@ -36,7 +36,7 @@ export default function WordIndex() {
 
   return (
     <>
-      <Helmet title="단어검사" />
+      <NextSeo title="클리닉관리 - AI리뷰" />
       <GridWrap
         colGap={16}
         colWidth="50%"
